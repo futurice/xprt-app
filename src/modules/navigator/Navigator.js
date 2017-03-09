@@ -2,13 +2,15 @@ import {Platform} from 'react-native';
 import {TabNavigator, StackNavigator} from 'react-navigation';
 
 import ExpertsViewContainer from '../experts/ExpertsViewContainer';
+import LecturesViewContainer from '../lectures/LecturesViewContainer';
 
 const headerColor = '#39babd';
 const activeColor = 'white';
 
 // TabNavigator is nested inside StackNavigator
 export const MainScreenNavigator = TabNavigator({
-  Experts: {screen: ExpertsViewContainer}
+  Experts: {screen: ExpertsViewContainer},
+  Lectures: {screen: LecturesViewContainer}
 }, {
   tabBarOptions: {
     ...Platform.select({
