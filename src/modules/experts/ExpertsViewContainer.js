@@ -10,4 +10,5 @@ export default connect(
     getExperts() {
       dispatch(rest.actions.experts());
     }
-  }))(ExpertsView);
+  })
+)(ExpertsView);

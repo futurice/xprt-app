@@ -6,11 +6,10 @@ import {
   StyleSheet
 } from 'react-native';
 
-import {SearchBar, List, ListItem} from 'native-base';
+import {Container, Content, ListItem, List, Left, Body, Right, Thumbnail} from 'native-base';
 
 class ExpertsView extends Component {
   componentDidMount() {
-    console.log('Hello');
     this.props.getExperts();
   }
 
@@ -32,23 +31,18 @@ class ExpertsView extends Component {
 */
   renderRow(rowData, sectionID) {
     return (
-      <ListItem
-        roundAvatar
-        key={sectionID}
-        title={rowData.name}
-        subtitle={
-          <View style={styles.subtitleView}>
-            <Text>{rowData.title}</Text>
-            <Text>{rowData.area}</Text>
-            <View style={styles.tagsWrapper}>
-              {rowData.subjects.map((tag, index) => (
-                <Text key={index} style={styles.subtitleText}>{tag}</Text>
-              ))}
-            </View>
-          </View>
-        }
-        avatar={{uri: rowData.photograph}}
-        />
+      <ListItem roundAvatar style={styles.listItem}>
+        <Left>
+          <Thumbnail source={require('../../../images/pepperoni.png')}/>
+        </Left>
+        <Body>
+          <Text> {rowData.name} </Text>
+          <Text note> body note </Text>
+        </Body>
+        <Right>
+          <Text note> Side node </Text>
+        </Right>
+      </ListItem>
     );
   }
 
@@ -57,10 +51,14 @@ class ExpertsView extends Component {
   }
 
   render() {
+    let expertItems = this.props.experts;
+
     return (
-      <View style={styles.container}>
-        <Text> Hello {JSON.stringify(this.props.experts)} wolrd</Text>
-      </View>
+      <Container>
+        <Content>
+          <List dataArray={expertItems} renderRow={this.renderRow}/>
+        </Content>
+      </Container>
     );
   }
 }
@@ -90,6 +88,10 @@ const styles = StyleSheet.create({
   list: {
     flex: 1,
     marginTop: 0
+  },
+  listItem: {
+    width: 1,
+    backgroundColor: '#CD12AB'
   }
 });
 
