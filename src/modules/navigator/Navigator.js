@@ -24,7 +24,7 @@ export const MainScreenNavigator = TabNavigator({
 });
 
 MainScreenNavigator.navigationOptions = {
-  title: 'Pepperoni App Template',
+  title: 'XPRT',
   header: {
     titleStyle: {color: 'white'},
     style: {

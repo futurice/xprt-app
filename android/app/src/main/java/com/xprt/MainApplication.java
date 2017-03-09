@@ -1,4 +1,4 @@
-package com.pepperoniapptemplate;
+package com.xprt;
 
 import android.app.Application;
 
