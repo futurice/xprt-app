@@ -29,13 +29,13 @@ Information about request: `state.teams.error`, `state.teams.sync`, `state.teams
 */
 
 const rest = reduxApi({
-  songs: {
-    url: `${config.apiRoot}/songs`,
+  experts: {
+    url: `${config.apiRoot}/experts`,
     transformer: transformers.array,
     crud: true
   },
-  songDetails: {
-    url: `${config.apiRoot}/songs/:songId`,
+  expertDetails: {
+    url: `${config.apiRoot}/experts/:expertId`,
     crud: true
   }
 
