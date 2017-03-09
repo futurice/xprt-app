@@ -31,7 +31,7 @@ class ExpertsView extends Component {
 */
   renderRow(rowData, sectionID) {
     return (
-      <ListItem roundAvatar style={styles.listItem}>
+      <ListItem roundAvatar>
         <Left>
           <Thumbnail source={require('../../../images/pepperoni.png')}/>
         </Left>
@@ -89,10 +89,6 @@ const styles = StyleSheet.create({
     flex: 1,
     marginTop: 0
   },
-  listItem: {
-    width: 1,
-    backgroundColor: '#CD12AB'
-  }
 });
 
 export default ExpertsView;
