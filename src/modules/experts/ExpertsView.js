@@ -1,14 +1,17 @@
-import React, {PropTypes, Component} from 'react';
+import React, {Component} from 'react';
 import {
   Text,
-  View,
-  ListView,
   StyleSheet
 } from 'react-native';
 
-import {Container, Content, ListItem, List, Left, Body, Right, Thumbnail} from 'native-base';
+import {Container, Content, Button, Header, Icon, Input,
+  Item, ListItem, List, Left, Body, Right, Thumbnail} from 'native-base';
 
 class ExpertsView extends Component {
+  constructor() {
+    super();
+    this.state = {query: ''};
+  }
   componentDidMount() {
     this.props.getExperts();
   }
@@ -29,18 +32,19 @@ class ExpertsView extends Component {
     });
   },
 */
-  renderRow(rowData, sectionID) {
+  renderRow(rowData) {
     return (
-      <ListItem roundAvatar>
+      <ListItem button avatar onPress={() =>
+          console.log('ID of the person', rowData.id)}>
         <Left>
           <Thumbnail source={require('../../../images/pepperoni.png')}/>
         </Left>
         <Body>
           <Text> {rowData.name} </Text>
-          <Text note> body note </Text>
+          <Text note style={styles.rowText}> {rowData.email} </Text>
         </Body>
         <Right>
-          <Text note> Side node </Text>
+          <Icon name='arrow-forward'/>
         </Right>
       </ListItem>
     );
@@ -50,12 +54,20 @@ class ExpertsView extends Component {
     console.log(e);
   }
 
+  filterSearch = (e) => {
+    this.setState({
+      query: e.target.value
+    });
+  }
+
   render() {
     let expertItems = this.props.experts;
 
     return (
       <Container>
         <Content>
+          <CustomHeader filterSearch={this.filterSearch}
+            onSubmit={this.props.getExperts}/>
           <List dataArray={expertItems} renderRow={this.renderRow}/>
         </Content>
       </Container>
@@ -63,9 +75,29 @@ class ExpertsView extends Component {
   }
 }
 
+class CustomHeader extends Header {
+  render() {
+    return (
+      <Header searchBar rounded>
+        <Item>
+          <Icon name='search' />
+          <Input placeholder='Experts search' onChangeText={text => this.setState({text})} />
+          <Icon active name='people' />
+        </Item>
+        <Button transparent onPress={() => this.props.onSubmit(this.state.text)}>
+          <Text> Search </Text>
+        </Button>
+      </Header>
+    );
+  }
+}
+
 const styles = StyleSheet.create({
   container: {
     flex: 1
+  },
+  rowText: {
+    color: 'skyblue'
   },
   subtitleView: {
     paddingLeft: 10,
@@ -88,7 +120,7 @@ const styles = StyleSheet.create({
   list: {
     flex: 1,
     marginTop: 0
-  },
+  }
 });
 
 export default ExpertsView;
