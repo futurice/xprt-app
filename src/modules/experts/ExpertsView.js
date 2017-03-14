@@ -54,20 +54,13 @@ class ExpertsView extends Component {
     console.log(e);
   }
 
-  filterSearch = (e) => {
-    this.setState({
-      query: e.target.value
-    });
-  }
-
   render() {
     let expertItems = this.props.experts;
 
     return (
       <Container>
         <Content>
-          <CustomHeader filterSearch={this.filterSearch}
-            onSubmit={this.props.getExperts}/>
+          <CustomHeader onSubmit={this.props.getExperts}/>
           <List dataArray={expertItems} renderRow={this.renderRow}/>
         </Content>
       </Container>
@@ -94,7 +87,11 @@ class CustomHeader extends Header {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    backgroundColor: '#640DE8'
+  },
+  content: {
+    backgroundColor: '#640DE8'
   },
   rowText: {
     color: 'skyblue'

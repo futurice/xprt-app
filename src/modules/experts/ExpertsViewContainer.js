@@ -7,9 +7,9 @@ export default connect(
     experts: state.getIn(['experts', 'data']).toJS()
   }),
   dispatch => ({
-    getExperts(queryString) {
-      console.log('kutsu');
-      dispatch(rest.actions.experts(queryString));
+    getExperts(query) {
+      console.log('Experts list API request');
+      dispatch(rest.actions.experts({filter: query}));
     }
   })
 )(ExpertsView);
