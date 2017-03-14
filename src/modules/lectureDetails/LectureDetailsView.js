@@ -12,7 +12,7 @@ class LectureDetailsView extends Component {
     return (this.props.lectureDetails.loading ? (
       <Container>
         <Content>
-          <Spinner />
+          <Spinner color='#666'/>
         </Content>
       </Container>
     ) : (
