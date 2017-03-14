@@ -20,7 +20,8 @@ export default {
   badgeColor: '#fff',
     // New Variable
   badgePadding: (platform === 'ios') ? 3 : 0,
-
+    // BackgroundColor
+    bgColor: '#fff',
     // Button
   btnFontFamily: (platform === 'ios') ? 'System' : 'Roboto_medium',
   btnDisabledBg: '#b5b5b5',

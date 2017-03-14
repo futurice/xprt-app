@@ -3,6 +3,7 @@ import {TabNavigator, StackNavigator} from 'react-navigation';
 
 import ExpertsViewContainer from '../experts/ExpertsViewContainer';
 import LecturesViewContainer from '../lectures/LecturesViewContainer';
+import LectureDetailsViewContainer from '../lectureDetails/LectureDetailsViewContainer';
 import LoginViewContainer from '../login/LoginViewContainer';
 
 const headerColor = '#39babd';
@@ -38,7 +39,8 @@ MainScreenNavigator.navigationOptions = {
 
 // Root navigator is a StackNavigator
 const AppNavigator = StackNavigator({
-  Home: {screen: MainScreenNavigator}
+  Home: {screen: MainScreenNavigator},
+  LectureDetails: {screen: LectureDetailsViewContainer}
 });
 
 export default AppNavigator;
