@@ -13,13 +13,22 @@ class LecturesView extends Component {
     this.props.getLectures();
   }
 
+  open = (lectureId) => {
+    this.props.navigate({
+      routeName: 'LectureDetails',
+      params: {
+        lectureId
+      }
+    });
+  };
+
   render() {
     return (
       <Container>
         <Content>
           {
             this.props.lectures.map((lecture) => (
-              <ListItem button onPress={()=>console.log("HALOO" + Math.random())} avatar key={lecture.id}>
+              <ListItem button onPress={() => this.open(lecture.id)} avatar key={lecture.id}>
                 <Left>
                   <Thumbnail source={require('../../../images/pepperoni.png')} />
                 </Left>
@@ -39,12 +48,6 @@ class LecturesView extends Component {
 
     );
   }
-}
-
-const styles = StyleSheet.create({
-  containerStyle: {
-    backgroundColor: 'red'
-  }
-});
+};
 
 export default LecturesView;

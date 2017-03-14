@@ -11,8 +11,7 @@ const activeColor = 'white';
 // TabNavigator is nested inside StackNavigator
 export const MainScreenNavigator = TabNavigator({
   Experts: {screen: ExpertsViewContainer},
-  Lectures: {screen: LecturesViewContainer},
-  LectureDetails: {screen: LectureDetailsViewContainer}
+  Lectures: {screen: LecturesViewContainer}
 }, {
   tabBarOptions: {
     ...Platform.select({
@@ -38,7 +37,8 @@ MainScreenNavigator.navigationOptions = {
 
 // Root navigator is a StackNavigator
 const AppNavigator = StackNavigator({
-  Home: {screen: MainScreenNavigator}
+  Home: {screen: MainScreenNavigator},
+  LectureDetails: {screen: LectureDetailsViewContainer}
 });
 
 export default AppNavigator;
