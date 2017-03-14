@@ -5,7 +5,7 @@ import {
   StyleSheet
 } from 'react-native';
 
-import {Body, Left, Right, Thumbnail, Content, Container, ListItem, Text, Icon} from 'native-base';
+import {Body, Left, Right, Thumbnail, Content, Container, ListItem, Text, Icon, List} from 'native-base';
 
 class LecturesView extends Component {
   componentDidMount() {
@@ -21,28 +21,31 @@ class LecturesView extends Component {
       }
     });
   };
+  renderRow = (lecture) => {
+    return(
+      <ListItem button onPress={() => this.open(lecture.id)} avatar key={lecture.id}>
+        <Left>
+          <Thumbnail source={require('../../../images/pepperoni.png')} />
+        </Left>
+        <Body>
+          <Text>{lecture.title}</Text>
+          <Text note>Example Character</Text>
+          <Text note>{new Date(lecture.dates).toLocaleDateString('fi-FI')}</Text>
+        </Body>
+        <Right>
+          <Icon name="arrow-forward" />
+        </Right>
+      </ListItem>
 
+    );
+  };
   render() {
+    let lectureItems = this.props.lectures;
+
     return (
       <Container>
         <Content>
-          {
-            this.props.lectures.map((lecture) => (
-              <ListItem button onPress={() => this.open(lecture.id)} avatar key={lecture.id}>
-                <Left>
-                  <Thumbnail source={require('../../../images/pepperoni.png')} />
-                </Left>
-                <Body>
-                  <Text>{lecture.title}</Text>
-                  <Text note>Example Character</Text>
-                  <Text note>{new Date(lecture.dates).toLocaleDateString('fi-FI')}</Text>
-                </Body>
-                <Right>
-                  <Icon name="arrow-forward" />
-                </Right>
-              </ListItem>
-            ))
-          }
+          <List dataArray={lectureItems} renderRow={this.renderRow}/>
         </Content>
       </Container>
 
