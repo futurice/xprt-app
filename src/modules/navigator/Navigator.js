@@ -2,6 +2,7 @@ import {Platform} from 'react-native';
 import {TabNavigator, StackNavigator} from 'react-navigation';
 
 import ExpertsViewContainer from '../experts/ExpertsViewContainer';
+import ExpertDetailsViewContainer from '../expertdetails/ExpertDetailsViewContainer';
 import LecturesViewContainer from '../lectures/LecturesViewContainer';
 import LectureDetailsViewContainer from '../lectureDetails/LectureDetailsViewContainer';
 import LoginViewContainer from '../login/LoginViewContainer';
@@ -40,6 +41,7 @@ MainScreenNavigator.navigationOptions = {
 // Root navigator is a StackNavigator
 const AppNavigator = StackNavigator({
   Home: {screen: MainScreenNavigator},
+  ExpertDetails: {screen: ExpertDetailsViewContainer},
   LectureDetails: {screen: LectureDetailsViewContainer}
 });
 

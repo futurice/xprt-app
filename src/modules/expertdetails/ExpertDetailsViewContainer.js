@@ -3,13 +3,13 @@ import ExpertDetailsView from './ExpertDetailsView';
 import rest from '../../utils/rest';
 
 export default connect(
-  state => ({
-    expertDetails: state.getIn(['expertDetails', 'data']).toJS()
+  (state, ownProps) => ({
+    expertDetails: state.getIn(['expertDetails']).toJS(),
+    expertId: ownProps.navigation.state.params.expertId
   }),
   dispatch => ({
-    getExpert(id = 2) {
-      console.log('Expertdetails API request');
-      dispatch(rest.actions.expertDetails({expertId: id}));
+    getExpertDetails(expertId) {
+      dispatch(rest.actions.expertDetails({expertId}));
     }
   })
 )(ExpertDetailsView);

@@ -32,16 +32,25 @@ class ExpertsView extends Component {
     });
   },
 */
-  renderRow(rowData) {
+  open = (expertId) => {
+    this.props.navigate({
+      routeName: 'ExpertDetails',
+      params: {
+        expertId
+      }
+    });
+  };
+
+  renderRow = (expert) => {
     return (
-      <ListItem button avatar onPress={() =>
-          console.log('ID of the person', rowData.id)}>
+      <ListItem button avatar key={expert.id} onPress={() => {this.open(expert.id);
+        console.log('Experts pressed: ', expert.id);}}>
         <Left>
           <Thumbnail source={require('../../../images/pepperoni.png')}/>
         </Left>
         <Body>
-          <Text> {rowData.name} </Text>
-          <Text note style={styles.rowText}> {rowData.email} </Text>
+          <Text> {expert.name} </Text>
+          <Text note style={styles.rowText}> {expert.email} </Text>
         </Body>
         <Right>
           <Icon name='arrow-forward'/>
@@ -56,7 +65,6 @@ class ExpertsView extends Component {
 
   render() {
     let expertItems = this.props.experts;
-
     return (
       <Container>
         <Content>

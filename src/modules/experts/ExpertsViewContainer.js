@@ -1,6 +1,8 @@
 import {connect} from 'react-redux';
 import ExpertsView from './ExpertsView';
 import rest from '../../utils/rest';
+import {bindActionCreators} from 'redux';
+import {NavigationActions} from 'react-navigation';
 
 export default connect(
   state => ({
@@ -8,8 +10,8 @@ export default connect(
   }),
   dispatch => ({
     getExperts(query) {
-      console.log('Experts list API request');
       dispatch(rest.actions.experts({filter: query}));
-    }
+    },
+    navigate: bindActionCreators(NavigationActions.navigate, dispatch)
   })
 )(ExpertsView);
