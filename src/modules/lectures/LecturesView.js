@@ -11,6 +11,16 @@ class LecturesView extends Component {
   componentDidMount() {
     this.props.getLectures();
   }
+  static navigationOptions = {
+    tabBar: () => ({
+      icon: ({tintColor: color}) => (
+        <Icon name="ios-list" style={{color}}/>
+      ),
+      visible: true
+    }),
+  };
+
+
 
   open = (lectureId) => {
     this.props.navigate({

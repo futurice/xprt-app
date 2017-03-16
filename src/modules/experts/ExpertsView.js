@@ -16,6 +16,14 @@ class ExpertsView extends Component {
   componentDidMount() {
     this.props.getExperts();
   }
+  static navigationOptions = {
+    tabBar: () => ({
+      icon: ({tintColor: color}) => (
+        <Icon name="ios-person-outline" style={{color}}/>
+      ),
+      visible: true
+    }),
+  };
 
   open = (expertId) => {
     this.props.navigate({

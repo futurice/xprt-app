@@ -7,7 +7,7 @@ import LecturesViewContainer from '../lectures/LecturesViewContainer';
 import LectureDetailsViewContainer from '../lectureDetails/LectureDetailsViewContainer';
 import LoginViewContainer from '../login/LoginViewContainer';
 
-const headerColor = '#39babd';
+const headerColor = '#333333';
 const activeColor = 'white';
 
 // TabNavigator is nested inside StackNavigator
@@ -30,7 +30,7 @@ export const MainScreenNavigator = TabNavigator({
 MainScreenNavigator.navigationOptions = {
   title: 'XPRT',
   header: {
-    titleStyle: {color: 'white'},
+    titleStyle: {color: '#15a369'},
     style: {
       backgroundColor: headerColor,
       elevation: 0 // disable header elevation when TabNavigator visible
