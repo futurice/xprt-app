@@ -13,30 +13,10 @@ import {Container, Content, Button, Header, Icon, Input,
   Item, ListItem, List, Left, Body, Right, Thumbnail, Spinner} from 'native-base';
 
 class ExpertsView extends Component {
-  constructor() {
-    super();
-    this.state = {query: ''};
-  }
   componentDidMount() {
     this.props.getExperts();
   }
 
-/*
-  getInitialState() {
-    const ds = new ListView.DataSource({
-      rowHasChanged: (r1, r2) => r1 !== r2
-    });
-    return {
-      dataSource: ds
-    };
-  },
-
-  componentWillReceiveProps(nextProps) {
-    this.setState({
-      dataSource: this.state.dataSource.cloneWithRows(nextProps.experts.data)
-    });
-  },
-*/
   open = (expertId) => {
     this.props.navigate({
       routeName: 'ExpertDetails',
@@ -48,8 +28,7 @@ class ExpertsView extends Component {
 
   renderRow = (expert) => {
     return (
-      <ListItem button avatar key={expert.id} onPress={() => {this.open(expert.id);
-        console.log('Experts pressed: ', expert.id);}}>
+      <ListItem button avatar key={expert.id} onPress={() => {this.open(expert.id);}} >
         <Left>
           <Thumbnail source={require('../../../images/pepperoni.png')}/>
         </Left>
@@ -62,10 +41,6 @@ class ExpertsView extends Component {
         </Right>
       </ListItem>
     );
-  }
-
-  changeFilter(e) {
-    console.log(e);
   }
 
   render() {
