@@ -9,7 +9,6 @@ import {Body, Left, Right, Thumbnail, Content, Container, ListItem, Text, Icon, 
 
 class LecturesView extends Component {
   componentDidMount() {
-    console.log('Hello');
     this.props.getLectures();
   }
 
