@@ -4,8 +4,13 @@ import {
   StyleSheet
 } from 'react-native';
 
+import debounce from 'lodash/debounce';
+
+// Don't care about propTypes in modules
+/* eslint-disable react/prop-types */
+
 import {Container, Content, Button, Header, Icon, Input,
-  Item, ListItem, List, Left, Body, Right, Thumbnail} from 'native-base';
+  Item, ListItem, List, Left, Body, Right, Thumbnail, Spinner} from 'native-base';
 
 class ExpertsView extends Component {
   constructor() {
@@ -64,12 +69,17 @@ class ExpertsView extends Component {
   }
 
   render() {
-    let expertItems = this.props.experts;
+    const {experts, loading, getExperts} = this.props;
+
     return (
       <Container>
         <Content>
-          <CustomHeader onSubmit={this.props.getExperts}/>
-          <List dataArray={expertItems} renderRow={this.renderRow}/>
+          <CustomHeader onSubmit={getExperts}/>
+
+          { loading
+            ? <Spinner />
+            : <List dataArray={experts} renderRow={this.renderRow}/>
+          }
         </Content>
       </Container>
     );
@@ -77,15 +87,32 @@ class ExpertsView extends Component {
 }
 
 class CustomHeader extends Header {
+  state = {
+    text: ''
+  };
+
+  debouncedSubmit = debounce((text) => {
+    const {onSubmit} = this.props;
+
+    onSubmit(text);
+  }, 300);
+
+  onChangeText = (text) => {
+    this.setState({text});
+    this.debouncedSubmit(text);
+  };
+
   render() {
+    const {onSubmit} = this.props;
+
     return (
       <Header searchBar rounded>
         <Item>
           <Icon name='search' />
-          <Input placeholder='Experts search' onChangeText={text => this.setState({text})} />
+          <Input placeholder='Experts search' onChangeText={this.onChangeText} />
           <Icon active name='people' />
         </Item>
-        <Button transparent onPress={() => this.props.onSubmit(this.state.text)}>
+        <Button transparent onPress={() => onSubmit(this.state.text)}>
           <Text> Search </Text>
         </Button>
       </Header>
