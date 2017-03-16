@@ -7,12 +7,23 @@ class LectureDetailsView extends Component {
   componentDidMount() {
     this.props.getLectureDetails(this.props.lectureId);
   }
-
+  static navigationOptions = {
+    title: 'testi',
+    header: navigation => ({
+      style: {
+        backgroundColor: '#333333'
+      },
+      titleStyle: {
+        color: '#15a369'
+      },
+      tintColor:'#15a369'
+    })
+  };
   render() {
     return (this.props.lectureDetails.loading ? (
       <Container>
         <Content>
-          <Spinner color='#666'/>
+          <Spinner />
         </Content>
       </Container>
     ) : (

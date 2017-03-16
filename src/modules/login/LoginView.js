@@ -1,8 +1,16 @@
 import React, {Component} from 'react';
-import { Button, Container, Content, Form, Item, Input, Label, Text } from 'native-base';
+import { Button, Container, Content, Form, Item, Input, Label, Text, Icon } from 'native-base';
 
 
 export default class FormExample extends Component {
+  static navigationOptions = {
+    tabBar: () => ({
+      icon: ({tintColor: color}) => (
+        <Icon name="ios-key-outline" style={{color}}/>
+      ),
+      visible: true
+    }),
+  };
 
     render() {
         return (
