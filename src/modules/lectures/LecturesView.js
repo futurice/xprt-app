@@ -20,8 +20,6 @@ class LecturesView extends Component {
     }),
   };
 
-
-
   open = (lectureId) => {
     this.props.navigate({
       routeName: 'LectureDetails',
@@ -49,12 +47,12 @@ class LecturesView extends Component {
     );
   };
   render() {
-    let lectureItems = this.props.lectures;
+    const {lectures, loading} = this.props;
 
     return (
       <Container>
         <Content>
-          <List dataArray={lectureItems} renderRow={this.renderRow}/>
+          <List dataArray={lectures} renderRow={this.renderRow}/>
         </Content>
       </Container>
 

@@ -6,8 +6,8 @@ import {NavigationActions} from 'react-navigation';
 
 export default connect(
   state => ({
-    experts: state.getIn(['experts', 'data']).toJS(),
-    loading: state.getIn(['experts', 'loading'])
+    experts: state.experts.data,
+    loading: state.experts.loading
   }),
   dispatch => ({
     getExperts(query) {

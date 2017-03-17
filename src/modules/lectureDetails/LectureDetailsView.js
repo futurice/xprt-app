@@ -2,14 +2,13 @@ import React, {PropTypes, Component} from 'react';
 import { StyleSheet } from 'react-native';
 import { Container, Footer, FooterTab, Content, Button, Text, H1, H2, H3, Spinner } from 'native-base';
 
-
 class LectureDetailsView extends Component {
   componentDidMount() {
     this.props.getLectureDetails(this.props.lectureId);
   }
   static navigationOptions = {
     title: 'testi',
-    header: navigation => ({
+    header: () => ({
       style: {
         backgroundColor: '#333333'
       },
@@ -20,7 +19,9 @@ class LectureDetailsView extends Component {
     })
   };
   render() {
-    return (this.props.lectureDetails.loading ? (
+    const {lecture, loading} = this.props;
+
+    return (loading ? (
       <Container>
         <Content>
           <Spinner />
@@ -30,13 +31,13 @@ class LectureDetailsView extends Component {
       <Container>
         <Content>
             <Text note>Theme of the lecture:</Text>
-            <Text>{this.props.lectureDetails.data.title}</Text>
+            <Text>{lecture.title}</Text>
             <Text note>Date of the lecture:</Text>
-            <Text>{new Date(this.props.lectureDetails.data.dates).toLocaleDateString('fi-FI')}</Text>
+            <Text>{new Date(lecture.dates).toLocaleDateString('fi-FI')}</Text>
             <Text note>Location:</Text>
-            <Text>{this.props.lectureDetails.data.area}</Text>
+            <Text>{lecture.area}</Text>
             <Text note>Short description of the lecture:</Text>
-            <Text>{this.props.lectureDetails.data.description}</Text>
+            <Text>{lecture.description}</Text>
         </Content>
         <Footer>
           <FooterTab>

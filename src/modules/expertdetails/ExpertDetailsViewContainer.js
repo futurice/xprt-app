@@ -4,7 +4,8 @@ import rest from '../../utils/rest';
 
 export default connect(
   (state, ownProps) => ({
-    expertDetails: state.getIn(['expertDetails']).toJS(),
+    expert: state.expertDetails.data,
+    loading: state.expertDetails.loading,
     expertId: ownProps.navigation.state.params.expertId
   }),
   dispatch => ({

@@ -4,8 +4,8 @@ import rest from '../../utils/rest';
 
 export default connect(
   (state, ownProps) => ({
-    lectureDetails: state.getIn(['lectureDetails']).toJS(),
-    lectureId: ownProps.navigation.state.params.lectureId,
+    lecture: state.lectureDetails,
+    lectureId: ownProps.navigation.state.params.lectureId
   }),
   dispatch => ({
     getLectureDetails(lectureId) {

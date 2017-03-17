@@ -16,7 +16,9 @@ class ExpertDetailsView extends Component {
   }
 
   render() {
-    return ( this.props.expertDetails.loading ? (
+    const {expert, loading} = this.props;
+
+    return ( loading ? (
       <Container>
         <Content>
           <Spinner color={styles.spinner.color}/>
@@ -37,12 +39,12 @@ class ExpertDetailsView extends Component {
             </Right>
           </View>
           <View style={styles.expertBasicInfo}>
-            <Text> {this.props.expertDetails.data.name} </Text>
-            <Text> {this.props.expertDetails.data.title} </Text>
-            <Text> {this.props.expertDetails.data.area} </Text>
+            <Text> {expert.name} </Text>
+            <Text> {expert.title} </Text>
+            <Text> {expert.area} </Text>
           </View>
           <View style={styles.expertAbout}>
-            <Text> {this.props.expertDetails.data.description} </Text>
+            <Text> {expert.description} </Text>
           </View>
         </View>
       </Container>
