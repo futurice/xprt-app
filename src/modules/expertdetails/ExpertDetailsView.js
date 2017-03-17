@@ -32,7 +32,7 @@ class ExpertDetailsView extends Component {
               <Icon name='pizza' />
             </Left>
             <Body>
-              <Thumbnail large source={require('../../../images/pepperoni@3x.png')} />
+              <Thumbnail large source={{uri: '' + expert.imageUrl}} />
             </Body>
             <Right>
               <Icon name='beer' />
