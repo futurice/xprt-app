@@ -9,7 +9,7 @@ import debounce from 'lodash/debounce';
 // Don't care about propTypes in modules
 /* eslint-disable react/prop-types */
 
-import {Container, Content, Button, Header, Icon, Input,
+import {Container, Content, Badge, Button, Header, Icon, Input,
   Item, ListItem, List, Left, Body, Right, Thumbnail, Spinner} from 'native-base';
 
 class ExpertsView extends Component {
@@ -35,14 +35,18 @@ class ExpertsView extends Component {
   };
 
   renderRow = (expert) => {
+    let subjects = expert.subjects;
+    subjects = ['foo', 'bar', 'fiz'];
+    console.log('Subjektien tyyppi', typeof (expert.subjects), expert.subjects);
     return (
       <ListItem button avatar key={expert.id} onPress={() => {this.open(expert.id);}} >
         <Left>
-          <Thumbnail source={require('../../../images/pepperoni.png')}/>
+          <Thumbnail source={{uri: expert.imageUrl || ''}}/>
         </Left>
         <Body>
           <Text> {expert.name} </Text>
-          <Text note style={styles.rowText}> {expert.email} </Text>
+          <Text note style={styles.rowText}> {expert.title} </Text>
+          <Text note style={styles.rowText}> {expert.area} </Text>
         </Body>
         <Right>
           <Icon name='arrow-forward'/>
