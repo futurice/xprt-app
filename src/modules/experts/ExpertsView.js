@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {
   Text,
-  StyleSheet
+  StyleSheet,
+  View
 } from 'react-native';
 
 import debounce from 'lodash/debounce';
@@ -34,10 +35,16 @@ class ExpertsView extends Component {
     });
   };
 
+  renderSubject = (subject) => {
+    return (
+      <Badge style={styleObject.subjectBadge}>
+        <Text> {subject} </Text>
+      </Badge>
+    );
+  };
+
   renderRow = (expert) => {
-    let subjects = expert.subjects;
-    subjects = ['foo', 'bar', 'fiz'];
-    console.log('Subjektien tyyppi', typeof (expert.subjects), expert.subjects);
+    let subjects = expert.subjects || [];
     return (
       <ListItem button avatar key={expert.id} onPress={() => {this.open(expert.id);}} >
         <Left>
@@ -45,8 +52,22 @@ class ExpertsView extends Component {
         </Left>
         <Body>
           <Text> {expert.name} </Text>
-          <Text note style={styles.rowText}> {expert.title} </Text>
-          <Text note style={styles.rowText}> {expert.area} </Text>
+          <Text note style={styles.rowText}> {expert.title || 'Title goes here'}</Text>
+          <View style={{flexDirection: 'row'}}>
+            <Icon name='navigate' style={{fontSize: 18}}/>
+            <Text note style={styles.rowText}> {expert.area} </Text>
+          </View>
+          <View style={styles.subjectView}>
+            {
+              subjects.map((subject) => {
+                return (
+                  <Badge style={styleObject.subjectBadge}>
+                    <Text style={styles.subjectText}> {subject} </Text>
+                  </Badge>
+                );
+              })
+            }
+          </View>
         </Body>
         <Right>
           <Icon name='arrow-forward'/>
@@ -96,7 +117,7 @@ class CustomHeader extends Header {
       <Header searchBar rounded>
         <Item>
           <Icon name='search' />
-          <Input placeholder='Experts search' onChangeText={this.onChangeText} />
+          <Input placeholder='Search for people, tags etc..' onChangeText={this.onChangeText} />
           <Icon active name='people' />
         </Item>
         <Button transparent onPress={() => onSubmit(this.state.text)}>
@@ -107,6 +128,17 @@ class CustomHeader extends Header {
   }
 }
 
+const styleObject = {
+  subjectBadge: {
+    backgroundColor: 'white',
+    borderWidth: 1,
+    borderColor: 'gold',
+    borderRadius: 12,
+    height: 20,
+    margin: 3
+  }
+};
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -115,12 +147,15 @@ const styles = StyleSheet.create({
   content: {
     backgroundColor: '#640DE8'
   },
-  rowText: {
-    color: 'skyblue'
+  subjectView: {
+    flexDirection: 'row'
   },
-  subtitleView: {
-    paddingLeft: 10,
-    paddingTop: 5
+  subjectText: {
+    fontSize: 10,
+    textAlign: 'justify'
+  },
+  rowText: {
+    color: '#333333'
   },
   subtitleText: {
     marginRight: 7,
