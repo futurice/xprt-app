@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="23px" height="23px" viewBox="0 0 23 23" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 41.2 (35397) - http://www.bohemiancoding.com/sketch -->
+    <title>ic_tag</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="ic_tag" stroke="#000000">
+            <g id="Page-1">
+                <path d="M19.5002,5.5 C19.5002,6.604 18.6052,7.5 17.4992,7.5 C16.3962,7.5 15.5002,6.604 15.5002,5.5 C15.5002,4.396 16.3962,3.5 17.4992,3.5 C18.6052,3.5 19.5002,4.396 19.5002,5.5 Z" id="Stroke-1"></path>
+                <path d="M22.5002,9.5 C22.5002,10.05 22.1822,10.818 21.7932,11.207 L11.2072,22.208 C10.8182,22.597 10.1822,22.597 9.7932,22.208 L0.7912,13.207 C0.4022,12.818 0.4022,12.182 0.7912,11.793 L11.7932,1.207 C12.1822,0.818 12.9502,0.5 13.5002,0.5 L21.5002,0.5 C22.0502,0.5 22.5002,0.949 22.5002,1.5 L22.5002,9.5 Z" id="Stroke-3"></path>
+            </g>
+        </g>
+    </g>
+</svg>

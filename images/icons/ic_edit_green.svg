@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="24px" height="25px" viewBox="0 0 24 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 41.2 (35397) - http://www.bohemiancoding.com/sketch -->
+    <title>ic_edit_green</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="ic_edit_green" stroke="#15A369">
+            <g id="Page-1" transform="translate(1.000000, 1.000000)">
+                <polyline id="Stroke-1" points="21.7668 4.3458 5.8168 20.2948 2.7048 17.1838 18.6578 1.2338"></polyline>
+                <g id="Group-8" transform="translate(0.000000, 0.000200)">
+                    <polyline id="Stroke-2" points="2.7053 17.1835 0.5003 22.4995 5.8163 20.2945"></polyline>
+                    <path d="M18.7453,1.1439 C19.6043,0.2849 20.9973,0.2849 21.8563,1.1439 C22.7163,2.0039 22.7143,3.3979 21.8563,4.2559" id="Stroke-4"></path>
+                    <path d="M17.1906,2.7001 L20.2996,5.8121" id="Stroke-6"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
