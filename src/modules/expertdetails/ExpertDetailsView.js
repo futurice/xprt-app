@@ -40,41 +40,54 @@ class ExpertDetailsView extends Component {
       </Container>
     ) : (
       <Container>
-        <Content style={{backgroundColor: '#333333', flex: null}}>
-          <Grid>
-            <Col style={[styles.center, { height: 200  }]}>
-              <Button transparent style={styles.button} warning>
-                <Icon name='mail' />
-              </Button>
-            </Col>
-            <Col style={[styles.center, { height: 200  }]}>
-              <Thumbnail style={{width: 140, height: 140, borderRadius: 70}} source={thumbnailSource} />
-            </Col>
-            <Col style={[styles.center, { height: 200  }]}>
-              <Button transparent style={styles.button} warning>
-                <Icon name='call' />
-              </Button>
-            </Col>
+        <Content>
+          <Grid style={{backgroundColor: '#333333', paddingBottom: 10}}>
+            <Row>
+              <Col style={[styles.center, { height: 200 }]}>
+                <Button transparent style={styles.button} warning>
+                  <Icon name='mail' />
+                </Button>
+              </Col>
+              <Col style={[styles.center, { height: 200  }]}>
+                <Thumbnail style={{width: 140, height: 140, borderRadius: 70}} source={thumbnailSource} />
+              </Col>
+              <Col style={[styles.center, { height: 200  }]}>
+                <Button transparent style={styles.button} warning>
+                  <Icon name='call' />
+                </Button>
+              </Col>
+            </Row>
+            <Row>
+              <Body>
+                <Text style={styles.name}> {expert.name} </Text>
+                <Text style={styles.lightText}> {expert.title} </Text>
+                <Text style={styles.lightText}> {expert.area} </Text>
+                <View style={{flexDirection: 'row'}}>
+                  {
+                    expert.subjects.map((subject, index) => {
+                      return (
+                        <Badge style={styles.subjectBadge} key={index}>
+                          <Text style={styles.subjectText}> {subject} </Text>
+                        </Badge>
+                      );
+                    })
+                  }
+                </View>
+              </Body>
+            </Row>
           </Grid>
-          <Text style={styles.name}> {expert.name} </Text>
-          <Text style={styles.lightText}> {expert.title} </Text>
-          <Text style={styles.lightText}> {expert.area} </Text>
-          <View style={{alignSelf: 'center', flexDirection: 'row'}}>
-            {
-              expert.subjects.map((subject, index) => {
-                return (
-                  <Badge style={styles.subjectBadge} key={index}>
-                    <Text style={styles.subjectText}> {subject} </Text>
-                  </Badge>
-                );
-              })
-            }
-          </View>
+          <Grid style={{paddingHorizontal: 20, paddingTop: 20}}>
+            <Row>
+              <Text style={styles.aboutText}>About {expert.name}:</Text>
+            </Row>
+            <Row>
+              <Text style={styles.description} note>{expert.description}</Text>
+            </Row>
+          </Grid>
         </Content>
-        <Content style={{paddingHorizontal: 20, paddingTop: 24, backgroundColor: '#ffffff', flex: null}}>
-          <Text style={styles.aboutText}>About {expert.name}:</Text>
-          <Text style={styles.description} note>{expert.description}</Text>
-        </Content>
+        <Button large block style={{marginBottom: -1, backgroundColor: variables.darkBg, borderRadius: 0}}>
+          <Text style={{fontSize: 18, color: '#f0ad4e'}}>SEND A LECTURE INVITATION</Text>
+        </Button>
       </Container>
     ));
   }
@@ -98,13 +111,13 @@ const styles = {
     color: variables.brandGreen,
     alignSelf: 'center',
     fontSize: 24,
-    paddingBottom: 14
+    paddingBottom: 10
   },
   lightText: {
     color: 'white',
     alignSelf: 'center',
     fontSize: 20,
-    paddingBottom: 14
+    paddingBottom: 8
   },
   subjectBadge: {
     backgroundColor: variables.darkBg,
