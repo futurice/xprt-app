@@ -10,6 +10,10 @@ const platformStyle = undefined;
 export default {
   platformStyle,
   platform,
+
+  darkBg: '#333333',
+  brandGreen: '#15a369',
+
     // AndroidRipple
   androidRipple: true,
   androidRippleColor: 'rgba(256, 256, 256, 0.3)',

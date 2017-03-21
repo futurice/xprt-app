@@ -4,13 +4,25 @@ import {
   StyleSheet,
   View
 } from 'react-native';
-import {Body, Card, CardItem, Container, Content, Icon, Left, Right, Spinner, Thumbnail} from 'native-base';
+import {Body, Badge, Card, CardItem, Button, Container, Content, Icon, Left, Right, Spinner, Thumbnail} from 'native-base';
+import { Col, Row, Grid } from 'react-native-easy-grid';
 import defaultProfile from '../../../images/icons/ic_person.png';
 
+import variables from '../../../native-base-theme/variables/platform';
+
 class ExpertDetailsView extends Component {
-  constructor() {
-    super();
-  }
+  static navigationOptions = {
+    header: () => ({
+      style: {
+        backgroundColor: '#333333',
+        elevation: 0
+      },
+      titleStyle: {
+        color: '#15a369'
+      },
+      tintColor: '#15a369'
+    })
+  };
 
   componentDidMount() {
     this.props.getExpertDetails(this.props.expertId);
@@ -28,38 +40,91 @@ class ExpertDetailsView extends Component {
       </Container>
     ) : (
       <Container>
-        <View style={styles.expertPage}>
-          <View style={styles.expertPhoto}>
-            <Left>
-              <Icon name='pizza' />
-            </Left>
-            <Body>
-              <Thumbnail large source={thumbnailSource} />
-            </Body>
-            <Right>
-              <Icon name='beer' />
-            </Right>
+        <Content style={{backgroundColor: '#333333', flex: null}}>
+          <Grid>
+            <Col style={[styles.center, { height: 200  }]}>
+              <Button transparent style={styles.button} warning>
+                <Icon name='mail' />
+              </Button>
+            </Col>
+            <Col style={[styles.center, { height: 200  }]}>
+              <Thumbnail style={{width: 140, height: 140, borderRadius: 70}} source={thumbnailSource} />
+            </Col>
+            <Col style={[styles.center, { height: 200  }]}>
+              <Button transparent style={styles.button} warning>
+                <Icon name='call' />
+              </Button>
+            </Col>
+          </Grid>
+          <Text style={styles.name}> {expert.name} </Text>
+          <Text style={styles.lightText}> {expert.title} </Text>
+          <Text style={styles.lightText}> {expert.area} </Text>
+          <View style={{alignSelf: 'center', flexDirection: 'row'}}>
+            {
+              expert.subjects.map((subject, index) => {
+                return (
+                  <Badge style={styles.subjectBadge} key={index}>
+                    <Text style={styles.subjectText}> {subject} </Text>
+                  </Badge>
+                );
+              })
+            }
           </View>
-          <View style={styles.expertBasicInfo}>
-            <Text> {expert.name} </Text>
-            <Text> {expert.title} </Text>
-            <Text> {expert.area} </Text>
-          </View>
-          <View style={styles.expertAbout}>
-            <Text> {expert.description} </Text>
-          </View>
-        </View>
+        </Content>
+        <Content style={{paddingHorizontal: 20, paddingTop: 24, backgroundColor: '#ffffff', flex: null}}>
+          <Text style={styles.aboutText}>About {expert.name}:</Text>
+          <Text style={styles.description} note>{expert.description}</Text>
+        </Content>
       </Container>
     ));
   }
 }
 
-const styles = StyleSheet.create({
+const styles = {
+  center: {
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  button: {
+    alignSelf: 'center'
+  },
   spinner: {
     color: 'green'
   },
   expertPage: {
     flex: 1
+  },
+  name: {
+    color: variables.brandGreen,
+    alignSelf: 'center',
+    fontSize: 24,
+    paddingBottom: 14
+  },
+  lightText: {
+    color: 'white',
+    alignSelf: 'center',
+    fontSize: 20,
+    paddingBottom: 14
+  },
+  subjectBadge: {
+    backgroundColor: variables.darkBg,
+    borderWidth: 1,
+    borderColor: 'gold',
+    borderRadius: 12,
+    height: 28,
+    margin: 3
+  },
+  subjectText: {
+    fontSize: 14,
+    color: 'white',
+    textAlign: 'justify'
+  },
+  aboutText: {
+    color: 'black',
+    fontSize: 20
+  },
+  description: {
+    fontSize: 16
   },
   expertPhoto: {
     flex: 1,
@@ -77,6 +142,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'powderblue',
     alignItems: 'center'
   }
-});
+};
 
 export default ExpertDetailsView;
