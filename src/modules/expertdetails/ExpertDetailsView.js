@@ -31,6 +31,8 @@ class ExpertDetailsView extends Component {
   render() {
     const {expert, loading} = this.props;
     let thumbnailSource = expert.imageUrl ? {uri: expert.imageUrl} : defaultProfile;
+    let subjects = expert.subjects || [];
+    let areas = expert.area || [];
 
     return ( loading ? (
       <Container>
@@ -61,10 +63,19 @@ class ExpertDetailsView extends Component {
               <Body>
                 <Text style={styles.name}> {expert.name} </Text>
                 <Text style={styles.lightText}> {expert.title} </Text>
-                <Text style={styles.lightText}> {expert.area} </Text>
+                <View style={{flexDirection: 'row'}}>
+                  <Text style={styles.subjectText}> Visit possible: </Text>
+                  {
+                    areas.map((area, index) => {
+                      return (
+                        <Text style={styles.subjectText} key={index}> {area} </Text>
+                      );
+                    })
+                  }
+                </View>
                 <View style={{flexDirection: 'row'}}>
                   {
-                    expert.subjects.map((subject, index) => {
+                    subjects.map((subject, index) => {
                       return (
                         <Badge style={styles.subjectBadge} key={index}>
                           <Text style={styles.subjectText}> {subject} </Text>

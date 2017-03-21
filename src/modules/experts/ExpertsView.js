@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {
+  Image,
   Text,
   StyleSheet,
   View
@@ -46,6 +47,7 @@ class ExpertsView extends Component {
 
   renderRow = (expert) => {
     let subjects = expert.subjects || [];
+    let areas = expert.area || [];
     let thumbnailSource = expert.imageUrl ? {uri: expert.imageUrl} : defaultProfile;
     return (
       <ListItem button avatar key={expert.id} onPress={() => {this.open(expert.id);}} >
@@ -57,7 +59,13 @@ class ExpertsView extends Component {
           <Text note style={styles.rowText}> {expert.title || 'Title goes here'}</Text>
           <View style={{flexDirection: 'row'}}>
             <Icon name='navigate' style={{fontSize: 18}}/>
-            <Text note style={styles.rowText}> {expert.area} </Text>
+            {
+              areas.map((area, index) => {
+                return (
+                  <Text note key={index}> {area} </Text>
+                );
+              })
+            }
           </View>
           <View style={styles.subjectView}>
             {
