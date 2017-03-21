@@ -6,6 +6,7 @@ import {
 } from 'react-native';
 
 import debounce from 'lodash/debounce';
+import defaultProfile from '../../../images/icons/ic_person.png';
 
 // Don't care about propTypes in modules
 /* eslint-disable react/prop-types */
@@ -45,10 +46,11 @@ class ExpertsView extends Component {
 
   renderRow = (expert) => {
     let subjects = expert.subjects || [];
+    let thumbnailSource = expert.imageUrl ? {uri: expert.imageUrl} : defaultProfile;
     return (
       <ListItem button avatar key={expert.id} onPress={() => {this.open(expert.id);}} >
         <Left>
-          <Thumbnail source={{uri: expert.imageUrl || ''}}/>
+          <Thumbnail source={thumbnailSource} />
         </Left>
         <Body>
           <Text> {expert.name} </Text>
@@ -59,9 +61,9 @@ class ExpertsView extends Component {
           </View>
           <View style={styles.subjectView}>
             {
-              subjects.map((subject) => {
+              subjects.map((subject, index) => {
                 return (
-                  <Badge style={styleObject.subjectBadge}>
+                  <Badge style={styleObject.subjectBadge} key={index}>
                     <Text style={styles.subjectText}> {subject} </Text>
                   </Badge>
                 );

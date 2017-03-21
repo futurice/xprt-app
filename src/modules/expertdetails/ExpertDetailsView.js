@@ -5,6 +5,7 @@ import {
   View
 } from 'react-native';
 import {Body, Card, CardItem, Container, Content, Icon, Left, Right, Spinner, Thumbnail} from 'native-base';
+import defaultProfile from '../../../images/icons/ic_person.png';
 
 class ExpertDetailsView extends Component {
   constructor() {
@@ -17,6 +18,7 @@ class ExpertDetailsView extends Component {
 
   render() {
     const {expert, loading} = this.props;
+    let thumbnailSource = expert.imageUrl ? {uri: expert.imageUrl} : defaultProfile;
 
     return ( loading ? (
       <Container>
@@ -32,7 +34,7 @@ class ExpertDetailsView extends Component {
               <Icon name='pizza' />
             </Left>
             <Body>
-              <Thumbnail large source={{uri: '' + expert.imageUrl}} />
+              <Thumbnail large source={thumbnailSource} />
             </Body>
             <Right>
               <Icon name='beer' />
