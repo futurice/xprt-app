@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {
   Image,
   Text,
-  StyleSheet,
   View
 } from 'react-native';
 
@@ -14,6 +13,7 @@ import defaultProfile from '../../../images/icons/ic_person.png';
 
 import {Container, Content, Badge, Button, Header, Icon, Input,
   Item, ListItem, List, Left, Body, Right, Thumbnail, Spinner} from 'native-base';
+import styles from './expertsStyles';
 
 class ExpertsView extends Component {
   componentDidMount() {
@@ -22,10 +22,10 @@ class ExpertsView extends Component {
   static navigationOptions = {
     tabBar: () => ({
       icon: ({tintColor: color}) => (
-        <Icon name="ios-person-outline" style={{color}}/>
+        <Icon name='ios-person-outline' style={{color}}/>
       ),
       visible: true
-    }),
+    })
   };
 
   open = (expertId) => {
@@ -39,7 +39,7 @@ class ExpertsView extends Component {
 
   renderSubject = (subject) => {
     return (
-      <Badge style={styleObject.subjectBadge}>
+      <Badge style={styles.subjectBadge}>
         <Text> {subject} </Text>
       </Badge>
     );
@@ -57,8 +57,9 @@ class ExpertsView extends Component {
         <Body>
           <Text> {expert.name} </Text>
           <Text note style={styles.rowText}> {expert.title || 'Title goes here'}</Text>
-          <View style={{flexDirection: 'row'}}>
-            <Icon name='navigate' style={{fontSize: 18}}/>
+          <View style={styles.rowflow}>
+            <Image source={require('../../../images/icons/ic_location_black.png')}
+              style={styles.navigateIcon}/>
             {
               areas.map((area, index) => {
                 return (
@@ -67,11 +68,11 @@ class ExpertsView extends Component {
               })
             }
           </View>
-          <View style={styles.subjectView}>
+          <View style={styles.rowflow}>
             {
               subjects.map((subject, index) => {
                 return (
-                  <Badge style={styleObject.subjectBadge} key={index}>
+                  <Badge style={styles.subjectBadge} key={index}>
                     <Text style={styles.subjectText}> {subject} </Text>
                   </Badge>
                 );
@@ -137,54 +138,5 @@ class CustomHeader extends Header {
     );
   }
 }
-
-const styleObject = {
-  subjectBadge: {
-    backgroundColor: 'white',
-    borderWidth: 1,
-    borderColor: 'gold',
-    borderRadius: 12,
-    height: 20,
-    margin: 3
-  }
-};
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#640DE8'
-  },
-  content: {
-    backgroundColor: '#640DE8'
-  },
-  subjectView: {
-    flexDirection: 'row'
-  },
-  subjectText: {
-    fontSize: 10,
-    textAlign: 'justify'
-  },
-  rowText: {
-    color: '#333333'
-  },
-  subtitleText: {
-    marginRight: 7,
-    color: 'white',
-    backgroundColor: '#D8D8D8',
-    borderRadius: 5,
-    paddingHorizontal: 15,
-    paddingVertical: 2,
-    marginTop: 7
-  },
-  tagsWrapper: {
-    alignItems: 'flex-start',
-    flexDirection: 'row',
-    flexWrap: 'wrap'
-  },
-  list: {
-    flex: 1,
-    marginTop: 0
-  }
-});
 
 export default ExpertsView;
