@@ -1,6 +1,6 @@
-/*eslint-disable max-nested-callbacks, no-unused-expressions*/
+/* eslint-disable max-nested-callbacks, no-unused-expressions*/
 
-import {initialState, dispatch} from '../../../test/state';
+import { initialState, dispatch } from '../../../test/state';
 import * as SessionState from '../../modules/session/SessionState';
 
 describe('reducer', () => {
@@ -12,8 +12,8 @@ describe('reducer', () => {
         ...initialState,
         counter: {
           ...initialState.counter,
-          value: 9
-        }
+          value: 9,
+        },
       };
 
       const resetStateAction = SessionState.resetSessionStateFromSnapshot(newState);

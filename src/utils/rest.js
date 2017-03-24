@@ -1,13 +1,13 @@
-//import 'isomorphic-fetch';
-import reduxApi, {transformers} from 'redux-api';
+// import 'isomorphic-fetch';
+import reduxApi, { transformers } from 'redux-api';
 import adapterFetch from 'redux-api/lib/adapters/fetch';
-//import config from 'config';
+// import config from 'config';
 
 const config = {
-  apiRoot: 'https://xprt-backend.herokuapp.com'
+  apiRoot: 'https://xprt-backend.herokuapp.com',
 };
 
-//import { showError } from '../modules/ErrorSnackbar';
+// import { showError } from '../modules/ErrorSnackbar';
 
 /*
 let store;
@@ -32,21 +32,21 @@ const rest = reduxApi({
   experts: {
     url: `${config.apiRoot}/experts`,
     transformer: transformers.array,
-    crud: true
+    crud: true,
   },
   expertDetails: {
     url: `${config.apiRoot}/experts/:expertId`,
-    crud: true
+    crud: true,
   },
   lectures: {
     url: `${config.apiRoot}/lectures`,
     transformer: transformers.array,
-    crud: true
+    crud: true,
   },
   lectureDetails: {
     url: `${config.apiRoot}/lectures/:lectureId`,
-    crud: true
-  }
+    crud: true,
+  },
 
   // Add more API endpoints here! Examples below:
 

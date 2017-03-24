@@ -1,8 +1,8 @@
-/*eslint-disable max-nested-callbacks*/
+/* eslint-disable max-nested-callbacks*/
 
 import React from 'react';
-import {shallow} from 'enzyme';
-import {ActivityIndicator} from 'react-native';
+import { shallow } from 'enzyme';
+import { ActivityIndicator } from 'react-native';
 import AppView from '../AppView';
 
 describe('<AppView />', () => {
@@ -14,7 +14,7 @@ describe('<AppView />', () => {
           isReady={false}
           isLoggedIn={false}
           dispatch={fn}
-        />
+        />,
       );
 
       expect(wrapper.find(ActivityIndicator).length).toBe(1);
@@ -24,10 +24,10 @@ describe('<AppView />', () => {
       const fn = () => {};
       const wrapper = shallow(
         <AppView
-          isReady={true}
+          isReady
           isLoggedIn={false}
           dispatch={fn}
-        />
+        />,
       );
 
       expect(wrapper.find(ActivityIndicator).length).toBe(0);

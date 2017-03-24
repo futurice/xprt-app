@@ -1,5 +1,5 @@
-import React, {PropTypes, Component} from 'react';
-import {addNavigationHelpers} from 'react-navigation';
+import React, { PropTypes, Component } from 'react';
+import { addNavigationHelpers } from 'react-navigation';
 
 import AppNavigator from './Navigator';
 
@@ -12,9 +12,9 @@ class NavigatorView extends Component {
       index: PropTypes.number.isRequired,
       routes: PropTypes.arrayOf(PropTypes.shape({
         key: PropTypes.string.isRequired,
-        routeName: PropTypes.string.isRequired
-      }))
-    }).isRequired
+        routeName: PropTypes.string.isRequired,
+      })),
+    }).isRequired,
   };
 
   render() {
@@ -23,7 +23,7 @@ class NavigatorView extends Component {
         navigation={
           addNavigationHelpers({
             dispatch: this.props.dispatch,
-            state: this.props.navigatorState
+            state: this.props.navigatorState,
           })
         }
       />

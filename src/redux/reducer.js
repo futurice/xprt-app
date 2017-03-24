@@ -1,7 +1,7 @@
-import {loop, combineReducers} from 'redux-loop-symbol-ponyfill';
+import { loop, combineReducers } from 'redux-loop-symbol-ponyfill';
 import NavigatorStateReducer from '../modules/navigator/NavigatorState';
-import SessionStateReducer, {RESET_STATE} from '../modules/session/SessionState';
-import rest from '../utils/rest';
+import SessionStateReducer, { RESET_STATE } from '../modules/session/SessionState';
+import { reducers as RestReducers } from '../utils/rest';
 
 const reducers = {
   // Navigator states
@@ -9,7 +9,7 @@ const reducers = {
 
   session: SessionStateReducer,
 
-  ...rest.reducers
+  ...RestReducers,
 };
 
 const namespacedReducer = combineReducers(reducers);
@@ -17,7 +17,7 @@ const namespacedReducer = combineReducers(reducers);
 export default function mainReducer(state, action) {
   const [nextState, effects] = action.type === RESET_STATE
     ? namespacedReducer(action.payload, action)
-    : namespacedReducer(state || void 0, action);
+    : namespacedReducer(state || undefined, action);
 
   return loop(nextState, effects);
 }

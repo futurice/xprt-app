@@ -1,5 +1,5 @@
-import {Platform} from 'react-native';
-import {TabNavigator, StackNavigator} from 'react-navigation';
+import { Platform } from 'react-native';
+import { TabNavigator, StackNavigator } from 'react-navigation';
 
 import ExpertsViewContainer from '../experts/ExpertsViewContainer';
 import ExpertDetailsViewContainer from '../expertdetails/ExpertDetailsViewContainer';
@@ -12,37 +12,37 @@ const activeColor = 'white';
 
 // TabNavigator is nested inside StackNavigator
 export const MainScreenNavigator = TabNavigator({
-  Experts: {screen: ExpertsViewContainer},
-  Lectures: {screen: LecturesViewContainer},
-  Login: {screen: LoginViewContainer}
+  Experts: { screen: ExpertsViewContainer },
+  Lectures: { screen: LecturesViewContainer },
+  Login: { screen: LoginViewContainer },
 }, {
   tabBarOptions: {
     ...Platform.select({
       android: {
         activeTintColor: activeColor,
-        indicatorStyle: {backgroundColor: activeColor},
-        style: {backgroundColor: headerColor}
-      }
-    })
-  }
+        indicatorStyle: { backgroundColor: activeColor },
+        style: { backgroundColor: headerColor },
+      },
+    }),
+  },
 });
 
 MainScreenNavigator.navigationOptions = {
   title: 'XPRT',
   header: {
-    titleStyle: {color: '#15a369'},
+    titleStyle: { color: '#15a369' },
     style: {
       backgroundColor: headerColor,
-      elevation: 0 // disable header elevation when TabNavigator visible
-    }
-  }
+      elevation: 0, // disable header elevation when TabNavigator visible
+    },
+  },
 };
 
 // Root navigator is a StackNavigator
 const AppNavigator = StackNavigator({
-  Home: {screen: MainScreenNavigator},
-  ExpertDetails: {screen: ExpertDetailsViewContainer},
-  LectureDetails: {screen: LectureDetailsViewContainer}
+  Home: { screen: MainScreenNavigator },
+  ExpertDetails: { screen: ExpertDetailsViewContainer },
+  LectureDetails: { screen: LectureDetailsViewContainer },
 });
 
 export default AppNavigator;

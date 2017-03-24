@@ -1,4 +1,4 @@
-import {isArray, isFunction, isUndefined, isMatchWith} from 'lodash';
+import { isArray, isFunction, isUndefined, isMatchWith } from 'lodash';
 
 /**
  * Tests whether the passed Enzyme wrapper element has all the style
@@ -6,6 +6,7 @@ import {isArray, isFunction, isUndefined, isMatchWith} from 'lodash';
  *
  * Example: hasStyles(element, {textAlign: 'left', color: '*', position: _.isUndefined})
  */
+/* eslint-disable import/prefer-default-export */
 export function hasStyles(wrapper, expectedStyles) {
   const styleProp = wrapper.props().style;
   if (!styleProp) {
@@ -19,7 +20,6 @@ export function hasStyles(wrapper, expectedStyles) {
 
   // test that styles match spec
   return isMatchWith(appliedStyle, expectedStyles, (actualValue, expectedValue) => {
-
     // Splat means any value
     if (expectedValue === '*') {
       return !isUndefined(actualValue);
@@ -31,6 +31,6 @@ export function hasStyles(wrapper, expectedStyles) {
     }
 
     // otherwise defer to regular _.isMatch check
-    return void 0;
+    return undefined;
   });
 }

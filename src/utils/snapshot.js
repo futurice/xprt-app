@@ -1,20 +1,7 @@
-import {AsyncStorage} from 'react-native';
-import {reducers as restReducers} from './rest';
+import { AsyncStorage } from 'react-native';
+import { reducers as restReducers } from './rest';
 
 const STATE_STORAGE_KEY = 'XPRTAppState:Latest';
-
-export async function resetSnapshot() {
-  const state = await rehydrate();
-  return state || null;
-}
-
-export async function saveSnapshot(state) {
-  await persist(state);
-}
-
-export async function clearSnapshot() {
-  await clear();
-}
 
 /**
  * Saves provided state object to async storage
@@ -69,4 +56,17 @@ async function clear() {
   } catch (e) {
     console.error('Error clearing peristed application state', e);
   }
+}
+
+export async function resetSnapshot() {
+  const state = await rehydrate();
+  return state || null;
+}
+
+export async function saveSnapshot(state) {
+  await persist(state);
+}
+
+export async function clearSnapshot() {
+  await clear();
 }

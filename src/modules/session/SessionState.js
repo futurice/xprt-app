@@ -2,18 +2,18 @@ export const RESET_STATE = 'SessionState/RESET';
 export const INITIALIZE_STATE = 'SessionState/INITIALIZE';
 
 // Initial state
-const initialState = {isReady: false};
+const initialState = { isReady: false };
 
 export function resetSessionStateFromSnapshot(state) {
   return {
     type: RESET_STATE,
-    payload: state
+    payload: state,
   };
 }
 
 export function initializeSessionState() {
   return {
-    type: INITIALIZE_STATE
+    type: INITIALIZE_STATE,
   };
 }
 
@@ -24,7 +24,7 @@ export default function SessionStateReducer(state = initialState, action = {}) {
     case RESET_STATE:
       return {
         ...state,
-        isReady: true
+        isReady: true,
       };
 
     default:

@@ -1,16 +1,16 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {
   Text,
-  View
+  View,
 } from 'react-native';
-import {Body, Badge, Button, Container, Content, Icon, Spinner, Thumbnail} from 'native-base';
-import {Col, Row, Grid} from 'react-native-easy-grid';
+import { Body, Badge, Button, Container, Content, Icon, Spinner, Thumbnail } from 'native-base';
+import { Col, Row, Grid } from 'react-native-easy-grid';
 import defaultProfile from '../../../images/icons/ic_person.png';
 import styles from './expertDetailStyles';
 
 class ExpertDetailsView extends Component {
   static navigationOptions = {
-    header: styles.headerStyle
+    header: styles.headerStyle,
   };
 
   componentDidMount() {
@@ -18,15 +18,15 @@ class ExpertDetailsView extends Component {
   }
 
   render() {
-    const {expert, loading} = this.props;
-    let thumbnailSource = expert.imageUrl ? {uri: expert.imageUrl} : defaultProfile;
-    let subjects = expert.subjects || [];
-    let areas = expert.area || [];
+    const { expert, loading } = this.props;
+    const thumbnailSource = expert.imageUrl ? { uri: expert.imageUrl } : defaultProfile;
+    const subjects = expert.subjects || [];
+    const areas = expert.area || [];
 
     return (loading ? (
       <Container>
         <Content>
-          <Spinner color={styles.spinner.color}/>
+          <Spinner color={styles.spinner.color} />
         </Content>
       </Container>
     ) : (
@@ -36,7 +36,7 @@ class ExpertDetailsView extends Component {
             <Row>
               <Col style={styles.profileGridCol}>
                 <Button transparent style={styles.iconButton} warning>
-                  <Icon name='mail' />
+                  <Icon name="mail" />
                 </Button>
               </Col>
               <Col style={styles.profileGridCol}>
@@ -44,7 +44,7 @@ class ExpertDetailsView extends Component {
               </Col>
               <Col style={styles.profileGridCol}>
                 <Button transparent style={styles.iconButton} warning>
-                  <Icon name='call' />
+                  <Icon name="call" />
                 </Button>
               </Col>
             </Row>
@@ -55,22 +55,18 @@ class ExpertDetailsView extends Component {
                 <View style={styles.rowflow}>
                   <Text style={styles.subjectText}> Visit possible: </Text>
                   {
-                    areas.map((area, index) => {
-                      return (
-                        <Text style={styles.subjectText} key={index}> {area} </Text>
-                      );
-                    })
+                    areas.map(area => (
+                      <Text style={styles.subjectText} key={area}> {area} </Text>
+                    ))
                   }
                 </View>
                 <View style={styles.rowflow}>
                   {
-                    subjects.map((subject, index) => {
-                      return (
-                        <Badge style={styles.subjectBadge} key={index}>
-                          <Text style={styles.subjectText}> {subject} </Text>
-                        </Badge>
-                      );
-                    })
+                    subjects.map(subject => (
+                      <Badge style={styles.subjectBadge} key={subject}>
+                        <Text style={styles.subjectText}> {subject} </Text>
+                      </Badge>
+                    ))
                   }
                 </View>
               </Body>

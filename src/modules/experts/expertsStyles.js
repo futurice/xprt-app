@@ -1,13 +1,13 @@
 const styles = {
   navigateIcon: {
     height: 15,
-    width: 15
+    width: 15,
   },
   rowflow: {
-    flexDirection: 'row'
+    flexDirection: 'row',
   },
   rowText: {
-    color: '#333333'
+    color: '#333333',
   },
   subjectBadge: {
     backgroundColor: 'white',
@@ -15,12 +15,12 @@ const styles = {
     borderColor: 'gold',
     borderRadius: 12,
     height: 20,
-    margin: 3
+    margin: 3,
   },
   subjectText: {
     fontSize: 10,
-    textAlign: 'justify'
-  }
+    textAlign: 'justify',
+  },
 };
 
 module.exports = styles;
