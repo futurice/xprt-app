@@ -16,8 +16,7 @@ import * as snapshot from '../utils/snapshot';
 class DeveloperMenu extends Component {
   static displayName = 'DeveloperMenu';
 
-  /* eslint-disable class-methods-use-this */
-  showDeveloperMenu() {
+  static showDeveloperMenu() {
     const options = {
       clearState: 0,
       showLogin: 1,

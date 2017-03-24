@@ -15,18 +15,20 @@ import * as snapshot from '../utils/snapshot';
  * ONLY FOR DEVELOPMENT MODE!
  */
 
-const renderMenuItem = (text, onPress) => (
-  <TouchableOpacity
-    key={text}
-    onPress={onPress}
-    style={styles.menuItem}
-  >
-    <Text style={styles.menuItemText}>{text}</Text>
-  </TouchableOpacity>
-);
-
 class DeveloperMenu extends Component {
   static displayName = 'DeveloperMenu';
+
+  static renderMenuItem(text, onPress) {
+    return (
+      <TouchableOpacity
+        key={text}
+        onPress={onPress}
+        style={styles.menuItem}
+      >
+        <Text style={styles.menuItemText}>{text}</Text>
+      </TouchableOpacity>
+    );
+  }
 
   constructor(props) {
     super(props);
@@ -62,8 +64,8 @@ class DeveloperMenu extends Component {
     }
 
     const buttons = [
-      renderMenuItem('Clear state', this.clearState),
-      renderMenuItem('Cancel', this.closeMenu),
+      this.renderMenuItem('Clear state', this.clearState),
+      this.renderMenuItem('Cancel', this.closeMenu),
     ];
 
     return (
