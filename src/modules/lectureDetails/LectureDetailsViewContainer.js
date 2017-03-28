@@ -5,7 +5,8 @@ import rest from '../../utils/rest';
 
 export default connect(
   (state, ownProps) => ({
-    lecture: state.lectureDetails,
+    lecture: state.lectureDetails.data,
+    loading: state.lectureDetails.loading,
     lectureId: ownProps.navigation.state.params.lectureId,
   }),
   dispatch => ({
