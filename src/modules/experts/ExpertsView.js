@@ -71,11 +71,13 @@ class ExpertsView extends Component {
           </View>
           <View style={styles.rowflow}>
             {
-              subjects.map(subject => (
-                <Badge style={styles.subjectBadge} key={subject}>
+              subjects.map((subject, index) => (
+                // We don't have anything else to use as key, as subjects may not be unique
+                // eslint-disable-next-line react/no-array-index-key
+                <Badge style={styles.subjectBadge} key={index}>
                   <Text style={styles.subjectText}> {subject} </Text>
                 </Badge>
-                ))
+              ))
             }
           </View>
         </Body>
