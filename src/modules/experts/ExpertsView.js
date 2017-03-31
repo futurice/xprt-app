@@ -50,10 +50,14 @@ class ExpertsView extends Component {
     const subjects = expert.subjects || [];
     const areas = expert.area || [];
     const thumbnailSource = expert.imageUrl ? { uri: expert.imageUrl } : defaultProfile;
+
+    // ToDo: Remove this thingy
+    let numb = Math.floor(Math.random() * 50);
+
     return (
       <ListItem button avatar key={expert.id} onPress={() => { this.open(expert.id); }} >
         <Left>
-          <Thumbnail source={thumbnailSource} />
+          <Thumbnail source={{ uri: 'https://randomuser.me/api/portraits/women/' + numb + '.jpg'}} />
         </Left>
         <Body>
           <Text> {expert.name} </Text>

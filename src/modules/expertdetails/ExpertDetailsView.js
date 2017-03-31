@@ -23,6 +23,9 @@ class ExpertDetailsView extends Component {
     const subjects = expert.subjects || [];
     const areas = expert.area || [];
 
+    let numb = Math.floor(Math.random() * 50);
+    let uri = 'https://randomuser.me/api/portraits/women/' + numb + '.jpg';
+
     return (loading ? (
       <Container>
         <Content>
@@ -40,7 +43,7 @@ class ExpertDetailsView extends Component {
                 </Button>
               </Col>
               <Col style={styles.profileGridCol}>
-                <Thumbnail style={styles.avatarLarge} source={thumbnailSource} />
+                <Thumbnail style={styles.avatarLarge} source={{uri: uri}} />
               </Col>
               <Col style={styles.profileGridCol}>
                 <Button transparent style={styles.iconButton} warning>
