@@ -47,6 +47,10 @@ const rest = reduxApi({
     url: `${config.apiRoot}/lectures/:lectureId`,
     crud: true,
   },
+  teacherDetails: {
+    url: `${config.apiRoot}/teachers/:teacherId`,
+    crud: true,
+  },
 
   // Add more API endpoints here! Examples below:
 
