@@ -3,10 +3,12 @@ import TeacherProfile from './TeacherProfile';
 import rest from '../../utils/rest';
 
 export default connect(
-  state => ({}),
+  state => ({
+    teacher: state.teacherDetails.data,
+  }),
   dispatch => ({
-    getTeacher(query) {
-      dispatch(rest.actions.teachers({ filter: query }));
+    getTeacher(teacherId) {
+      dispatch(rest.actions.teacherDetails({ teacherId }));
     },
   }),
 )(TeacherProfile);

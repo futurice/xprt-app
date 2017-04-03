@@ -9,8 +9,7 @@ import debounce from 'lodash/debounce';
 
 import { Container, Content, Badge, Button, Header, Icon, Input,
   Item, ListItem, List, Left, Body, Right, Thumbnail, Spinner } from 'native-base';
-
-import defaultProfile from '../../../images/icons/ic_person.png';
+// import defaultProfile from '../../../images/icons/ic_person.png';
 import locationIcon from '../../../images/icons/ic_location_black.png';
 import styles from './expertsStyles';
 
@@ -49,15 +48,15 @@ class ExpertsView extends Component {
   renderRow = (expert) => {
     const subjects = expert.subjects || [];
     const areas = expert.area || [];
-    const thumbnailSource = expert.imageUrl ? { uri: expert.imageUrl } : defaultProfile;
+    // const thumbnailSource = expert.imageUrl ? { uri: expert.imageUrl } : defaultProfile;
 
     // ToDo: Remove this thingy
-    let numb = Math.floor(Math.random() * 50);
+    const numb = Math.floor(Math.random() * 50);
 
     return (
       <ListItem button avatar key={expert.id} onPress={() => { this.open(expert.id); }} >
         <Left>
-          <Thumbnail source={{ uri: 'https://randomuser.me/api/portraits/women/' + numb + '.jpg'}} />
+          <Thumbnail source={{ uri: `https://randomuser.me/api/portraits/women/${numb}.jpg` }} />
         </Left>
         <Body>
           <Text> {expert.name} </Text>

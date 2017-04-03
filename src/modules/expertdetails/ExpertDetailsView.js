@@ -5,7 +5,7 @@ import {
 } from 'react-native';
 import { Body, Badge, Button, Container, Content, Icon, Spinner, Thumbnail } from 'native-base';
 import { Col, Row, Grid } from 'react-native-easy-grid';
-import defaultProfile from '../../../images/icons/ic_person.png';
+// import defaultProfile from '../../../images/icons/ic_person.png';
 import styles from './expertDetailStyles';
 
 class ExpertDetailsView extends Component {
@@ -19,12 +19,12 @@ class ExpertDetailsView extends Component {
 
   render() {
     const { expert, loading } = this.props;
-    const thumbnailSource = expert.imageUrl ? { uri: expert.imageUrl } : defaultProfile;
+    // const thumbnailSource = expert.imageUrl ? { uri: expert.imageUrl } : defaultProfile;
     const subjects = expert.subjects || [];
     const areas = expert.area || [];
 
-    let numb = Math.floor(Math.random() * 50);
-    let uri = 'https://randomuser.me/api/portraits/women/' + numb + '.jpg';
+    const numb = Math.floor(Math.random() * 50);
+    const uri = `https://randomuser.me/api/portraits/women/${numb}.jpg`;
 
     return (loading ? (
       <Container>
@@ -43,7 +43,7 @@ class ExpertDetailsView extends Component {
                 </Button>
               </Col>
               <Col style={styles.profileGridCol}>
-                <Thumbnail style={styles.avatarLarge} source={{uri: uri}} />
+                <Thumbnail style={styles.avatarLarge} source={{ uri }} />
               </Col>
               <Col style={styles.profileGridCol}>
                 <Button transparent style={styles.iconButton} warning>
