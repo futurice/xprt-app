@@ -11,8 +11,8 @@ const styles = {
     textAlign: 'center',
   },
   loginButton: {
-    color: '#f0ad4e'
-  }
+    color: '#f0ad4e',
+  },
 };
 
 module.exports = styles;
