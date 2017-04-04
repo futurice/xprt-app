@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Container, Content, Form, Item, Input, Text } from 'native-base';
+import { Button, Container, Content, Form, Item, Input, Text, Icon } from 'native-base';
 
 
 export default class FormExample extends Component {
@@ -15,11 +15,11 @@ export default class FormExample extends Component {
   render() {
     return (
       <Container>
-        <Content padder={true}>
+        <Content padder>
           <Text>Drop in suggestions about the app. We appreciate your feedback.</Text>
           <Form>
             <Item>
-              <Input placeholder='Your message...' />
+              <Input placeholder="Your message..." />
             </Item>
           </Form>
         </Content>
