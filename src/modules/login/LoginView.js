@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Button, Container, Content, Form, Item, Input, Label, Text, Icon } from 'native-base';
-
+import { Button, Container, Content, Form, Item, Input, Label, Text, Icon, Right } from 'native-base';
+import styles from './LoginStyles';
 
 export default class FormExample extends Component {
   static navigationOptions = {
@@ -15,25 +15,27 @@ export default class FormExample extends Component {
   render() {
     return (
       <Container>
-        <Content>
+        <Content padder={true}>
           <Text>You have to be logged in to view and manage your profile and collaborations</Text>
           <Form>
-            <Item floatingLabel>
-              <Label>E-mail:</Label>
+            <Item stackedLabel last>
+              <Label style={styles.labelStyle}>E-mail:</Label>
               <Input />
             </Item>
-            <Item floatingLabel last>
-              <Label>Password:</Label>
-              <Input secureTextEntry />
+            <Item stackedLabel last>
+              <Label style={styles.labelStyle}>Password:</Label>
+              <Input secureTextEntry/>
             </Item>
           </Form>
-          <Text>{"Don't have an account yet?"}</Text>
-          <Button transparent success>
-            <Text>CREATE AN ACCOUNT</Text>
+
+            <Text style={styles.center}>{"Don't have an account yet?"}</Text>
+
+          <Button full transparent>
+            <Text style={styles.labelStyle}>CREATE AN ACCOUNT</Text>
           </Button>
         </Content>
         <Button dark full>
-          <Text>LOG IN</Text>
+          <Text style={styles.loginButton}>LOG IN</Text>
         </Button>
       </Container>
     );
