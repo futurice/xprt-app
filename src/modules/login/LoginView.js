@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Container, Content, Form, Item, Input, Label, Text, Icon, Right } from 'native-base';
+import { Button, Container, Content, Form, Item, Input, Label, Text } from 'native-base';
 import styles from './LoginStyles';
 
 export default class FormExample extends Component {
