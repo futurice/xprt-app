@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Container, Content, Form, Item, Input, Label, Text, Textarea, Icon } from 'native-base';
+import { Button, Container, Content, Form, Item, Input, Text } from 'native-base';
 
 
 export default class FormExample extends Component {
