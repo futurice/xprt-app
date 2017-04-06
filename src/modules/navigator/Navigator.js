@@ -15,7 +15,7 @@ const activeColor = 'white';
 export const MainScreenNavigator = TabNavigator({
   Experts: { screen: ExpertsViewContainer },
   Lectures: { screen: LecturesViewContainer },
-  Login: { screen: LoginViewContainer },  
+  Login: { screen: LoginViewContainer },
   TeacherProfile: { screen: TeacherProfileContainer },
 }, {
   tabBarOptions: {
