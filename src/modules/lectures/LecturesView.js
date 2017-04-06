@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
-import { Body, Left, Right, Thumbnail, Content, Container, ListItem, Text, Icon, List } from 'native-base';
+import { Body, Left, Right, Thumbnail, Content, Container, ListItem, Text, Icon, List, Badge, View} from 'native-base';
+import styles from './lectureStyles';
 
-import pepperoniIcon from '../../../images/pepperoni.png';
+import placeHolder from '../../../images/ic_unknownxxhdpi.png';
+
+const status = ['accepted', 'completed', 'invitation', 'blank'];
+const warning = 'warning';
 
 class LecturesView extends Component {
   static navigationOptions = {
@@ -25,16 +29,18 @@ class LecturesView extends Component {
       },
     });
   };
-
   renderRow = lecture => (
     <ListItem button onPress={() => this.open(lecture.id)} avatar key={lecture.id}>
       <Left>
-        <Thumbnail source={pepperoniIcon} />
+        <Thumbnail source={placeHolder} />
       </Left>
       <Body>
         <Text>{lecture.title}</Text>
         <Text note>Example Character</Text>
         <Text note>{new Date(lecture.dates).toLocaleDateString('fi-FI')}</Text>
+        <Badge style={styles[status[2 * lecture.id % 4]]}>
+          <Text style={{fontSize:10}}>{status[2 * lecture.id % 4]}</Text>
+        </Badge>
       </Body>
       <Right>
         <Icon name="arrow-forward" />
@@ -44,7 +50,6 @@ class LecturesView extends Component {
     );
   render() {
     const { lectures } = this.props;
-
     return (
       <Container>
         <Content>
