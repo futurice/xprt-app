@@ -28,13 +28,13 @@ const styles = {
     backgroundColor: '#cccccc',
   },
   invitation: {
-    backgroundColor: '#eab94e'
+    backgroundColor: '#eab94e',
   },
   blank: {
-      backgroundColor: 'rgba(0,0,0,0)',
-      color: 'rgba(0,0,0,0)',
-      height: 5,
-  }
+    backgroundColor: 'rgba(0,0,0,0)',
+    color: 'rgba(0,0,0,0)',
+    height: 5,
+  },
 };
 
 module.exports = styles;
