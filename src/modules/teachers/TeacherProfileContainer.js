@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import TeacherProfile from './TeacherProfile';
+import TeacherProfileView from './TeacherProfileView';
 import rest from '../../utils/rest';
 
 export default connect(
@@ -11,4 +11,4 @@ export default connect(
       dispatch(rest.actions.teacherDetails({ teacherId }));
     },
   }),
-)(TeacherProfile);
+)(TeacherProfileView);
