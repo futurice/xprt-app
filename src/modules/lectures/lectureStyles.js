@@ -32,8 +32,6 @@ const styles = {
   },
   blank: {
     backgroundColor: 'rgba(0,0,0,0)',
-    color: 'rgba(0,0,0,0)',
-    height: 5,
   },
 };
 
