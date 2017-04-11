@@ -4,8 +4,6 @@ import { Container, Footer, FooterTab, Content, Button, Text, Spinner, Thumbnail
 import { Col, Grid, Row } from 'react-native-easy-grid';
 import styles from './LectureDetailStyles';
 import icEditGreen from '../../../images/icons/ic_edit_green.png';
-import locationIcon from '../../../images/icons/ic_location_black.png';
-
 
 class LectureDetailsView extends Component {
   static navigationOptions = {
