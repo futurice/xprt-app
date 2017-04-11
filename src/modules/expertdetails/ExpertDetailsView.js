@@ -15,7 +15,16 @@ class ExpertDetailsView extends Component {
 
   componentDidMount() {
     this.props.getExpertDetails(this.props.expertId);
+  //  this.props.getExperts();
   }
+  open = (expertId) => {
+    this.props.navigate({
+      routeName: 'SelectLecture',
+      params: {
+        expertId,
+      },
+    });
+  };
 
   render() {
     const { expert, loading } = this.props;
@@ -84,7 +93,10 @@ class ExpertDetailsView extends Component {
             </Row>
           </Grid>
         </Content>
-        <Button large block style={styles.blockButton}>
+        <Button
+          large block style={styles.blockButton}
+          key={expert.id} onPress={() => { this.open(expert.id); }}
+        >
           <Text style={styles.blockButtonText}>SEND A LECTURE INVITATION</Text>
         </Button>
       </Container>

@@ -1,8 +1,6 @@
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { NavigationActions } from 'react-navigation';
 
-import ExpertDetailsView from './ExpertDetailsView';
+import LectureInvitationView from './LectureInvitationView';
 import rest from '../../utils/rest';
 
 export default connect(
@@ -12,9 +10,8 @@ export default connect(
     expertId: ownProps.navigation.state.params.expertId,
   }),
   dispatch => ({
-    getExpertDetails(expertId) {
+    getExperts(expertId) {
       dispatch(rest.actions.expertDetails({ expertId }));
     },
-    navigate: bindActionCreators(NavigationActions.navigate, dispatch),
   }),
-)(ExpertDetailsView);
+)(LectureInvitationView);
