@@ -33,7 +33,6 @@ class TeacherProfile extends Component {
       <Container>
         <Content padder>
           <Grid style={styles.profileGrid}>
-
             <Row>
               <Col>
                 <Text style={styles.headlineStyle}> Personal: </Text>
