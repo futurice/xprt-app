@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
-import TeacherProfileView from './TeacherProfileView';
 import { bindActionCreators } from 'redux';
 import { NavigationActions } from 'react-navigation';
+import TeacherProfileView from './TeacherProfileView';
 import rest from '../../utils/rest';
 
 
@@ -13,6 +13,6 @@ export default connect(
     getTeacher(teacherId) {
       dispatch(rest.actions.teacherDetails({ teacherId }));
     },
-    navigate: bindActionCreators(NavigationActions.navigate, dispatch)
+    navigate: bindActionCreators(NavigationActions.navigate, dispatch),
   }),
 )(TeacherProfileView);

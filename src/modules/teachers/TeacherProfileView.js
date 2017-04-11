@@ -93,8 +93,11 @@ class TeacherProfile extends Component {
               </Col>
             </Row>
             <Row>
-              <Button  full transparent style={styles.feedbackButton}
-                onPress={() => { this.open(); }}>
+              <Button
+                style={styles.feedbackButton} onPress={() => { this.open(); }}
+                full
+                transparent
+              >
                 <Image source={icFeedbackGreen} style={styles.iconFeedback} />
                 <Text style={styles.labelStyle}>   SEND FEEDBACK </Text>
               </Button>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Container, Content, Form, Item, Input, Text, Icon } from 'native-base';
+import { Button, Container, Content, Form, Item, Input, Text } from 'native-base';
 
 
 class FeedbackView extends Component {
@@ -28,7 +28,7 @@ class FeedbackView extends Component {
           </Form>
         </Content>
         <Button dark full >
-          <Text style={{color: '#f0ad4e'}}>SUBMIT</Text>
+          <Text style={{ color: '#f0ad4e' }}>SUBMIT</Text>
         </Button>
       </Container>
     );
