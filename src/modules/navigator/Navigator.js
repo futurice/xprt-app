@@ -7,6 +7,8 @@ import LecturesViewContainer from '../lectures/LecturesViewContainer';
 import LectureDetailsViewContainer from '../lectureDetails/LectureDetailsViewContainer';
 import LoginViewContainer from '../login/LoginViewContainer';
 import TeacherProfileContainer from '../teachers/TeacherProfileContainer';
+import SelectLectureViewContainer from '../selectLecture/SelectLectureViewContainer';
+import LectureInvitationViewContainer from '../lectureInvitation/LectureInvitationViewContainer';
 import FeedbackViewContainer from '../feedback/FeedbackViewContainer';
 
 const headerColor = '#333333';
@@ -47,6 +49,8 @@ const AppNavigator = StackNavigator({
   ExpertDetails: { screen: ExpertDetailsViewContainer },
   LectureDetails: { screen: LectureDetailsViewContainer },
   TeacherProfile: { screen: TeacherProfileContainer },
+  SelectLecture: { screen: SelectLectureViewContainer },
+  LectureInvitation: { screen: LectureInvitationViewContainer },
   Feedback: { screen: FeedbackViewContainer },
 });
 
