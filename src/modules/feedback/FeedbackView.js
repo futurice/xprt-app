@@ -27,8 +27,8 @@ class FeedbackView extends Component {
             </Item>
           </Form>
         </Content>
-        <Button dark full>
-          <Text>SUBMIT</Text>
+        <Button dark full >
+          <Text style={{color: '#f0ad4e'}}>SUBMIT</Text>
         </Button>
       </Container>
     );
