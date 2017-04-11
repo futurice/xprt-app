@@ -2,13 +2,17 @@ import React, { Component } from 'react';
 import { Button, Container, Content, Form, Item, Input, Text, Icon } from 'native-base';
 
 
-export default class FormExample extends Component {
+class FeedbackView extends Component {
   static navigationOptions = {
-    tabBar: () => ({
-      icon: ({ tintColor: color }) => (
-        <Icon name="ios-key-outline" style={{ color }} />
-      ),
-      visible: true,
+    title: 'Feedback',
+    header: () => ({
+      style: {
+        backgroundColor: '#333333',
+      },
+      titleStyle: {
+        color: '#15a369',
+      },
+      tintColor: '#15a369',
     }),
   };
 
@@ -30,3 +34,5 @@ export default class FormExample extends Component {
     );
   }
 }
+
+export default FeedbackView;

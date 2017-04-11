@@ -27,6 +27,12 @@ class TeacherProfile extends Component {
     this.props.getTeacher(12490);
   }
 
+  open = () => {
+    this.props.navigate({
+      routeName: 'Feedback',
+    });
+  };
+
   render() {
     const { teacher } = this.props;
     return (
@@ -87,7 +93,8 @@ class TeacherProfile extends Component {
               </Col>
             </Row>
             <Row>
-              <Button full transparent style={styles.feedbackButton}>
+              <Button  full transparent style={styles.feedbackButton}
+                onPress={() => { this.open(); }}>
                 <Image source={icFeedbackGreen} style={styles.iconFeedback} />
                 <Text style={styles.labelStyle}>   SEND FEEDBACK </Text>
               </Button>
