@@ -9,6 +9,7 @@ import LoginViewContainer from '../login/LoginViewContainer';
 import TeacherProfileContainer from '../teachers/TeacherProfileContainer';
 import SelectLectureViewContainer from '../selectLecture/SelectLectureViewContainer';
 import LectureInvitationViewContainer from '../lectureInvitation/LectureInvitationViewContainer';
+import FeedbackViewContainer from '../feedback/FeedbackViewContainer';
 
 const headerColor = '#333333';
 const activeColor = 'white';
@@ -50,6 +51,7 @@ const AppNavigator = StackNavigator({
   TeacherProfile: { screen: TeacherProfileContainer },
   SelectLecture: { screen: SelectLectureViewContainer },
   LectureInvitation: { screen: LectureInvitationViewContainer },
+  Feedback: { screen: FeedbackViewContainer },
 });
 
 export default AppNavigator;
