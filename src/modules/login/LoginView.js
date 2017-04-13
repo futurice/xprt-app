@@ -27,6 +27,9 @@ export default class FormExample extends Component {
               <Input secureTextEntry />
             </Item>
           </Form>
+          <Button full transparent>
+            <Text style={styles.labelStyle}>FORGOT PASSWORD?</Text>
+          </Button>
 
           <Text style={styles.center}>{"Don't have an account yet?"}</Text>
 
