@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Container, Content, Form, Item, Input, Text } from 'native-base';
+import { Button, Container, Content, Form, Item, Input, Text, Toast } from 'native-base';
 
 
 class FeedbackView extends Component {
@@ -27,7 +27,16 @@ class FeedbackView extends Component {
             </Item>
           </Form>
         </Content>
-        <Button dark full >
+        <Button
+          onPress={() => Toast.show({
+            text: 'Thank you for your feedback!',
+            position: 'center',
+            duration: 3000,
+            buttonText: 'OK',
+          })}
+          dark
+          full
+        >
           <Text style={{ color: '#f0ad4e' }}>SUBMIT</Text>
         </Button>
       </Container>
