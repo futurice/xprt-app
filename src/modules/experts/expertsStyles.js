@@ -1,5 +1,5 @@
 const styles = {
-  areaIcon:{
+  areaIcon: {
     fontSize: 15,
   },
   arrowIcon: {
@@ -14,6 +14,7 @@ const styles = {
   },
   rowText: {
     color: '#333333',
+    flex: 1,
   },
   subjectBadge: {
     backgroundColor: 'white',
