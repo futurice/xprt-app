@@ -48,6 +48,10 @@ class ExpertsView extends Component {
   renderRow = (expert) => {
     const subjects = expert.subjects || [];
     const areas = expert.area || [];
+
+    let areasStr = '';
+
+    areas.forEach(area => areasStr = `${areasStr} ${area}`);
     // const thumbnailSource = expert.imageUrl ? { uri: expert.imageUrl } : defaultProfile;
 
     // ToDo: Remove this thingy
@@ -59,18 +63,11 @@ class ExpertsView extends Component {
           <Thumbnail source={{ uri: `https://randomuser.me/api/portraits/women/${numb}.jpg` }} />
         </Left>
         <Body>
-          <Text> {expert.name} </Text>
-          <Text note style={styles.rowText}> {expert.title || 'Title goes here'}</Text>
+          <Text numberOfLines={1}> {expert.name} </Text>
+          <Text numberOfLines={1} note style={styles.rowText}> {expert.title || 'Title goes here'}</Text>
           <View style={styles.rowflow}>
-            <Image
-              source={locationIcon}
-              style={styles.navigateIcon}
-            />
-            {
-              areas.map(area => (
-                <Text note key={area}> {area} </Text>
-              ))
-            }
+            <Icon  style={styles.areaIcon} name="pin"/>
+            <Text numberOfLines={1} note> {areasStr} </Text>
           </View>
           <View style={styles.rowflow}>
             {
@@ -84,8 +81,8 @@ class ExpertsView extends Component {
             }
           </View>
         </Body>
-        <Right>
-          <Icon name="arrow-forward" />
+        <Right style={styles.arrowIcon}>
+          <Icon name="ios-arrow-forward"/>
         </Right>
       </ListItem>
     );
