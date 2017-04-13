@@ -11,6 +11,7 @@ import SelectLectureViewContainer from '../selectLecture/SelectLectureViewContai
 import LectureInvitationViewContainer from '../lectureInvitation/LectureInvitationViewContainer';
 import FeedbackViewContainer from '../feedback/FeedbackViewContainer';
 import OAuth2LoginViewContainer from '../oAuth2Login/OAuth2LoginViewContainer';
+import EditProfileViewContainer from '../editProfile/EditProfileViewContainer';
 
 const headerColor = '#333333';
 const activeColor = 'white';
@@ -54,6 +55,7 @@ const AppNavigator = StackNavigator({
   LectureInvitation: { screen: LectureInvitationViewContainer },
   Feedback: { screen: FeedbackViewContainer },
   OAuth2Login: { screen: OAuth2LoginViewContainer },
+  EditProfile: { screen: EditProfileViewContainer },
 });
 
 export default AppNavigator;

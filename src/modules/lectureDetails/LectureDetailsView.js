@@ -7,7 +7,7 @@ import icEditGreen from '../../../images/icons/ic_edit_green.png';
 
 class LectureDetailsView extends Component {
   static navigationOptions = {
-    title: 'testi',
+    title: 'Lecture Details',
     header: () => ({
       style: {
         backgroundColor: '#333333',

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {
   Text,
   Image,
+  TouchableHighlight,
 } from 'react-native';
 import { Button, Container, Content, Icon } from 'native-base';
 import { Col, Grid, Row } from 'react-native-easy-grid';
@@ -27,9 +28,9 @@ class TeacherProfile extends Component {
     this.props.getTeacher(12490);
   }
 
-  open = () => {
+  open = (routeName) => {
     this.props.navigate({
-      routeName: 'Feedback',
+      routeName,
     });
   };
 
@@ -44,7 +45,9 @@ class TeacherProfile extends Component {
                 <Text style={styles.headlineStyle}> Personal: </Text>
               </Col>
               <Col style={styles.editPenAlignRight}>
-                <Image source={icEditGreen} style={styles.iconEdit} />
+                <TouchableHighlight onPress={() => { this.open('EditProfile'); }}>
+                  <Image source={icEditGreen} style={styles.iconEdit} />
+                </TouchableHighlight>
               </Col>
             </Row>
             <Row>
@@ -93,7 +96,7 @@ class TeacherProfile extends Component {
             </Row>
             <Row>
               <Button
-                style={styles.feedbackButton} onPress={() => { this.open(); }}
+                style={styles.feedbackButton} onPress={() => { this.open('Feedback'); }}
                 full
                 transparent
               >
