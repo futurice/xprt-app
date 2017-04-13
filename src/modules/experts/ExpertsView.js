@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {
-  Image,
   Text,
   View,
 } from 'react-native';
@@ -10,7 +9,6 @@ import debounce from 'lodash/debounce';
 import { Container, Content, Badge, Button, Header, Icon, Input,
   Item, ListItem, List, Left, Body, Right, Thumbnail, Spinner } from 'native-base';
 // import defaultProfile from '../../../images/icons/ic_person.png';
-import locationIcon from '../../../images/icons/ic_location_black.png';
 import styles from './expertsStyles';
 
 // Don't care about propTypes in modules
@@ -48,8 +46,11 @@ class ExpertsView extends Component {
   renderRow = (expert) => {
     const subjects = expert.subjects || [];
     const areas = expert.area || [];
-    // const thumbnailSource = expert.imageUrl ? { uri: expert.imageUrl } : defaultProfile;
 
+    let areasStr = '';
+
+    areas.forEach(area => (areasStr = `${areasStr} ${area}`));
+    // const thumbnailSource = expert.imageUrl ? { uri: expert.imageUrl } : defaultProfile;
     // ToDo: Remove this thingy
     const numb = Math.floor(Math.random() * 50);
 
@@ -59,18 +60,11 @@ class ExpertsView extends Component {
           <Thumbnail source={{ uri: `https://randomuser.me/api/portraits/women/${numb}.jpg` }} />
         </Left>
         <Body>
-          <Text> {expert.name} </Text>
-          <Text note style={styles.rowText}> {expert.title || 'Title goes here'}</Text>
+          <Text numberOfLines={1}> {expert.name} </Text>
+          <Text numberOfLines={1} note style={styles.rowText}> {expert.title || 'Title goes here'}</Text>
           <View style={styles.rowflow}>
-            <Image
-              source={locationIcon}
-              style={styles.navigateIcon}
-            />
-            {
-              areas.map(area => (
-                <Text note key={area}> {area} </Text>
-              ))
-            }
+            <Icon style={styles.areaIcon} name="pin" />
+            <Text numberOfLines={1} note> {areasStr} </Text>
           </View>
           <View style={styles.rowflow}>
             {
@@ -84,8 +78,8 @@ class ExpertsView extends Component {
             }
           </View>
         </Body>
-        <Right>
-          <Icon name="arrow-forward" />
+        <Right style={styles.arrowIcon}>
+          <Icon name="ios-arrow-forward" />
         </Right>
       </ListItem>
     );

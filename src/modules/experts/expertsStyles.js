@@ -1,4 +1,10 @@
 const styles = {
+  areaIcon: {
+    fontSize: 15,
+  },
+  arrowIcon: {
+    justifyContent: 'center',
+  },
   navigateIcon: {
     height: 15,
     width: 15,
@@ -8,6 +14,7 @@ const styles = {
   },
   rowText: {
     color: '#333333',
+    flex: 1,
   },
   subjectBadge: {
     backgroundColor: 'white',
