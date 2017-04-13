@@ -13,6 +13,9 @@ const styles = {
   loginButton: {
     color: '#f0ad4e',
   },
+  loginHundred: {
+    backgroundColor: '#c30f96',
+  },
 };
 
 module.exports = styles;
