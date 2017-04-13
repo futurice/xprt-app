@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Button, Container, Content, Form, Item, Input, Text, Toast } from 'native-base';
-import AppNavigator from '../navigator/Navigator';
 
 
 class FeedbackView extends Component {
@@ -29,15 +28,15 @@ class FeedbackView extends Component {
           </Form>
         </Content>
         <Button
-          onPress={()=> Toast.show({
-              text: 'Thank you for your feedback!',
-              position: 'center',
-              duration: 3000,
-              buttonText: 'OK',
-            })}
-            dark
-            full
-          >
+          onPress={() => Toast.show({
+            text: 'Thank you for your feedback!',
+            position: 'center',
+            duration: 3000,
+            buttonText: 'OK',
+          })}
+          dark
+          full
+        >
           <Text style={{ color: '#f0ad4e' }}>SUBMIT</Text>
         </Button>
       </Container>
