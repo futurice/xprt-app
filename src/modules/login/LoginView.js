@@ -11,6 +11,11 @@ export default class FormExample extends Component {
       visible: true,
     }),
   };
+  open = () => {
+    this.props.navigate({
+      routeName: 'OAuth2Login',
+    });
+  };
 
   render() {
     return (
@@ -37,6 +42,9 @@ export default class FormExample extends Component {
             <Text style={styles.labelStyle}>CREATE AN ACCOUNT</Text>
           </Button>
         </Content>
+        <Button full style={styles.loginHundred} onPress={() => { this.open(); }}>
+          <Text>LOG IN WITH HUNDRED</Text>
+        </Button>
         <Button dark full>
           <Text style={styles.loginButton}>LOG IN</Text>
         </Button>
