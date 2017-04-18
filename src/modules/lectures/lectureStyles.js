@@ -1,3 +1,5 @@
+import variables from '../../../native-base-theme/variables/platform';
+
 const styles = {
   navigateIcon: {
     height: 15,
@@ -32,6 +34,9 @@ const styles = {
   },
   blank: {
     backgroundColor: 'rgba(0,0,0,0)',
+  },
+  xprtGreen: {
+    backgroundColor: variables.brandGreen,
   },
 };
 

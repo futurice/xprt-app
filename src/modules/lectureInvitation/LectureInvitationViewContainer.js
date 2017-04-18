@@ -5,9 +5,8 @@ import rest from '../../utils/rest';
 
 export default connect(
   (state, ownProps) => ({
-    expert: state.expertDetails.data,
+    expert: ownProps.navigation.state.params.expert,
     loading: state.expertDetails.loading,
-    expertId: ownProps.navigation.state.params.expertId,
   }),
   dispatch => ({
     getExperts(expertId) {

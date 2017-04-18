@@ -17,11 +17,11 @@ class SelectLectureView extends Component {
       tintColor: '#15a369',
     }),
   };
-  open = (expertId) => {
+  open = (expert) => {
     this.props.navigate({
       routeName: 'LectureInvitation',
       params: {
-        expertId,
+        expert,
       },
     });
   };
@@ -50,7 +50,7 @@ class SelectLectureView extends Component {
           position="bottomRight"
           style={styles.xprtGreen}
           key={expert.id}
-          onPress={() => { this.open(expert.id); }}
+          onPress={() => { this.open(expert); }}
         >
           <Icon name="add" />
         </Fab>
