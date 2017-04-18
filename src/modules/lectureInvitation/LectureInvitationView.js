@@ -68,11 +68,19 @@ class LectureInvitationView extends Component {
             </Body>
           </ListItem>
         </Content>
-        <Button
-          large block style={styles.blockButton}
-        >
-          <Text style={styles.blockButtonText}>SEND A LECTURE INVITATION</Text>
-        </Button>
+        {expert ?
+          <Button
+            large block style={styles.blockButton}
+          >
+            <Text style={styles.blockButtonText}>SEND A LECTURE INVITATION</Text>
+          </Button>
+        :
+          <Button
+            large block style={styles.blockButton}
+          >
+            <Text style={styles.blockButtonText}>CREATE A LECTURE</Text>
+          </Button>
+        }
       </Container>
     );
   }
