@@ -16,6 +16,28 @@ class FeedbackView extends Component {
     }),
   };
 
+  state = {
+    feedback: '',
+  };
+
+  onChangeText = (feedback) => {
+    this.setState({ feedback });
+  }
+
+  onButtonPress = () => {
+    /* ToDo:
+      Add call to Toast function or something similar
+    */
+    this.props.sendFeedback(this.state.feedback);
+  }
+
+  showToast = () => Toast.show({
+    text: 'Thank you for your feedback!',
+    position: 'center',
+    duration: 3000,
+    buttonText: 'OK',
+  });
+
   render() {
     return (
       <Container>
@@ -23,17 +45,15 @@ class FeedbackView extends Component {
           <Text>Drop in suggestions about the app. We appreciate your feedback.</Text>
           <Form>
             <Item>
-              <Input placeholder="Your message..." />
+              <Input
+                type="text" placeholder="Your message..." value={this.state.feedback}
+                onChangeText={this.onChangeText}
+              />
             </Item>
           </Form>
         </Content>
         <Button
-          onPress={() => Toast.show({
-            text: 'Thank you for your feedback!',
-            position: 'center',
-            duration: 3000,
-            buttonText: 'OK',
-          })}
+          onPress={this.onButtonPress}
           dark
           full
         >
