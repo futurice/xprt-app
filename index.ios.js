@@ -7,7 +7,6 @@ import AppViewContainer from './src/modules/AppViewContainer';
 
 class XPRT extends Component {
   componentDidMount() {
-    console.log(SplashScreen);
     SplashScreen.close({
       animationType: SplashScreen.animationType.scale,
       duration: 800,

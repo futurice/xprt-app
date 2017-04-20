@@ -52,6 +52,10 @@ const rest = reduxApi({
     crud: true,
   },
 
+  feedback: {
+    url: `${config.apiRoot}/feedback`,
+    crud: true,
+  },
   // Add more API endpoints here! Examples below:
 
   /*
