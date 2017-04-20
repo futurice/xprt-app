@@ -19,21 +19,22 @@ class LectureInvitationView extends Component {
   };
   render() {
     const { expert } = this.props;
-
     return (
       <Container>
         <Content padder>
-
-          <ListItem avatar>
-            <Left>
-              <Thumbnail source={placeHolder} />
-            </Left>
-            <Body>
-              <Text>{expert.name}</Text>
-              <Text note>CEO at Sportmart</Text>
-              <Text note>Espoo</Text>
-            </Body>
-          </ListItem>
+          {expert ?
+            <ListItem avatar>
+              <Left>
+                <Thumbnail source={placeHolder} />
+              </Left>
+              <Body>
+                <Text>{expert.name}</Text>
+                <Text note>CEO at Sportmart</Text>
+                <Text note>Espoo</Text>
+              </Body>
+            </ListItem>
+          :
+          null}
           <Text note>Add some details about the lecture</Text>
           <Form>
             <Item floatingLabel last>
@@ -67,11 +68,19 @@ class LectureInvitationView extends Component {
             </Body>
           </ListItem>
         </Content>
-        <Button
-          large block style={styles.blockButton}
-        >
-          <Text style={styles.blockButtonText}>SEND A LECTURE INVITATION</Text>
-        </Button>
+        {expert ?
+          <Button
+            large block style={styles.blockButton}
+          >
+            <Text style={styles.blockButtonText}>SEND A LECTURE INVITATION</Text>
+          </Button>
+        :
+          <Button
+            large block style={styles.blockButton}
+          >
+            <Text style={styles.blockButtonText}>CREATE A LECTURE</Text>
+          </Button>
+        }
       </Container>
     );
   }

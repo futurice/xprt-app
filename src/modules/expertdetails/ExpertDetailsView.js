@@ -17,11 +17,11 @@ class ExpertDetailsView extends Component {
     this.props.getExpertDetails(this.props.expertId);
   //  this.props.getExperts();
   }
-  open = (expertId) => {
+  open = (expert) => {
     this.props.navigate({
       routeName: 'SelectLecture',
       params: {
-        expertId,
+        expert,
       },
     });
   };
@@ -95,7 +95,7 @@ class ExpertDetailsView extends Component {
         </Content>
         <Button
           large block style={styles.blockButton}
-          key={expert.id} onPress={() => { this.open(expert.id); }}
+          key={expert.id} onPress={() => { this.open(expert); }}
         >
           <Text style={styles.blockButtonText}>SEND A LECTURE INVITATION</Text>
         </Button>

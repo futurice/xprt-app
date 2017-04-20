@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Body, Left, Right, Thumbnail, Content, Container, ListItem, Text, Icon, List, Badge } from 'native-base';
+import { Body, Left, Right, Thumbnail, Content, Container, ListItem, Text, Icon, List, Badge, Fab } from 'native-base';
 import styles from './lectureStyles';
 
 import placeHolder from '../../../images/ic_unknownxxhdpi.png';
@@ -20,16 +20,16 @@ class LecturesView extends Component {
     this.props.getLectures();
   }
 
-  open = (lectureId) => {
+  open = (routeName, lectureId) => {
     this.props.navigate({
-      routeName: 'LectureDetails',
+      routeName,
       params: {
         lectureId,
       },
     });
   };
   renderRow = lecture => (
-    <ListItem button onPress={() => this.open(lecture.id)} avatar key={lecture.id}>
+    <ListItem button onPress={() => this.open('LectureDetails', lecture.id)} avatar key={lecture.id}>
       <Left>
         <Thumbnail source={placeHolder} />
       </Left>
@@ -54,6 +54,13 @@ class LecturesView extends Component {
         <Content>
           <List dataArray={lectures} renderRow={this.renderRow} />
         </Content>
+        <Fab
+          position="bottomRight"
+          style={styles.xprtGreen}
+          onPress={() => this.open('LectureInvitation')}
+        >
+          <Icon name="add" />
+        </Fab>
       </Container>
 
     );
