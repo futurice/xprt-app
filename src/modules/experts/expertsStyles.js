@@ -25,8 +25,9 @@ const styles = {
     margin: 3,
   },
   subjectText: {
+    marginTop: -8,
     fontSize: 10,
-    textAlign: 'justify',
+    color: 'black',
   },
 };
 

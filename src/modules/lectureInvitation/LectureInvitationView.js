@@ -12,6 +12,9 @@ const mapStateToProps = (state, ownProps) => ({
 });
 const mapDispatchToProps = dispatch => ({
   getExperts: expertId => dispatch(rest.actions.expertDetails({ expertId })),
+  createLecture: (lecture, callback) => dispatch(rest.actions.lectures.post({}, {
+    body: JSON.stringify(lecture),
+  }, callback)),
 });
 
 @connect(mapStateToProps, mapDispatchToProps)
@@ -28,8 +31,30 @@ export default class LectureInvitationView extends Component {
       tintColor: '#15a369',
     }),
   };
+
+  state = {
+    title: '',
+    description: '',
+    dates: '',
+    targetStudents: '',
+    area: '',
+    contactByEmail: true,
+    contactByPhone: true,
+  };
+
   render() {
-    const { expert } = this.props;
+    const { expert, createLecture } = this.props;
+
+    const {
+      title,
+      description,
+      dates,
+      targetStudents,
+      area,
+      contactByEmail,
+      contactByPhone,
+    } = this.state;
+
     return (
       <Container>
         <Content padder>
@@ -45,53 +70,70 @@ export default class LectureInvitationView extends Component {
               </Body>
             </ListItem>
           :
-          null}
+            <Button large block>
+              <Text>Select expert (TODO)</Text>
+            </Button>
+          }
           <Text note>Add some details about the lecture</Text>
           <Form>
             <Item floatingLabel last>
-              <Label>Theme of the lecture:</Label>
-              <Input />
+              <Label>Title of the lecture:</Label>
+              <Input
+                value={title}
+                onChangeText={text => this.setState({ title: text })}
+              />
             </Item>
             <Item floatingLabel last>
               <Label>Date of lecture:</Label>
-              <Input secureTextEntry />
+              <Input
+                value={dates}
+                onChangeText={text => this.setState({ dates: text })}
+              />
             </Item>
             <Item floatingLabel last>
               <Label>Location:</Label>
-              <Input secureTextEntry />
+              <Input
+                value={area}
+                onChangeText={text => this.setState({ area: text })}
+              />
             </Item>
             <Item floatingLabel last>
               <Label>Short description of the lecture:</Label>
-              <Input secureTextEntry />
+              <Input
+                value={description}
+                onChangeText={text => this.setState({ description: text })}
+              />
             </Item>
           </Form>
           <Text note>The expert can contact me by:</Text>
           <ListItem>
-            <CheckBox checked />
+            <CheckBox
+              checked={contactByEmail}
+              onPress={() => this.setState({ contactByEmail: !contactByEmail })}
+            />
             <Body>
               <Text>By e-mail</Text>
             </Body>
           </ListItem>
           <ListItem>
-            <CheckBox checked={false} />
+            <CheckBox
+              checked={contactByPhone}
+              onPress={() => this.setState({ contactByPhone: !contactByPhone })}
+            />
             <Body>
               <Text>By phone</Text>
             </Body>
           </ListItem>
         </Content>
-        {expert ?
-          <Button
-            large block style={styles.blockButton}
-          >
-            <Text style={styles.blockButtonText}>SEND A LECTURE INVITATION</Text>
-          </Button>
-        :
-          <Button
-            large block style={styles.blockButton}
-          >
-            <Text style={styles.blockButtonText}>CREATE A LECTURE</Text>
-          </Button>
-        }
+        <Button
+          large block style={styles.blockButton}
+          onPress={() => createLecture({
+            ...this.state,
+            expertId: expert.id,
+          })}
+        >
+          <Text style={styles.blockButtonText}>SEND A LECTURE INVITATION</Text>
+        </Button>
       </Container>
     );
   }

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {
-  Text,
-  View,
+  RefreshControl,
 } from 'react-native';
 
 import debounce from 'lodash/debounce';
@@ -11,7 +10,7 @@ import { bindActionCreators } from 'redux';
 import { NavigationActions } from 'react-navigation';
 
 import { Container, Content, Badge, Button, Header, Icon, Input,
-  Item, ListItem, List, Left, Body, Right, Thumbnail, Spinner } from 'native-base';
+  Item, Text, View, ListItem, List, Left, Body, Right, Thumbnail, Spinner } from 'native-base';
 // import defaultProfile from '../../../images/icons/ic_person.png';
 import styles from './expertsStyles';
 
@@ -106,14 +105,19 @@ export default class ExpertsView extends Component {
 
     return (
       <Container>
-        <Content>
-          <CustomHeader onSubmit={getExperts} />
-
-          { loading
-            ? <Spinner />
-            : <List dataArray={experts} renderRow={this.renderRow} />
-          }
-        </Content>
+        <CustomHeader onSubmit={getExperts} />
+        <View>
+          <List
+            refreshControl={
+              <RefreshControl
+                refreshing={loading}
+                onRefresh={getExperts}
+              />
+            }
+            dataArray={experts}
+            renderRow={this.renderRow}
+          />
+        </View>
       </Container>
     );
   }

@@ -39,7 +39,7 @@ export default class ExpertDetailsView extends Component {
   }
   open = (expert) => {
     this.props.navigate({
-      routeName: 'SelectLecture',
+      routeName: 'LectureInvitation',
       params: {
         expert,
       },

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Body, Left, Right, Thumbnail, Content, Container, ListItem, Text, Icon, List, Badge, Fab } from 'native-base';
+import { RefreshControl } from 'react-native';
+import { Body, Left, Right, Thumbnail, View, Content, Container, ListItem, Text, Icon, List, Badge, Fab } from 'native-base';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { NavigationActions } from 'react-navigation';
@@ -13,6 +14,7 @@ const status = ['accepted', 'completed', 'invitation', 'blank'];
 
 const mapStateToProps = state => ({
   lectures: state.lectures.data,
+  loading: state.lectures.loading,
   isLoggedIn: !!state.login.token,
 });
 const mapDispatchToProps = dispatch => ({
@@ -61,13 +63,22 @@ export default class LecturesView extends Component {
   );
 
   render() {
-    const { lectures } = this.props;
+    const { lectures, loading, getLectures } = this.props;
 
     return (
       <Container>
-        <Content>
-          <List dataArray={lectures} renderRow={this.renderRow} />
-        </Content>
+        <View>
+          <List
+            refreshControl={
+              <RefreshControl
+                refreshing={loading}
+                onRefresh={getLectures}
+              />
+            }
+            dataArray={lectures}
+            renderRow={this.renderRow}
+          />
+        </View>
         <Fab
           position="bottomRight"
           style={styles.xprtGreen}
