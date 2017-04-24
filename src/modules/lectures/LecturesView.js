@@ -67,7 +67,7 @@ export default class LecturesView extends Component {
 
     return (
       <Container>
-        <View>
+        <View style={{ flex: 1 }}>
           <List
             refreshControl={
               <RefreshControl
