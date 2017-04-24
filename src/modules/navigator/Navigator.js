@@ -5,7 +5,7 @@ import ExpertsView from '../experts/ExpertsView';
 import ExpertDetailsView from '../expertdetails/ExpertDetailsView';
 import LecturesView from '../lectures/LecturesView';
 import LectureDetailsView from '../lectureDetails/LectureDetailsView';
-import ProfileView from '../profile/ProfileView';
+import ProfileContainer from '../profile/ProfileContainer';
 import SelectLectureView from '../selectLecture/SelectLectureView';
 import LectureInvitationView from '../lectureInvitation/LectureInvitationView';
 import FeedbackView from '../feedback/FeedbackView';
@@ -19,7 +19,7 @@ const activeColor = 'white';
 export const MainScreenNavigator = TabNavigator({
   Experts: { screen: ExpertsView },
   Lectures: { screen: LecturesView },
-  Profile: { screen: ProfileView },
+  Profile: { screen: ProfileContainer },
 }, {
   tabBarOptions: {
     ...Platform.select({

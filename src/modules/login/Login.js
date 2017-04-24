@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Container, Content, Form, Item, Input, Label, Text, Icon } from 'native-base';
 import { WebView } from 'react-native';
+import jwtDecode from 'jwt-decode';
 
 import { createAction, createReducer } from 'redux-act';
 import { connect } from 'react-redux';
@@ -18,6 +19,7 @@ export const clearToken = createAction('Clear login token');
 // Initial state
 const initialState = {
   token: null,
+  decoded: {},
 };
 
 // Reducer
@@ -25,6 +27,7 @@ export const reducer = createReducer({
   [storeToken]: (state, payload) => ({
     ...state,
     token: payload,
+    decoded: jwtDecode(payload),
   }),
   [clearToken]: () => initialState,
 }, initialState);
