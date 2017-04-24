@@ -6,15 +6,31 @@ import {
 
 import debounce from 'lodash/debounce';
 
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { NavigationActions } from 'react-navigation';
+
 import { Container, Content, Badge, Button, Header, Icon, Input,
   Item, ListItem, List, Left, Body, Right, Thumbnail, Spinner } from 'native-base';
 // import defaultProfile from '../../../images/icons/ic_person.png';
 import styles from './expertsStyles';
 
+import rest from '../../utils/rest';
+
 // Don't care about propTypes in modules
 /* eslint-disable react/prop-types */
 
-class ExpertsView extends Component {
+const mapStateToProps = state => ({
+  experts: state.experts.data,
+  loading: state.experts.loading,
+});
+const mapDispatchToProps = dispatch => ({
+  getExperts: query => dispatch(rest.actions.experts({ filter: query })),
+  navigate: bindActionCreators(NavigationActions.navigate, dispatch),
+});
+
+@connect(mapStateToProps, mapDispatchToProps)
+export default class ExpertsView extends Component {
   static navigationOptions = {
     tabBar: () => ({
       icon: ({ tintColor: color }) => (
@@ -136,5 +152,3 @@ class CustomHeader extends Header {
     );
   }
 }
-
-export default ExpertsView;

@@ -1,13 +1,29 @@
 import React, { Component } from 'react';
 import { Body, Left, Right, Thumbnail, Content, Container, ListItem, Text, Icon, List, Badge, Fab } from 'native-base';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { NavigationActions } from 'react-navigation';
+
 import styles from './lectureStyles';
+import rest from '../../utils/rest';
 
 import placeHolder from '../../../images/ic_unknownxxhdpi.png';
 
 const status = ['accepted', 'completed', 'invitation', 'blank'];
 
+const mapStateToProps = state => ({
+  lectures: state.lectures.data,
+  loading: state.lectures.loading,
+});
+const mapDispatchToProps = dispatch => ({
+  getLectures: () => dispatch(rest.actions.lectures()),
+  navigate: bindActionCreators(NavigationActions.navigate, dispatch),
+});
+
+@connect(mapStateToProps, mapDispatchToProps)
 class LecturesView extends Component {
   static navigationOptions = {
+    title: 'My lectures',
     tabBar: () => ({
       icon: ({ tintColor: color }) => (
         <Icon name="ios-list" style={{ color }} />

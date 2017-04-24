@@ -1,10 +1,21 @@
 import React, { Component } from 'react';
 import { Container, Text, Content, ListItem, Left, Thumbnail, Body, Form, Item, Label, Input, Button, CheckBox } from 'native-base';
+import { connect } from 'react-redux';
+
+import rest from '../../utils/rest';
 import placeHolder from '../../../images/ic_unknownxxhdpi.png';
 import styles from './lectureInvitationStyles';
 
+const mapStateToProps = (state, ownProps) => ({
+  expert: ownProps.navigation.state.params.expert,
+  loading: state.expertDetails.loading,
+});
+const mapDispatchToProps = dispatch => ({
+  getExperts: expertId => dispatch(rest.actions.expertDetails({ expertId })),
+});
 
-class LectureInvitationView extends Component {
+@connect(mapStateToProps, mapDispatchToProps)
+export default class LectureInvitationView extends Component {
   static navigationOptions = {
     title: 'Send a lecture invitation',
     header: () => ({
@@ -84,6 +95,4 @@ class LectureInvitationView extends Component {
       </Container>
     );
   }
-
 }
-export default LectureInvitationView;

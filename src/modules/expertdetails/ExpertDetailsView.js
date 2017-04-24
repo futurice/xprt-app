@@ -5,10 +5,30 @@ import {
 } from 'react-native';
 import { Body, Badge, Button, Container, Content, Icon, Spinner, Thumbnail } from 'native-base';
 import { Col, Row, Grid } from 'react-native-easy-grid';
+
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { NavigationActions } from 'react-navigation';
+
+import rest from '../../utils/rest';
+
 // import defaultProfile from '../../../images/icons/ic_person.png';
 import styles from './expertDetailStyles';
 
-class ExpertDetailsView extends Component {
+const mapStateToProps = (state, ownProps) => ({
+  expert: state.expertDetails.data,
+  loading: state.expertDetails.loading,
+  expertId: ownProps.navigation.state.params.expertId,
+});
+const mapDispatchToProps = dispatch => ({
+  getExpertDetails(expertId) {
+    dispatch(rest.actions.expertDetails({ expertId }));
+  },
+  navigate: bindActionCreators(NavigationActions.navigate, dispatch),
+});
+
+@connect(mapStateToProps, mapDispatchToProps)
+export default class ExpertDetailsView extends Component {
   static navigationOptions = {
     header: styles.headerStyle,
   };
@@ -103,5 +123,3 @@ class ExpertDetailsView extends Component {
     ));
   }
 }
-
-export default ExpertDetailsView;

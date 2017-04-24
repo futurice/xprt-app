@@ -9,7 +9,6 @@ import styles from './EditProfileStyles';
 import icEditGreen from '../../../images/icons/ic_edit_green.png';
 import icFeedbackGreen from '../../../images/icons/ic_feedback_green.png';
 
-
 class EditProfileView extends Component {
   static navigationOptions = {
     tabBar: () => ({

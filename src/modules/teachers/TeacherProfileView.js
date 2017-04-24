@@ -6,15 +6,30 @@ import {
 } from 'react-native';
 import { Button, Container, Content, Icon } from 'native-base';
 import { Col, Grid, Row } from 'react-native-easy-grid';
+
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { NavigationActions } from 'react-navigation';
+import rest from '../../utils/rest';
+
 import styles from './TeacherProfileStyles';
 import icEditGreen from '../../../images/icons/ic_edit_green.png';
 import icFeedbackGreen from '../../../images/icons/ic_feedback_green.png';
 import icMailBlack from '../../../images/icons/ic_mail_black.png';
 import icPhoneBlack from '../../../images/icons/ic_phone_black.png';
 
+const mapStateToProps = state => ({
+  teacher: state.teacherDetails.data,
+});
+const mapDispatchToProps = dispatch => ({
+  getTeacher: teacherId => dispatch(rest.actions.teacherDetails({ teacherId })),
+  navigate: bindActionCreators(NavigationActions.navigate, dispatch),
+});
 
-class TeacherProfile extends Component {
+@connect(mapStateToProps, mapDispatchToProps)
+export default class TeacherProfile extends Component {
   static navigationOptions = {
+    title: 'My profile',
     tabBar: () => ({
       icon: ({ tintColor: color }) => (
         <Icon name="person" style={{ color }} />
@@ -113,5 +128,3 @@ class TeacherProfile extends Component {
     );
   }
 }
-
-export default TeacherProfile;

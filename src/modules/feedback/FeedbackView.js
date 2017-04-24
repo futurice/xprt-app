@@ -1,7 +1,17 @@
 import React, { Component } from 'react';
 import { Button, Container, Content, Form, Item, Input, Text, Toast } from 'native-base';
 
+import { connect } from 'react-redux';
+import rest from '../../utils/rest';
 
+const mapStateToProps = () => ({});
+const mapDispatchToProps = dispatch => ({
+  sendFeedback: feedback => dispatch(rest.actions.feedback.post({}, {
+    body: JSON.stringify({ text: feedback }),
+  })),
+});
+
+@connect(mapStateToProps, mapDispatchToProps)
 class FeedbackView extends Component {
   static navigationOptions = {
     title: 'Feedback',

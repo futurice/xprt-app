@@ -2,10 +2,23 @@ import React, { Component } from 'react';
 import { Image } from 'react-native';
 import { Container, Footer, FooterTab, Content, Button, Text, Spinner, Thumbnail, Icon } from 'native-base';
 import { Col, Grid, Row } from 'react-native-easy-grid';
+import { connect } from 'react-redux';
+
+import rest from '../../utils/rest';
 import styles from './LectureDetailStyles';
 import icEditGreen from '../../../images/icons/ic_edit_green.png';
 
-class LectureDetailsView extends Component {
+const mapStateToProps = (state, ownProps) => ({
+  lecture: state.lectureDetails.data,
+  loading: state.lectureDetails.loading,
+  lectureId: ownProps.navigation.state.params.lectureId,
+});
+const mapDispatchToProps = dispatch => ({
+  getLectureDetails: lectureId => dispatch(rest.actions.lectureDetails({ lectureId })),
+});
+
+@connect(mapStateToProps, mapDispatchToProps)
+export default class LectureDetailsView extends Component {
   static navigationOptions = {
     title: 'Lecture Details',
     header: () => ({
@@ -87,5 +100,3 @@ class LectureDetailsView extends Component {
     ));
   }
 }
-
-export default LectureDetailsView;

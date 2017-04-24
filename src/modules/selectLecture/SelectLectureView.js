@@ -1,10 +1,25 @@
 import React, { Component } from 'react';
 import { Container, Text, ListItem, Left, Body, Right, Content, Thumbnail, Icon, Fab } from 'native-base';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { NavigationActions } from 'react-navigation';
+
+import rest from '../../utils/rest';
 import placeHolder from '../../../images/ic_unknownxxhdpi.png';
 import styles from './selectLectureStyles';
 
+const mapStateToProps = (state, ownProps) => ({
+  expert: state.expertDetails.data,
+  loading: state.expertDetails.loading,
+  expertId: ownProps.navigation.state.params.expertId,
+});
+const mapDispatchToProps = dispatch => ({
+  getExperts: expertId => dispatch(rest.actions.expertDetails({ expertId })),
+  navigate: bindActionCreators(NavigationActions.navigate, dispatch),
+});
 
-class SelectLectureView extends Component {
+@connect(mapStateToProps, mapDispatchToProps)
+export default class SelectLectureView extends Component {
   static navigationOptions = {
     title: 'Select a lecture',
     header: () => ({
@@ -57,6 +72,4 @@ class SelectLectureView extends Component {
       </Container>
     );
   }
-
 }
-export default SelectLectureView;

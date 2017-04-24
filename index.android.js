@@ -1,6 +1,6 @@
 import {Provider} from 'react-redux';
 import store from './src/redux/store';
-import AppViewContainer from './src/modules/AppViewContainer';
+import AppView from './src/modules/AppView';
 import React, {Component} from 'react';
 import {AppRegistry, BackAndroid} from 'react-native';
 import {NavigationActions} from 'react-navigation';
@@ -28,7 +28,7 @@ class XPRT extends Component {
   render() {
     return (
       <Provider store={store}>
-        <AppViewContainer />
+        <AppView />
       </Provider>
     );
   }

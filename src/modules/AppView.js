@@ -1,11 +1,12 @@
 import React, { PropTypes, Component } from 'react';
 import { View, StatusBar, ActivityIndicator } from 'react-native';
 import { StyleProvider } from 'native-base';
+import { connect } from 'react-redux';
 
 import getTheme from '../../native-base-theme/components';
 import themeVariables from '../../native-base-theme/variables/platform';
 
-import NavigatorViewContainer from './navigator/NavigatorViewContainer';
+import NavigatorView from './navigator/NavigatorView';
 import * as snapshotUtil from '../utils/snapshot';
 import * as SessionStateActions from '../modules/session/SessionState';
 import store from '../redux/store';
@@ -13,6 +14,11 @@ import DeveloperMenu from '../components/DeveloperMenu';
 
 import styles from './appViewStyles';
 
+const mapStateToProps = state => ({
+  isReady: state.session.isReady,
+});
+
+@connect(mapStateToProps)
 class AppView extends Component {
   static displayName = 'AppView';
 
@@ -51,7 +57,7 @@ class AppView extends Component {
       <StyleProvider style={getTheme(themeVariables)}>
         <View style={{ flex: 1 }}>
           <StatusBar backgroundColor="#455a64" barStyle="light-content" />
-          <NavigatorViewContainer />
+          <NavigatorView />
 
           {__DEV__ && <DeveloperMenu />}
         </View>

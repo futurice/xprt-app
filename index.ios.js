@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { AppRegistry } from 'react-native';
 import SplashScreen from 'react-native-smart-splash-screen';
 import store from './src/redux/store';
-import AppViewContainer from './src/modules/AppViewContainer';
+import AppView from './src/modules/AppView';
 
 class XPRT extends Component {
   componentDidMount() {
@@ -17,7 +17,7 @@ class XPRT extends Component {
   render() {
     return (
       <Provider store={store}>
-        <AppViewContainer />
+        <AppView />
       </Provider>
     );
   }

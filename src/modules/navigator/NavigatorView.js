@@ -1,8 +1,14 @@
 import React, { PropTypes, Component } from 'react';
 import { addNavigationHelpers } from 'react-navigation';
+import { connect } from 'react-redux';
 
 import AppNavigator from './Navigator';
 
+const mapStateToProps = state => ({
+  navigatorState: state.navigatorState,
+});
+
+@connect(mapStateToProps)
 class NavigatorView extends Component {
   static displayName = 'NavigationView';
 

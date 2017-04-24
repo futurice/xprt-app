@@ -9,8 +9,6 @@ import { bindActionCreators } from 'redux';
 
 import Cookie from 'react-native-cookie';
 
-import styles from './loginStyles';
-
 const oauth2Url = 'https://xprt-backend.herokuapp.com/oauth2/callback';
 
 // Action creators
