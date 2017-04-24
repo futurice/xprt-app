@@ -6,9 +6,6 @@ import { NavigationActions } from 'react-navigation';
 
 import styles from './lectureStyles';
 import rest from '../../utils/rest';
-import LoginNag from '../../components/LoginNag';
-import { storeToken } from '../login/Login';
-import fetchDevToken from '../../services/devLogin';
 
 import placeHolder from '../../../images/ic_unknownxxhdpi.png';
 
@@ -16,20 +13,15 @@ const status = ['accepted', 'completed', 'invitation', 'blank'];
 
 const mapStateToProps = state => ({
   lectures: state.lectures.data,
-  loading: state.lectures.loading,
   isLoggedIn: !!state.login.token,
 });
 const mapDispatchToProps = dispatch => ({
   getLectures: () => dispatch(rest.actions.lectures()),
   navigate: bindActionCreators(NavigationActions.navigate, dispatch),
-  devLogin: async () => {
-    const token = await fetchDevToken();
-    dispatch(storeToken(token));
-  },
 });
 
 @connect(mapStateToProps, mapDispatchToProps)
-class LecturesView extends Component {
+export default class LecturesView extends Component {
   static navigationOptions = {
     title: 'My lectures',
     tabBar: () => ({
@@ -45,13 +37,10 @@ class LecturesView extends Component {
   }
 
   open = (routeName, lectureId) => {
-    this.props.navigate({
-      routeName,
-      params: {
-        lectureId,
-      },
-    });
+    const { navigate } = this.props;
+    navigate({ routeName, params: { lectureId } });
   };
+
   renderRow = lecture => (
     <ListItem button onPress={() => this.open('LectureDetails', lecture.id)} avatar key={lecture.id}>
       <Left>
@@ -69,20 +58,10 @@ class LecturesView extends Component {
         <Icon name="arrow-forward" />
       </Right>
     </ListItem>
+  );
 
-    );
   render() {
-    const { lectures, isLoggedIn, devLogin } = this.props;
-
-    if (!isLoggedIn) {
-      return (
-        <LoginNag
-          devLogin={devLogin}
-          openLogin={() => this.open('Login')}
-          text="You have to be logged in to view and manage your lectures"
-        />
-      );
-    }
+    const { lectures } = this.props;
 
     return (
       <Container>
@@ -97,9 +76,6 @@ class LecturesView extends Component {
           <Icon name="add" />
         </Fab>
       </Container>
-
     );
   }
 }
-
-export default LecturesView;

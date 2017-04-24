@@ -3,7 +3,7 @@ import { TabNavigator, StackNavigator } from 'react-navigation';
 
 import ExpertsView from '../experts/ExpertsView';
 import ExpertDetailsView from '../expertdetails/ExpertDetailsView';
-import LecturesView from '../lectures/LecturesView';
+import LecturesContainer from '../lectures/LecturesContainer';
 import LectureDetailsView from '../lectureDetails/LectureDetailsView';
 import ProfileContainer from '../profile/ProfileContainer';
 import SelectLectureView from '../selectLecture/SelectLectureView';
@@ -18,7 +18,7 @@ const activeColor = 'white';
 // TabNavigator is nested inside StackNavigator
 export const MainScreenNavigator = TabNavigator({
   Experts: { screen: ExpertsView },
-  Lectures: { screen: LecturesView },
+  Lectures: { screen: LecturesContainer },
   Profile: { screen: ProfileContainer },
 }, {
   tabBarOptions: {

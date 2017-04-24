@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { Icon } from 'native-base';
-
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { NavigationActions } from 'react-navigation';
 
-import { storeToken } from '../login/Login';
-import ProfileView from './ProfileView';
 import LoginNag from '../../components/LoginNag';
+import { storeToken } from '../login/Login';
 import fetchDevToken from '../../services/devLogin';
+
+import LecturesView from './LecturesView';
 
 const mapStateToProps = state => ({
   isLoggedIn: !!state.login.token,
@@ -22,12 +22,12 @@ const mapDispatchToProps = dispatch => ({
 });
 
 @connect(mapStateToProps, mapDispatchToProps)
-export default class ProfileContainer extends Component {
+export default class LecturesContainer extends Component {
   static navigationOptions = {
-    title: 'My profile',
+    title: 'My lectures',
     tabBar: () => ({
       icon: ({ tintColor: color }) => (
-        <Icon name="person" style={{ color }} />
+        <Icon name="ios-list" style={{ color }} />
       ),
       visible: true,
     }),
@@ -46,13 +46,13 @@ export default class ProfileContainer extends Component {
         <LoginNag
           devLogin={devLogin}
           openLogin={() => this.open('Login')}
-          text="You have to be logged in to view and manage your profile and collaborations"
+          text="You have to be logged in to view and manage your lectures"
         />
       );
     }
 
     return (
-      <ProfileView />
+      <LecturesView />
     );
   }
 }
