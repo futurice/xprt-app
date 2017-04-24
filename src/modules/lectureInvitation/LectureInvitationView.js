@@ -15,6 +15,7 @@ const mapStateToProps = (state, ownProps) => ({
 });
 const mapDispatchToProps = dispatch => ({
   back: bindActionCreators(NavigationActions.back, dispatch),
+  getLectures: () => dispatch(rest.actions.lectures()),
   getExperts: expertId => dispatch(rest.actions.expertDetails({ expertId })),
   createLecture: (lecture, callback) => dispatch(rest.actions.lectures.post({}, {
     body: JSON.stringify(lecture),
@@ -47,7 +48,7 @@ export default class LectureInvitationView extends Component {
   };
 
   render() {
-    const { expert, createLecture, back } = this.props;
+    const { expert, createLecture, back, getLectures } = this.props;
 
     const {
       title,
@@ -145,6 +146,11 @@ export default class LectureInvitationView extends Component {
                 'Your invitation was sent successfully!',
                 'The expert will receive your invitation by e-mail and can contact you using the contact details provided.',
               );
+
+              // Immediately refresh lectures list
+              getLectures();
+
+              // Leave the lecture invitation view
               back();
             }
           })}
