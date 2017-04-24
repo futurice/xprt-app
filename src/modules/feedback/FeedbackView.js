@@ -1,14 +1,20 @@
 import React, { Component } from 'react';
-import { Button, Container, Content, Form, Item, Input, Text, Toast } from 'native-base';
+import { Alert } from 'react-native';
+import { Button, Container, Content, Form, Item, Input, Text } from 'native-base';
+import { NavigationActions } from 'react-navigation';
+import { bindActionCreators } from 'redux';
 
 import { connect } from 'react-redux';
 import rest from '../../utils/rest';
 
-const mapStateToProps = () => ({});
+const mapStateToProps = state => ({
+  feedbackResponse: state.feedback.data,
+});
 const mapDispatchToProps = dispatch => ({
-  sendFeedback: feedback => dispatch(rest.actions.feedback.post({}, {
+  back: bindActionCreators(NavigationActions.back, dispatch),
+  sendFeedback: (feedback, callback) => dispatch(rest.actions.feedback.post({}, {
     body: JSON.stringify({ text: feedback }),
-  })),
+  }, callback)),
 });
 
 @connect(mapStateToProps, mapDispatchToProps)
@@ -35,18 +41,23 @@ class FeedbackView extends Component {
   }
 
   onButtonPress = () => {
-    /* ToDo:
-      Add call to Toast function or something similar
-    */
-    this.props.sendFeedback(this.state.feedback);
-  }
+    const { feedbackResponse, back } = this.props;
 
-  showToast = () => Toast.show({
-    text: 'Thank you for your feedback!',
-    position: 'center',
-    duration: 3000,
-    buttonText: 'OK',
-  });
+    this.props.sendFeedback(this.state.feedback, (err) => {
+      if (err) {
+        Alert.alert(
+          'Error while sending feedback',
+          JSON.stringify(err),
+        );
+      } else {
+        Alert.alert(
+          'Feedback',
+          feedbackResponse.message,
+        );
+        back();
+      }
+    });
+  }
 
   render() {
     return (

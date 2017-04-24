@@ -101,8 +101,8 @@ const rest = reduxApi({
 .use('responseHandler', (err) => {
   if (err) {
     console.log(err);
+    throw err;
   }
-
   /*
   if (err) {
     let msg = 'Error';
