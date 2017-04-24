@@ -31,7 +31,7 @@ export const reducer = createReducer({
 
 const mapStateToProps = () => ({});
 const mapDispatchToProps = dispatch => ({
-  navigate: bindActionCreators(NavigationActions.navigate, dispatch),
+  back: bindActionCreators(NavigationActions.back, dispatch),
   storeToken: token => dispatch(storeToken(token)),
 });
 
@@ -58,6 +58,7 @@ export default class FormExample extends Component {
   doLogin = (data) => {
     const token = JSON.parse(data).token;
     this.props.storeToken(token);
+    this.props.back();
   };
 
   render() {

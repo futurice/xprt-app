@@ -6,6 +6,7 @@ import { NavigationActions } from 'react-navigation';
 
 import styles from './lectureStyles';
 import rest from '../../utils/rest';
+import LoginNag from '../../components/LoginNag';
 
 import placeHolder from '../../../images/ic_unknownxxhdpi.png';
 
@@ -14,6 +15,7 @@ const status = ['accepted', 'completed', 'invitation', 'blank'];
 const mapStateToProps = state => ({
   lectures: state.lectures.data,
   loading: state.lectures.loading,
+  isLoggedIn: !!state.login.token,
 });
 const mapDispatchToProps = dispatch => ({
   getLectures: () => dispatch(rest.actions.lectures()),
@@ -64,7 +66,17 @@ class LecturesView extends Component {
 
     );
   render() {
-    const { lectures } = this.props;
+    const { lectures, isLoggedIn } = this.props;
+
+    if (!isLoggedIn) {
+      return (
+        <LoginNag
+          openLogin={() => this.open('Login')}
+          text="You have to be logged in to view and manage your lectures"
+        />
+      );
+    }
+
     return (
       <Container>
         <Content>
