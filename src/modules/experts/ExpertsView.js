@@ -106,7 +106,7 @@ export default class ExpertsView extends Component {
     return (
       <Container>
         <CustomHeader onSubmit={getExperts} />
-        <View>
+        <View style={{flex: 1}}>
           <List
             refreshControl={
               <RefreshControl
