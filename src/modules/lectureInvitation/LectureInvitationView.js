@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
+import { Alert } from 'react-native';
 import { Container, Text, Content, ListItem, Left, Thumbnail, Body, Form, Item, Label, Input, Button, CheckBox } from 'native-base';
 import { connect } from 'react-redux';
+import { NavigationActions } from 'react-navigation';
+import { bindActionCreators } from 'redux';
 
 import rest from '../../utils/rest';
 import placeHolder from '../../../images/ic_unknownxxhdpi.png';
@@ -11,6 +14,7 @@ const mapStateToProps = (state, ownProps) => ({
   loading: state.expertDetails.loading,
 });
 const mapDispatchToProps = dispatch => ({
+  back: bindActionCreators(NavigationActions.back, dispatch),
   getExperts: expertId => dispatch(rest.actions.expertDetails({ expertId })),
   createLecture: (lecture, callback) => dispatch(rest.actions.lectures.post({}, {
     body: JSON.stringify(lecture),
@@ -43,7 +47,7 @@ export default class LectureInvitationView extends Component {
   };
 
   render() {
-    const { expert, createLecture } = this.props;
+    const { expert, createLecture, back } = this.props;
 
     const {
       title,
@@ -130,6 +134,19 @@ export default class LectureInvitationView extends Component {
           onPress={() => createLecture({
             ...this.state,
             expertId: expert.id,
+          }, (err) => {
+            if (err) {
+              Alert.alert(
+                'Error while sending lecture invitation',
+                JSON.stringify(err),
+              );
+            } else {
+              Alert.alert(
+                'Your invitation was sent successfully!',
+                'The expert will receive your invitation by e-mail and can contact you using the contact details provided.',
+              );
+              back();
+            }
           })}
         >
           <Text style={styles.blockButtonText}>SEND A LECTURE INVITATION</Text>
