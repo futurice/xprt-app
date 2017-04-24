@@ -7,6 +7,8 @@ import { NavigationActions } from 'react-navigation';
 import styles from './lectureStyles';
 import rest from '../../utils/rest';
 import LoginNag from '../../components/LoginNag';
+import { storeToken } from '../login/Login';
+import fetchDevToken from '../../services/devLogin';
 
 import placeHolder from '../../../images/ic_unknownxxhdpi.png';
 
@@ -20,6 +22,10 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   getLectures: () => dispatch(rest.actions.lectures()),
   navigate: bindActionCreators(NavigationActions.navigate, dispatch),
+  devLogin: async () => {
+    const token = await fetchDevToken();
+    dispatch(storeToken(token));
+  },
 });
 
 @connect(mapStateToProps, mapDispatchToProps)
@@ -66,11 +72,12 @@ class LecturesView extends Component {
 
     );
   render() {
-    const { lectures, isLoggedIn } = this.props;
+    const { lectures, isLoggedIn, devLogin } = this.props;
 
     if (!isLoggedIn) {
       return (
         <LoginNag
+          devLogin={devLogin}
           openLogin={() => this.open('Login')}
           text="You have to be logged in to view and manage your lectures"
         />

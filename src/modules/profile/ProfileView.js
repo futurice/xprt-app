@@ -6,9 +6,10 @@ import { bindActionCreators } from 'redux';
 import { NavigationActions } from 'react-navigation';
 import rest from '../../utils/rest';
 
-import { clearToken } from '../login/Login';
+import { clearToken, storeToken } from '../login/Login';
 import MyProfile from '../../components/MyProfile';
 import LoginNag from '../../components/LoginNag';
+import fetchDevToken from '../../services/devLogin';
 
 const mapStateToProps = state => ({
   teacher: state.teacherDetails.data,
@@ -18,6 +19,10 @@ const mapDispatchToProps = dispatch => ({
   getTeacher: teacherId => dispatch(rest.actions.teacherDetails({ teacherId })),
   navigate: bindActionCreators(NavigationActions.navigate, dispatch),
   logout: () => dispatch(clearToken()),
+  devLogin: async () => {
+    const token = await fetchDevToken();
+    dispatch(storeToken(token));
+  },
 });
 
 @connect(mapStateToProps, mapDispatchToProps)
@@ -44,7 +49,7 @@ export default class TeacherProfile extends Component {
   };
 
   render() {
-    const { teacher, isLoggedIn, logout } = this.props;
+    const { teacher, isLoggedIn, logout, devLogin } = this.props;
 
     if (isLoggedIn) {
       return (
@@ -58,6 +63,7 @@ export default class TeacherProfile extends Component {
 
     return (
       <LoginNag
+        devLogin={devLogin}
         openLogin={() => this.open('Login')}
         text="You have to be logged in to view and manage your profile and collaborations"
       />

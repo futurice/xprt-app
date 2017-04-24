@@ -7,6 +7,10 @@ const config = {
   apiRoot: 'https://xprt-backend.herokuapp.com',
 };
 
+if (__DEV__) {
+  config.apiRoot = 'http://localhost:3888';
+}
+
 // import { showError } from '../modules/ErrorSnackbar';
 
 /*
