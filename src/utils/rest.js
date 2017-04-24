@@ -78,23 +78,21 @@ const rest = reduxApi({
   }
   */
 })
-/*
 .use('options', (url, params, getState) => {
-  const {auth: {data: {token}}} = getState();
+  const { login: { token } } = getState();
 
   const headers = {
     Accept: 'application/json',
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/json',
   };
 
   // Add token to request headers
   if (token) {
-    return {headers: {...headers, Authorization: `Bearer ${token}`}};
+    return { headers: { ...headers, Authorization: `Bearer ${token}` } };
   }
 
-  return {headers};
+  return { headers };
 })
-*/
 .use('fetch', adapterFetch(fetch))
 .use('responseHandler', (err) => {
   if (err) {

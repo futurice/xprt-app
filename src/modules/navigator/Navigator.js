@@ -5,7 +5,7 @@ import ExpertsViewContainer from '../experts/ExpertsViewContainer';
 import ExpertDetailsViewContainer from '../expertdetails/ExpertDetailsViewContainer';
 import LecturesViewContainer from '../lectures/LecturesViewContainer';
 import LectureDetailsViewContainer from '../lectureDetails/LectureDetailsViewContainer';
-import LoginViewContainer from '../login/LoginViewContainer';
+import LoginView from '../login/LoginView';
 import TeacherProfileContainer from '../teachers/TeacherProfileContainer';
 import SelectLectureViewContainer from '../selectLecture/SelectLectureViewContainer';
 import LectureInvitationViewContainer from '../lectureInvitation/LectureInvitationViewContainer';
@@ -20,7 +20,7 @@ const activeColor = 'white';
 export const MainScreenNavigator = TabNavigator({
   Experts: { screen: ExpertsViewContainer },
   Lectures: { screen: LecturesViewContainer },
-  Login: { screen: LoginViewContainer },
+  Login: { screen: LoginView },
   TeacherProfile: { screen: TeacherProfileContainer },
 }, {
   tabBarOptions: {

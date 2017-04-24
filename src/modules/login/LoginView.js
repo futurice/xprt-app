@@ -1,7 +1,43 @@
 import React, { Component } from 'react';
 import { Button, Container, Content, Form, Item, Input, Label, Text, Icon } from 'native-base';
+import { WebView } from 'react-native';
+
+import { createAction, createReducer } from 'redux-act';
+import { connect } from 'react-redux';
+import { NavigationActions } from 'react-navigation';
+import { bindActionCreators } from 'redux';
+
+import Cookie from 'react-native-cookie';
+
 import styles from './loginStyles';
 
+const oauth2Url = 'https://xprt-backend.herokuapp.com/oauth2/callback';
+
+// Action creators
+export const storeToken = createAction('Store login token');
+export const clearToken = createAction('Clear login token');
+
+// Initial state
+const initialState = {
+  token: null,
+};
+
+// Reducer
+export const reducer = createReducer({
+  [storeToken]: (state, payload) => ({
+    ...state,
+    token: payload,
+  }),
+  [clearToken]: () => initialState,
+}, initialState);
+
+const mapStateToProps = () => ({});
+const mapDispatchToProps = dispatch => ({
+  navigate: bindActionCreators(NavigationActions.navigate, dispatch),
+  storeToken: token => dispatch(storeToken(token)),
+});
+
+@connect(mapStateToProps, mapDispatchToProps)
 export default class FormExample extends Component {
   static navigationOptions = {
     tabBar: () => ({
@@ -11,44 +47,28 @@ export default class FormExample extends Component {
       visible: true,
     }),
   };
-  open = () => {
-    this.props.navigate({
-      routeName: 'OAuth2Login',
-    });
+
+  state = {
+    url: '',
+  }
+
+  componentDidMount() {
+    Cookie.clear()
+    .then(() => this.setState({ url: oauth2Url }));
+  }
+
+  doLogin = (data) => {
+    const token = JSON.parse(data).token;
+    this.props.storeToken(token);
   };
 
   render() {
     return (
-      <Container>
-        <Content padder>
-          <Text>You have to be logged in to view and manage your profile and collaborations</Text>
-          <Form>
-            <Item stackedLabel last>
-              <Label style={styles.labelStyle}>E-mail:</Label>
-              <Input />
-            </Item>
-            <Item stackedLabel last>
-              <Label style={styles.labelStyle}>Password:</Label>
-              <Input secureTextEntry />
-            </Item>
-          </Form>
-          <Button full transparent>
-            <Text style={styles.labelStyle}>FORGOT PASSWORD?</Text>
-          </Button>
-
-          <Text style={styles.center}>{"Don't have an account yet?"}</Text>
-
-          <Button full transparent>
-            <Text style={styles.labelStyle}>CREATE AN ACCOUNT</Text>
-          </Button>
-        </Content>
-        <Button full style={styles.loginHundred} onPress={() => { this.open(); }}>
-          <Text>LOG IN WITH HUNDRED</Text>
-        </Button>
-        <Button dark full>
-          <Text style={styles.loginButton}>LOG IN</Text>
-        </Button>
-      </Container>
+      <WebView
+        onMessage={e => this.doLogin(e.nativeEvent.data)}
+        javaScriptEnabled
+        source={{ uri: this.state.url }}
+      />
     );
   }
 }

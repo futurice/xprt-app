@@ -2,12 +2,15 @@ import { loop, combineReducers } from 'redux-loop-symbol-ponyfill';
 import NavigatorStateReducer from '../modules/navigator/NavigatorState';
 import SessionStateReducer, { RESET_STATE } from '../modules/session/SessionState';
 import { reducers as RestReducers } from '../utils/rest';
+import { reducer as LoginReducer } from '../modules/login/LoginView';
 
 const reducers = {
   // Navigator states
   navigatorState: NavigatorStateReducer,
 
   session: SessionStateReducer,
+
+  login: LoginReducer,
 
   ...RestReducers,
 };

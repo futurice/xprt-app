@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -84,6 +83,7 @@
 		F350D25EAB6C4B228A3A3553 /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 909915B6F6B0438AAF741A24 /* Foundation.ttf */; };
 		F37EF06918C049B9978F5ACD /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 946B079E0FCA496CA31FDA2B /* EvilIcons.ttf */; };
 		F7DD90063EFF44ACB4B1521B /* Andale Mono.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2BE957CE29D7407C9086EAA8 /* Andale Mono.ttf */; };
+		F75F2863A903418F81C225AF /* libRNCookieManager.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA88129F356E4331A88AC150 /* libRNCookieManager.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -365,6 +365,8 @@
 		EB8E3FA8A9C54AED8305030C /* Arial Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Arial Black.ttf"; path = "../node_modules/native-base/Fonts/Arial Black.ttf"; sourceTree = "<group>"; };
 		ECD4DCEDA71A495EA49C0926 /* Arial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Arial.ttf; path = "../node_modules/native-base/Fonts/Arial.ttf"; sourceTree = "<group>"; };
 		ED092326CDA049839F548044 /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
+		D6A85DD7B1B24B13A63BD8D8 /* RNCookieManager.xcodeproj */ = {isa = PBXFileReference; name = "RNCookieManager.xcodeproj"; path = "../node_modules/react-native-cookie/ios/RNCookieManager.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		CA88129F356E4331A88AC150 /* libRNCookieManager.a */ = {isa = PBXFileReference; name = "libRNCookieManager.a"; path = "libRNCookieManager.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -394,6 +396,7 @@
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 				87E9106C2DDB4EE783D15230 /* libRNVectorIcons.a in Frameworks */,
+				F75F2863A903418F81C225AF /* libRNCookieManager.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -622,6 +625,7 @@
 				00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */,
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
 				95436488DB024F0EA5930748 /* RNVectorIcons.xcodeproj */,
+				D6A85DD7B1B24B13A63BD8D8 /* RNCookieManager.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1208,6 +1212,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1216,6 +1221,10 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.pepperoni.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/XPRT.app/XPRT";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../node_modules/react-native-cookie/ios",
+				);
 			};
 			name = Debug;
 		};
@@ -1230,6 +1239,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1238,6 +1248,10 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.pepperoni.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/XPRT.app/XPRT";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../node_modules/react-native-cookie/ios",
+				);
 			};
 			name = Release;
 		};
@@ -1252,6 +1266,7 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/../node_modules/react-native/React/**",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
+					"$(SRCROOT)/../node_modules/react-native-cookie/ios",
 				);
 				INFOPLIST_FILE = XPRT/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1276,6 +1291,7 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/../node_modules/react-native/React/**",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
+					"$(SRCROOT)/../node_modules/react-native-cookie/ios",
 				);
 				INFOPLIST_FILE = XPRT/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1313,6 +1329,14 @@
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.2;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../node_modules/react-native-cookie/ios",
+				);
 			};
 			name = Debug;
 		};
@@ -1339,6 +1363,14 @@
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.2;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../node_modules/react-native-cookie/ios",
+				);
 			};
 			name = Release;
 		};
@@ -1360,6 +1392,10 @@
 				SDKROOT = appletvos;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/XPRT-tvOS.app/XPRT-tvOS";
 				TVOS_DEPLOYMENT_TARGET = 10.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
 			};
 			name = Debug;
 		};
@@ -1381,6 +1417,10 @@
 				SDKROOT = appletvos;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/XPRT-tvOS.app/XPRT-tvOS";
 				TVOS_DEPLOYMENT_TARGET = 10.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
 			};
 			name = Release;
 		};
