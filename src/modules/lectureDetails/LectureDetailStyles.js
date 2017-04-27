@@ -69,19 +69,10 @@ const styles = {
     fontSize: 14,
     color: '#777',
   },
-  subjectBadge: {
-    backgroundColor: 'white',
-    borderWidth: 1,
-    borderColor: 'gold',
-    borderRadius: 12,
-    height: 20,
-    margin: 2,
-    marginTop: 5,
-  },
-  subjectText: {
-    marginTop: -4,
-    fontSize: 10,
-    color: 'black',
+  locationText: {
+    marginTop: 2,
+    fontSize: 14,
+    color: '#777',
     backgroundColor: 'rgba(255,255,255,0)',
   },
   rowFlow: {
@@ -89,7 +80,9 @@ const styles = {
     marginTop: 1,
   },
   iconStyle: {
-    marginRight: 5,
+    marginLeft: 2,
+    marginRight: 3,
+    fontSize: 18,
   },
   accepted: {
     backgroundColor: '#15a369',
