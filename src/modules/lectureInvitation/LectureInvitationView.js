@@ -54,7 +54,6 @@ export default class LectureInvitationView extends Component {
       title,
       description,
       dates,
-      targetStudents,
       area,
       contactByEmail,
       contactByPhone,

@@ -4,7 +4,7 @@ import {
   Image,
   TouchableHighlight,
 } from 'react-native';
-import { Button, Container, Content, Icon } from 'native-base';
+import { Button, Container, Content } from 'native-base';
 import { Col, Grid, Row } from 'react-native-easy-grid';
 
 import { connect } from 'react-redux';

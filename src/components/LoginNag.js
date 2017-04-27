@@ -1,8 +1,14 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { Button, Container, Content, Text } from 'native-base';
 import styles from './ProfileStyles';
 
 export default class LoginNag extends Component {
+  static propTypes = {
+    text: PropTypes.string.isRequired,
+    openLogin: PropTypes.func.isRequired,
+    devLogin: PropTypes.func.isRequired,
+  };
+
   render() {
     const { text, openLogin, devLogin } = this.props;
 

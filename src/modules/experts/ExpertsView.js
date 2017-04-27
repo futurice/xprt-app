@@ -9,8 +9,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { NavigationActions } from 'react-navigation';
 
-import { Container, Content, Badge, Button, Header, Icon, Input,
-  Item, Text, View, ListItem, List, Left, Body, Right, Thumbnail, Spinner } from 'native-base';
+import { Container, Badge, Button, Header, Icon, Input,
+  Item, Text, View, ListItem, List, Left, Body, Right, Thumbnail } from 'native-base';
 // import defaultProfile from '../../../images/icons/ic_person.png';
 import styles from './expertsStyles';
 

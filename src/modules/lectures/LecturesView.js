@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { RefreshControl } from 'react-native';
-import { Body, Left, Right, Thumbnail, View, Content, Container, ListItem, Text, Icon, List, Badge, Fab } from 'native-base';
+import { Body, Left, Right, Thumbnail, View, Container, ListItem, Text, Icon, List, Badge, Fab } from 'native-base';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { NavigationActions } from 'react-navigation';

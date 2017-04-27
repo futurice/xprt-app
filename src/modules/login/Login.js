@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Container, Content, Form, Item, Input, Label, Text, Icon } from 'native-base';
+import { Icon } from 'native-base';
 import { WebView } from 'react-native';
 import jwtDecode from 'jwt-decode';
 
