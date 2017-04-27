@@ -74,8 +74,8 @@ export default class LectureDetailsView extends Component {
                   <Text style={styles.titleStyle}>{lecture.expertTitle}</Text>
                   <View style={styles.rowFlow}>
                     <Icon name="pin" style={styles.iconStyle} />
-                    { lecture.expertArea.map((location, index) => (
-                      <Badge style={styles.subjectBadge} key={index}>
+                    { lecture.expertArea.map(location => (
+                      <Badge style={styles.subjectBadge} key={location}>
                         <Text style={styles.subjectText}> {location} </Text>
                       </Badge>
                     ))

@@ -10,8 +10,6 @@ import rest from '../../utils/rest';
 
 import placeHolder from '../../../images/ic_unknownxxhdpi.png';
 
-const status = ['accepted', 'completed', 'invitation', 'blank'];
-
 const mapStateToProps = state => ({
   lectures: state.lectures.data,
   loading: state.lectures.loading,
