@@ -50,7 +50,7 @@ export default class LecturesView extends Component {
       </Left>
       <Body>
         <Text>{lecture.title}</Text>
-        <Text note>Example Character</Text>
+        <Text note>{lecture.expertName}</Text>
         <Text note>{new Date(lecture.dates).toLocaleDateString('fi-FI')}</Text>
         <Badge style={styles[status[lecture.id % 4]]}>
           <Text style={{ fontSize: 10 }}>{status[lecture.id % 4]}</Text>

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {
   Text,
   View,
+  Linking,
 } from 'react-native';
 import { Body, Badge, Button, Container, Content, Icon, Spinner, Thumbnail } from 'native-base';
 import { Col, Row, Grid } from 'react-native-easy-grid';
@@ -45,6 +46,15 @@ export default class ExpertDetailsView extends Component {
       },
     });
   };
+  // openEmail = (expert) => {
+  //   Linking.canOpenURL('mailto:', expert.email).then(supported => {
+  //     if (supported) {
+  //       Linking.openUrl('https://facebook.com');
+  //     } else {
+  //       console.log('Is not abels to open mailto:', expert.email);
+  //     }
+  //   });
+  // };
 
   render() {
     const { expert, loading } = this.props;
@@ -67,7 +77,10 @@ export default class ExpertDetailsView extends Component {
           <Grid style={styles.profileGrid}>
             <Row>
               <Col style={styles.profileGridCol}>
-                <Button transparent style={styles.iconButton} warning>
+                <Button
+                  transparent style={styles.iconButton}
+                  warning onPress={() => Linking.openUrl('https://facebook.com')}
+                >
                   <Icon name="mail" />
                 </Button>
               </Col>

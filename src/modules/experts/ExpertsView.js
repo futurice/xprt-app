@@ -74,7 +74,7 @@ export default class ExpertsView extends Component {
         <Left>
           <Thumbnail source={{ uri: `https://randomuser.me/api/portraits/women/${numb}.jpg` }} />
         </Left>
-        <Body>
+        <Body style={styles.leftStyle}>
           <Text numberOfLines={1}> {expert.name} </Text>
           <Text numberOfLines={1} note style={styles.rowText}> {expert.title || 'Title goes here'}</Text>
           <View style={styles.rowflow}>
@@ -102,7 +102,6 @@ export default class ExpertsView extends Component {
 
   render() {
     const { experts, loading, getExperts } = this.props;
-
     return (
       <Container>
         <CustomHeader onSubmit={getExperts} />
