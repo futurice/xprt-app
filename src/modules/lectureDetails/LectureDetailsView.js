@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import { Image } from 'react-native';
-import { Container, Footer, FooterTab, Content, Button, Text, Spinner, Thumbnail, Icon } from 'native-base';
+import { Image, TouchableOpacity } from 'react-native';
+import { Container, Footer, FooterTab, Content, Button, Text, Spinner, Thumbnail, Icon, Badge, View } from 'native-base';
 import { Col, Grid, Row } from 'react-native-easy-grid';
 import { connect } from 'react-redux';
+import { NavigationActions } from 'react-navigation';
+import { bindActionCreators } from 'redux';
 
 import rest from '../../utils/rest';
 import styles from './LectureDetailStyles';
@@ -15,6 +17,7 @@ const mapStateToProps = (state, ownProps) => ({
 });
 const mapDispatchToProps = dispatch => ({
   getLectureDetails: lectureId => dispatch(rest.actions.lectureDetails({ lectureId })),
+  navigate: bindActionCreators(NavigationActions.navigate, dispatch),
 });
 
 @connect(mapStateToProps, mapDispatchToProps)
@@ -36,6 +39,16 @@ export default class LectureDetailsView extends Component {
     this.props.getLectureDetails(this.props.lectureId);
   }
 
+  open = (expertId) => {
+    this.props.navigate({
+      routeName: 'ExpertDetails',
+      params: {
+        expertId,
+        inviteLectureDisabled: true,
+      },
+    });
+  };
+
   render() {
     const { lecture, loading } = this.props;
     const numb = Math.floor(Math.random() * 50);
@@ -51,17 +64,35 @@ export default class LectureDetailsView extends Component {
       <Container>
         <Content padder>
           <Grid style={styles.profileGrid}>
+            <TouchableOpacity onPress={() => { this.open(lecture.expertId); }}>
+              <Row style={styles.rowBorder}>
+                <Col size={25}>
+                  <Thumbnail style={styles.avatarMedium} source={{ uri }} />
+                </Col>
+                <Col size={65}>
+                  <Text style={styles.boldText}>{lecture.expertName}</Text>
+                  <Text style={styles.titleStyle}>{lecture.expertTitle}</Text>
+                  <View style={styles.rowFlow}>
+                    <Icon name="pin" style={styles.iconStyle} />
+                    { lecture.expertArea.map((location, index) => (
+                      <Badge style={styles.subjectBadge} key={index}>
+                        <Text style={styles.subjectText}> {location} </Text>
+                      </Badge>
+                    ))
+                    }
+                  </View>
+                </Col>
+                <Col size={10}>
+                  <Icon name="arrow-forward" />
+                </Col>
+              </Row>
+            </TouchableOpacity>
             <Row style={styles.rowBorder}>
-              <Col size={25}>
-                <Thumbnail style={styles.avatarMedium} source={{ uri }} />
-              </Col>
-              <Col size={65}>
-                <Text style={styles.boldText}>{lecture.expertName}</Text>
-                <Text>{lecture.expertTitle}</Text>
-                <Text><Icon name="pin" />{lecture.expertArea}</Text>
-              </Col>
-              <Col size={10}>
-                <Icon name="arrow-forward" />
+              <Col>
+                <Text style={styles.labelStyle}>Lecture status:</Text>
+                <Badge style={styles[lecture.status]}>
+                  <Text style={{ fontSize: 10 }}>{lecture.status.toUpperCase()}</Text>
+                </Badge>
               </Col>
             </Row>
             <Row>

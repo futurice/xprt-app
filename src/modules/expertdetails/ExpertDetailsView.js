@@ -20,6 +20,7 @@ const mapStateToProps = (state, ownProps) => ({
   expert: state.expertDetails.data,
   loading: state.expertDetails.loading,
   expertId: ownProps.navigation.state.params.expertId,
+  inviteLectureDisabled: ownProps.navigation.state.params.inviteLectureDisabled,
 });
 const mapDispatchToProps = dispatch => ({
   getExpertDetails(expertId) {
@@ -57,7 +58,7 @@ export default class ExpertDetailsView extends Component {
   };
 
   render() {
-    const { expert, loading } = this.props;
+    const { expert, loading, inviteLectureDisabled } = this.props;
     // const thumbnailSource = expert.imageUrl ? { uri: expert.imageUrl } : defaultProfile;
     const subjects = expert.subjects || [];
     const areas = expert.area || [];
@@ -129,12 +130,14 @@ export default class ExpertDetailsView extends Component {
             </Row>
           </Grid>
         </Content>
+        {inviteLectureDisabled ? null :
         <Button
           large block style={styles.blockButton}
           key={expert.id} onPress={() => { this.open(expert); }}
         >
           <Text style={styles.blockButtonText}>SEND A LECTURE INVITATION</Text>
         </Button>
+        }
       </Container>
     ));
   }
