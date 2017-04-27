@@ -56,24 +56,16 @@ export default class LectureDetailsView extends Component {
                 <Thumbnail style={styles.avatarMedium} source={{ uri }} />
               </Col>
               <Col size={65}>
-                <Text style={styles.boldText}>Example Character</Text>
-                <Text>CEO at Company</Text>
-                <Text><Icon name="pin" />City</Text>
+                <Text style={styles.boldText}>{lecture.expertName}</Text>
+                <Text>{lecture.expertTitle}</Text>
+                <Text><Icon name="pin" />{lecture.expertArea}</Text>
               </Col>
               <Col size={10}>
                 <Icon name="arrow-forward" />
               </Col>
             </Row>
             <Row>
-              <Col size={3}>
-                <Text style={styles.headlineStyle}>Invite the expert to the lecture:</Text>
-              </Col>
-              <Col size={1} style={styles.editPenAlignRight}>
-                <Image source={icEditGreen} style={styles.iconEdit} />
-              </Col>
-            </Row>
-            <Row>
-              <Col>
+              <Col size={5}>
                 <Text style={styles.labelStyle}>Theme of the lecture:</Text>
                 <Text>{lecture.title}</Text>
                 <Text style={styles.labelStyle}>Date of the lecture:</Text>
@@ -83,16 +75,16 @@ export default class LectureDetailsView extends Component {
                 <Text style={styles.labelStyle}>Short description of the lecture:</Text>
                 <Text>{lecture.description}</Text>
               </Col>
+              <Col size={1} style={styles.editPenAlignRight}>
+                <Image source={icEditGreen} style={styles.iconEdit} />
+              </Col>
             </Row>
           </Grid>
         </Content>
         <Footer>
           <FooterTab>
-            <Button full dark>
-              <Text>EDIT</Text>
-            </Button>
-            <Button full dark>
-              <Text>INVITE AN EXPERT</Text>
+            <Button full>
+              <Text>CANCEL THE INVITATION</Text>
             </Button>
           </FooterTab>
         </Footer>

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {
   Text,
   View,
+  Linking,
 } from 'react-native';
 import { Body, Badge, Button, Container, Content, Icon, Spinner, Thumbnail } from 'native-base';
 import { Col, Row, Grid } from 'react-native-easy-grid';
@@ -45,6 +46,15 @@ export default class ExpertDetailsView extends Component {
       },
     });
   };
+  openUrl = (url) => {
+    Linking.canOpenURL(url).then((supported) => {
+      if (supported) {
+        Linking.openURL(url);
+      } else {
+        console.log('Is not abels to open url:', url);
+      }
+    });
+  };
 
   render() {
     const { expert, loading } = this.props;
@@ -67,7 +77,10 @@ export default class ExpertDetailsView extends Component {
           <Grid style={styles.profileGrid}>
             <Row>
               <Col style={styles.profileGridCol}>
-                <Button transparent style={styles.iconButton} warning>
+                <Button
+                  transparent style={styles.iconButton}
+                  warning onPress={() => { this.openUrl(`mailto: ${expert.email}?subject=DISSUBJECT&body=DISBODY`); }}
+                >
                   <Icon name="mail" />
                 </Button>
               </Col>
@@ -75,7 +88,10 @@ export default class ExpertDetailsView extends Component {
                 <Thumbnail style={styles.avatarLarge} source={{ uri }} />
               </Col>
               <Col style={styles.profileGridCol}>
-                <Button transparent style={styles.iconButton} warning>
+                <Button
+                  transparent style={styles.iconButton}
+                  warning onPress={() => { this.openUrl(`tel: ${expert.phone}`); }}
+                >
                   <Icon name="call" />
                 </Button>
               </Col>

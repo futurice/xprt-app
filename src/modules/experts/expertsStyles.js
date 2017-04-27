@@ -1,6 +1,11 @@
 const styles = {
+  leftStyle: {
+    width: '70%',
+  },
   areaIcon: {
     fontSize: 15,
+    marginLeft: 5,
+    marginRight: -5,
   },
   arrowIcon: {
     justifyContent: 'center',
@@ -22,12 +27,13 @@ const styles = {
     borderColor: 'gold',
     borderRadius: 12,
     height: 20,
-    margin: 3,
+    margin: 2,
   },
   subjectText: {
-    marginTop: -8,
+    marginTop: -4,
     fontSize: 10,
     color: 'black',
+    backgroundColor: 'rgba(255,255,255,0)',
   },
 };
 
