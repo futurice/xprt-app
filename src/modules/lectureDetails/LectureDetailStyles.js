@@ -65,6 +65,47 @@ const styles = {
   boldText: {
     fontWeight: '700',
   },
+  titleStyle: {
+    fontSize: 14,
+    color: '#777',
+  },
+  subjectBadge: {
+    backgroundColor: 'white',
+    borderWidth: 1,
+    borderColor: 'gold',
+    borderRadius: 12,
+    height: 20,
+    margin: 2,
+    marginTop: 5,
+  },
+  subjectText: {
+    marginTop: -4,
+    fontSize: 10,
+    color: 'black',
+    backgroundColor: 'rgba(255,255,255,0)',
+  },
+  rowFlow: {
+    flexDirection: 'row',
+    marginTop: 1,
+  },
+  iconStyle: {
+    marginRight: 5,
+  },
+  accepted: {
+    backgroundColor: '#15a369',
+  },
+  completed: {
+    backgroundColor: '#cccccc',
+  },
+  pending: {
+    backgroundColor: '#eab94e',
+  },
+  canceled: {
+    backgroundColor: '#cccccc',
+  },
+  rejected: {
+    backgroundColor: 'tomato',
+  },
 };
 
 module.exports = styles;
