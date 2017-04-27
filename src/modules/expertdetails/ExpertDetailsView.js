@@ -46,15 +46,15 @@ export default class ExpertDetailsView extends Component {
       },
     });
   };
-  // openEmail = (expert) => {
-  //   Linking.canOpenURL('mailto:', expert.email).then(supported => {
-  //     if (supported) {
-  //       Linking.openUrl('https://facebook.com');
-  //     } else {
-  //       console.log('Is not abels to open mailto:', expert.email);
-  //     }
-  //   });
-  // };
+  openUrl = (url) => {
+    Linking.canOpenURL(url).then((supported) => {
+      if (supported) {
+        Linking.openURL(url);
+      } else {
+        console.log('Is not abels to open url:', url);
+      }
+    });
+  };
 
   render() {
     const { expert, loading } = this.props;
@@ -79,7 +79,7 @@ export default class ExpertDetailsView extends Component {
               <Col style={styles.profileGridCol}>
                 <Button
                   transparent style={styles.iconButton}
-                  warning onPress={() => Linking.openUrl('https://facebook.com')}
+                  warning onPress={() => { this.openUrl(`mailto: ${expert.email}?subject=DISSUBJECT&body=DISBODY`); }}
                 >
                   <Icon name="mail" />
                 </Button>
@@ -88,7 +88,10 @@ export default class ExpertDetailsView extends Component {
                 <Thumbnail style={styles.avatarLarge} source={{ uri }} />
               </Col>
               <Col style={styles.profileGridCol}>
-                <Button transparent style={styles.iconButton} warning>
+                <Button
+                  transparent style={styles.iconButton}
+                  warning onPress={() => { this.openUrl(`tel: ${expert.phone}`); }}
+                >
                   <Icon name="call" />
                 </Button>
               </Col>
