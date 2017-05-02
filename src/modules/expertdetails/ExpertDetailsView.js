@@ -21,6 +21,7 @@ const mapStateToProps = (state, ownProps) => ({
   loading: state.expertDetails.loading,
   expertId: ownProps.navigation.state.params.expertId,
   inviteLectureDisabled: ownProps.navigation.state.params.inviteLectureDisabled,
+  selectExpert: ownProps.navigation.state.params.selectExpert,
 });
 const mapDispatchToProps = dispatch => ({
   getExpertDetails(expertId) {
@@ -58,13 +59,20 @@ export default class ExpertDetailsView extends Component {
   };
 
   render() {
-    const { expert, loading, inviteLectureDisabled } = this.props;
+    const { expert, loading, inviteLectureDisabled, selectExpert } = this.props;
     // const thumbnailSource = expert.imageUrl ? { uri: expert.imageUrl } : defaultProfile;
     const subjects = expert.subjects || [];
     const areas = expert.area || [];
 
     const numb = Math.floor(Math.random() * 50);
     const uri = `https://randomuser.me/api/portraits/women/${numb}.jpg`;
+
+    let button = null;
+    if (selectExpert) {
+      button = <Button><Text>Kakka</Text></Button>;
+    } else {
+      button = <Button><Text>Koira</Text></Button>;
+    }
 
     return (loading ? (
       <Container>
@@ -138,6 +146,7 @@ export default class ExpertDetailsView extends Component {
           <Text style={styles.blockButtonText}>SEND A LECTURE INVITATION</Text>
         </Button>
         }
+        {button}
       </Container>
     ));
   }

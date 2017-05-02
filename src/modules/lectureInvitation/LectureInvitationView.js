@@ -20,6 +20,7 @@ const mapDispatchToProps = dispatch => ({
   createLecture: (lecture, callback) => dispatch(rest.actions.lectures.post({}, {
     body: JSON.stringify(lecture),
   }, callback)),
+  navigate: bindActionCreators(NavigationActions.navigate, dispatch),
 });
 
 @connect(mapStateToProps, mapDispatchToProps)
@@ -46,6 +47,15 @@ export default class LectureInvitationView extends Component {
     contactByEmail: true,
     contactByPhone: true,
   };
+
+  open = () => {
+    this.props.navigate({
+      routeName: 'ExpertsView',
+      params: {
+        selectExpert: true,
+      },
+    });
+  }
 
   render() {
     const { expert, createLecture, back, getLectures } = this.props;
@@ -74,7 +84,7 @@ export default class LectureInvitationView extends Component {
               </Body>
             </ListItem>
           :
-            <Button large block>
+            <Button large block onPress={() => this.open()}>
               <Text>Select expert (TODO)</Text>
             </Button>
           }

@@ -57,6 +57,25 @@ const styles = {
   editPenAlignRight: {
     alignItems: 'flex-end',
   },
+  loginButton: {
+    backgroundColor: '#c30f96',
+  },
+  loginButtonText: {
+    color: '#fff',
+  },
+  loginButtonTextBold: {
+    color: '#fff',
+    fontWeight: 'bold',
+  },
+  devLogin: {
+    backgroundColor: '#333333',
+  },
+  devLoginText: {
+    color: '#15a369',
+  },
+  loginText: {
+    alignSelf: 'center',
+  },
 };
 
 module.exports = styles;
