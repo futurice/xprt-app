@@ -54,7 +54,7 @@ export default class LectureDetailsView extends Component {
     const numb = Math.floor(Math.random() * 50);
     const uri = `https://randomuser.me/api/portraits/women/${numb}.jpg`;
 
-    return (loading ? (
+    return (loading || !lecture.title ? (
       <Container>
         <Content>
           <Spinner />
