@@ -9,9 +9,27 @@ import rest from '../../utils/rest';
 import placeHolder from '../../../images/ic_unknownxxhdpi.png';
 import styles from './lectureInvitationStyles';
 
+export const SELECT_EXPERT = 'SELECT_EXPERT';
+export const selectExpert = expert => ({ type: SELECT_EXPERT, payload: expert });
+export const DESELECT_EXPERT = 'DESELECT_EXPERT';
+export const deselectExpert = () => ({ type: DESELECT_EXPERT });
+
+const initialState = { data: null };
+export const reducer = (state = initialState, action) => {
+  switch (action.type) {
+    case SELECT_EXPERT:
+      return { ...state, data: action.payload };
+    case DESELECT_EXPERT:
+      return initialState;
+    default:
+      return state;
+  }
+};
+
 const mapStateToProps = (state, ownProps) => ({
-  expert: ownProps.navigation.state.params.expert,
+  expert: ownProps.navigation.state.params.expert || state.selectedExpert.data,
   loading: state.expertDetails.loading,
+  selectedExpert: state.selectedExpert.data,
 });
 const mapDispatchToProps = dispatch => ({
   back: bindActionCreators(NavigationActions.back, dispatch),
@@ -20,6 +38,9 @@ const mapDispatchToProps = dispatch => ({
   createLecture: (lecture, callback) => dispatch(rest.actions.lectures.post({}, {
     body: JSON.stringify(lecture),
   }, callback)),
+  deselectExpert() {
+    dispatch(deselectExpert());
+  },
   navigate: bindActionCreators(NavigationActions.navigate, dispatch),
 });
 
@@ -52,13 +73,15 @@ export default class LectureInvitationView extends Component {
     this.props.navigate({
       routeName: 'ExpertsView',
       params: {
-        selectExpert: true,
+        invitationSelect: true,
       },
     });
   }
-
+  handleDeselect = () => {
+    this.props.deselectExpert();
+  };
   render() {
-    const { expert, createLecture, back, getLectures } = this.props;
+    const { expert, createLecture, back, getLectures, selectedExpert } = this.props;
 
     const {
       title,
@@ -87,6 +110,10 @@ export default class LectureInvitationView extends Component {
             <Button large block onPress={() => this.open()}>
               <Text>Select expert (TODO)</Text>
             </Button>
+          }
+          {selectedExpert ?
+            <Button onPress={() => this.handleDeselect()}><Text>DELETE EXPERT</Text></Button>
+            : null
           }
           <Text note>Add some details about the lecture</Text>
           <Form>

@@ -22,7 +22,7 @@ import rest from '../../utils/rest';
 const mapStateToProps = (state, ownProps) => ({
   experts: state.experts.data,
   loading: state.experts.loading,
-  selectExpert: ownProps.navigation.state.params && ownProps.navigation.state.params.selectExpert,
+  invitationSelect: ownProps.navigation.state.params && ownProps.navigation.state.params.invitationSelect,
 });
 const mapDispatchToProps = dispatch => ({
   getExperts: query => dispatch(rest.actions.experts({ filter: query })),
@@ -49,7 +49,7 @@ export default class ExpertsView extends Component {
       routeName: 'ExpertDetails',
       params: {
         expertId,
-        selectExpert: this.props.selectExpert,
+        invitationSelect: this.props.invitationSelect,
       },
     });
   };

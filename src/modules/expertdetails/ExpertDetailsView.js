@@ -12,6 +12,7 @@ import { bindActionCreators } from 'redux';
 import { NavigationActions } from 'react-navigation';
 
 import rest from '../../utils/rest';
+import { selectExpert } from '../lectureInvitation/LectureInvitationView';
 
 // import defaultProfile from '../../../images/icons/ic_person.png';
 import styles from './expertDetailStyles';
@@ -21,11 +22,14 @@ const mapStateToProps = (state, ownProps) => ({
   loading: state.expertDetails.loading,
   expertId: ownProps.navigation.state.params.expertId,
   inviteLectureDisabled: ownProps.navigation.state.params.inviteLectureDisabled,
-  selectExpert: ownProps.navigation.state.params.selectExpert,
+  invitationSelect: ownProps.navigation.state.params.invitationSelect,
 });
 const mapDispatchToProps = dispatch => ({
   getExpertDetails(expertId) {
     dispatch(rest.actions.expertDetails({ expertId }));
+  },
+  selectExpert(expert) {
+    dispatch(selectExpert(expert));
   },
   navigate: bindActionCreators(NavigationActions.navigate, dispatch),
 });
@@ -48,7 +52,8 @@ export default class ExpertDetailsView extends Component {
       },
     });
   };
-  clearStack = () => {
+  handleSelect = (expert) => {
+    this.props.selectExpert(expert);
     this.props.navigation.goBack(null);
     this.props.navigation.goBack(null);
   };
@@ -77,7 +82,7 @@ export default class ExpertDetailsView extends Component {
   };
 
   render() {
-    const { expert, loading, inviteLectureDisabled, selectExpert } = this.props;
+    const { expert, loading, inviteLectureDisabled, invitationSelect } = this.props;
     // const thumbnailSource = expert.imageUrl ? { uri: expert.imageUrl } : defaultProfile;
     const subjects = expert.subjects || [];
     const areas = expert.area || [];
@@ -86,10 +91,23 @@ export default class ExpertDetailsView extends Component {
     const uri = `https://randomuser.me/api/portraits/women/${numb}.jpg`;
 
     let button = null;
-    if (selectExpert) {
-      button = <Button onPress={() => this.clearStack()}><Text>Expert selected</Text></Button>;
+    if (inviteLectureDisabled) {
+      button = null;
+    } else if (invitationSelect) {
+      button =
+      (<Button
+        large block style={styles.blockButton} onPress={() => this.handleSelect(expert)}
+      >
+        <Text style={styles.blockButtonText}>SELECT EXPERT</Text>
+      </Button>);
     } else {
-      button = <Button><Text>Expert not selected</Text></Button>;
+      button =
+    (<Button
+      large block style={styles.blockButton}
+      key={expert.id} onPress={() => { this.open(expert); }}
+    >
+      <Text style={styles.blockButtonText}>SEND A LECTURE INVITATION</Text>
+    </Button>);
     }
 
     return (loading ? (
@@ -156,14 +174,6 @@ export default class ExpertDetailsView extends Component {
             </Row>
           </Grid>
         </Content>
-        {inviteLectureDisabled ? null :
-        <Button
-          large block style={styles.blockButton}
-          key={expert.id} onPress={() => { this.open(expert); }}
-        >
-          <Text style={styles.blockButtonText}>SEND A LECTURE INVITATION</Text>
-        </Button>
-        }
         {button}
       </Container>
     ));
