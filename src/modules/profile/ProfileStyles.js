@@ -23,40 +23,6 @@ const styles = {
     borderColor: '#cccccc',
     paddingBottom: 20,
   },
-  logoutButton: {
-    color: '#f0ad4e',
-  },
-  feedbackButton: {
-    padding: 5,
-  },
-  iconMail: {
-    width: 20,
-    height: 15,
-  },
-  iconPhone: {
-    width: 20,
-    height: 20,
-  },
-  iconFeedback: {
-    width: 20,
-    height: 18,
-  },
-  iconEdit: {
-    width: 22,
-    height: 22,
-    margin: 10,
-  },
-  contactText: {
-    marginTop: 5,
-    height: 20,
-  },
-  flexContainer: {
-    flex: 1,
-    justifyContent: 'space-between',
-  },
-  editPenAlignRight: {
-    alignItems: 'flex-end',
-  },
 };
 
 module.exports = styles;

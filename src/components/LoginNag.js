@@ -17,7 +17,7 @@ export default class LoginNag extends Component {
         <Content padder>
           <Text>{ text }</Text>
           <Button dark full onPress={() => openLogin('Login')}>
-            <Text style={styles.logoutButton}>LOG IN</Text>
+            <Text style={styles.logoutButton}>LOG IN WITH HUNDRED</Text>
           </Button>
 
           { __DEV__ && devLogin && <Button dark full onPress={devLogin}>

@@ -13,7 +13,7 @@ import EditProfileView from '../editProfile/EditProfileView';
 import LoginView from '../login/Login';
 
 const headerColor = '#333333';
-const activeColor = 'white';
+const activeColor = '#15a369';
 
 // TabNavigator is nested inside StackNavigator
 export const MainScreenNavigator = TabNavigator({

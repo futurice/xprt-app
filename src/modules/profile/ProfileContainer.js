@@ -10,6 +10,8 @@ import ProfileView from './ProfileView';
 import LoginNag from '../../components/LoginNag';
 import fetchDevToken from '../../services/devLogin';
 
+import styles from './ProfileStyles';
+
 const mapStateToProps = state => ({
   isLoggedIn: !!state.login.token,
 });
@@ -44,6 +46,7 @@ export default class ProfileContainer extends Component {
     if (!isLoggedIn) {
       return (
         <LoginNag
+          style={styles.textStyling}
           devLogin={devLogin}
           openLogin={() => this.open('Login')}
           text="You have to be logged in to view and manage your profile and collaborations"

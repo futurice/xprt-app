@@ -101,7 +101,7 @@ export default class ExpertDetailsView extends Component {
               <Body>
                 <Text style={styles.name}> {expert.name} </Text>
                 <Text style={styles.lightText}> {expert.title} </Text>
-                <View style={styles.rowflow}>
+                <View style={styles.visitRow}>
                   <Text style={styles.subjectText}> Visit possible: </Text>
                   {
                     areas.map(area => (
@@ -109,7 +109,7 @@ export default class ExpertDetailsView extends Component {
                     ))
                   }
                 </View>
-                <View style={styles.rowflow}>
+                <View style={styles.labelRowflow}>
                   {
                     subjects.map(subject => (
                       <Badge style={styles.subjectBadge} key={subject}>
