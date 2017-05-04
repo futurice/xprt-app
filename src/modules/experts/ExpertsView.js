@@ -19,9 +19,10 @@ import rest from '../../utils/rest';
 // Don't care about propTypes in modules
 /* eslint-disable react/prop-types */
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state, ownProps) => ({
   experts: state.experts.data,
   loading: state.experts.loading,
+  selectExpert: ownProps.navigation.state.params && ownProps.navigation.state.params.selectExpert,
 });
 const mapDispatchToProps = dispatch => ({
   getExperts: query => dispatch(rest.actions.experts({ filter: query })),
@@ -48,6 +49,7 @@ export default class ExpertsView extends Component {
       routeName: 'ExpertDetails',
       params: {
         expertId,
+        selectExpert: this.props.selectExpert,
       },
     });
   };

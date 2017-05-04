@@ -48,6 +48,24 @@ export default class ExpertDetailsView extends Component {
       },
     });
   };
+  clearStack = () => {
+    this.props.navigation.goBack(null);
+    this.props.navigation.goBack(null);
+  };
+  // clearStack = (expert) => {
+  //   this.props.navigation.dispatch({
+  //     type: NavigationActions.NAVIGATE,
+  //     routeName: 'LectureInvitation',
+  //     params: {
+  //       expert,
+  //     },
+  //     action: {
+  //       type: NavigationActions.RESET,
+  //       index: 0,
+  //       actions: [{ type: NavigationActions.NAVIGATE, routeName: 'LectureInvitation' }],
+  //     },
+  //   });
+  // };
   openUrl = (url) => {
     Linking.canOpenURL(url).then((supported) => {
       if (supported) {
@@ -69,7 +87,7 @@ export default class ExpertDetailsView extends Component {
 
     let button = null;
     if (selectExpert) {
-      button = <Button><Text>Expert selected</Text></Button>;
+      button = <Button onPress={() => this.clearStack()}><Text>Expert selected</Text></Button>;
     } else {
       button = <Button><Text>Expert not selected</Text></Button>;
     }

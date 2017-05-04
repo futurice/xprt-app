@@ -53,6 +53,7 @@ export default class LectureDetailsView extends Component {
     const { lecture, loading } = this.props;
     const numb = Math.floor(Math.random() * 50);
     const uri = `https://randomuser.me/api/portraits/women/${numb}.jpg`;
+    console.log(lecture);
 
     return (loading || !lecture.title ? (
       <Container>
@@ -74,7 +75,7 @@ export default class LectureDetailsView extends Component {
                   <Text style={styles.titleStyle}>{lecture.expertTitle}</Text>
                   <View style={styles.rowFlow}>
                     <Icon name="pin" style={styles.iconStyle} />
-                    { lecture.expertArea.map(location => (
+                    { lecture.expertArea && lecture.expertArea.map(location => (
                       <Text style={styles.locationText} key={location}> {location} </Text>
                     ))
                     }
