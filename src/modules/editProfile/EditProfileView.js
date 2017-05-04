@@ -13,11 +13,11 @@ const mapStateToProps = state => ({
   teacher: state.teacherDetails.data,
   teacherId: state.login.decoded.id,
 });
-const mapDispatchToProps = dispatch => ({
+// const mapDispatchToProps = dispatch => ({
+//
+// });
 
-});
-
-@connect(mapStateToProps, mapDispatchToProps)
+@connect(mapStateToProps)
 
 
 class EditProfileView extends Component {
