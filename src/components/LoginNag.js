@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { Button, Container, Content, Text } from 'native-base';
+import { Button, Container, Text } from 'native-base';
 import styles from './ProfileStyles';
 
 export default class LoginNag extends Component {
@@ -13,8 +13,6 @@ export default class LoginNag extends Component {
 
     return (
       <Container>
-        <Content padder>
-        </Content>
         { __DEV__ && devLogin && <Button style={styles.devLogin} full onPress={devLogin}>
           <Text style={styles.devLoginText}>DEVELOPER LOGIN</Text>
         </Button> }
