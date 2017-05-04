@@ -69,9 +69,9 @@ export default class ExpertDetailsView extends Component {
 
     let button = null;
     if (selectExpert) {
-      button = <Button><Text>Kakka</Text></Button>;
+      button = <Button><Text>Expert selected</Text></Button>;
     } else {
-      button = <Button><Text>Koira</Text></Button>;
+      button = <Button><Text>Expert not selected</Text></Button>;
     }
 
     return (loading ? (
