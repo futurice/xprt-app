@@ -33,7 +33,6 @@ const mapDispatchToProps = dispatch => ({
 export default class MyProfile extends Component {
   componentDidMount() {
     const { refresh, teacherId } = this.props;
-
     refresh(teacherId);
   }
 
@@ -55,9 +54,7 @@ export default class MyProfile extends Component {
                 <Text style={styles.headlineStyle}> Personal: </Text>
               </Col>
               <Col style={styles.editPenAlignRight}>
-                <TouchableHighlight onPress={() => { this.open('EditProfile'); }}>
-                  <Image source={icEditGreen} style={styles.iconEdit} />
-                </TouchableHighlight>
+                <Image source={icEditGreen} style={styles.iconEdit} />
               </Col>
             </Row>
             <Row>
@@ -83,7 +80,9 @@ export default class MyProfile extends Component {
                 <Text style={styles.headlineStyle}> School: </Text>
               </Col>
               <Col style={styles.editPenAlignRight}>
-                <Image source={icEditGreen} style={styles.iconEdit} />
+                <TouchableHighlight onPress={() => { this.open('EditProfile'); }}>
+                  <Image source={icEditGreen} style={styles.iconEdit} />
+                </TouchableHighlight>
               </Col>
             </Row>
             <Row>
