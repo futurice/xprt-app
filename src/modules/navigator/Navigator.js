@@ -46,6 +46,7 @@ MainScreenNavigator.navigationOptions = {
 // Root navigator is a StackNavigator
 const AppNavigator = StackNavigator({
   Home: { screen: MainScreenNavigator },
+  ExpertsView: { screen: ExpertsView },
   ExpertDetails: { screen: ExpertDetailsView },
   LectureDetails: { screen: LectureDetailsView },
   SelectLecture: { screen: SelectLectureView },

@@ -116,8 +116,8 @@ export default class MyProfile extends Component {
             </Row>
           </Grid>
         </Content>
-        <Button dark full onPress={logout}>
-          <Text style={styles.logoutButton}>LOG OUT</Text>
+        <Button full onPress={logout} style={styles.logoutButton}>
+          <Text style={styles.logoutButtonText}>LOG OUT</Text>
         </Button>
       </Container>
     );
