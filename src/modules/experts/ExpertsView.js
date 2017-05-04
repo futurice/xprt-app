@@ -22,7 +22,8 @@ import rest from '../../utils/rest';
 const mapStateToProps = (state, ownProps) => ({
   experts: state.experts.data,
   loading: state.experts.loading,
-  invitationSelect: ownProps.navigation.state.params && ownProps.navigation.state.params.invitationSelect,
+  invitationSelect:
+    ownProps.navigation.state.params && ownProps.navigation.state.params.invitationSelect,
 });
 const mapDispatchToProps = dispatch => ({
   getExperts: query => dispatch(rest.actions.experts({ filter: query })),

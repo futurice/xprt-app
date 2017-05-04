@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Alert } from 'react-native';
-import { Container, Text, Content, ListItem, Left, Thumbnail, Body, Form, Item, Label, Input, Button, CheckBox } from 'native-base';
+import { Container, Text, Content, ListItem, Left, Right, Thumbnail, Body, Form, Item, Label, Input, Button, CheckBox } from 'native-base';
 import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
 import { bindActionCreators } from 'redux';
@@ -30,6 +30,7 @@ const mapStateToProps = (state, ownProps) => ({
   expert: ownProps.navigation.state.params.expert || state.selectedExpert.data,
   loading: state.expertDetails.loading,
   selectedExpert: state.selectedExpert.data,
+  navExpert: ownProps.navigation.state.params.expert,
 });
 const mapDispatchToProps = dispatch => ({
   back: bindActionCreators(NavigationActions.back, dispatch),
@@ -81,8 +82,8 @@ export default class LectureInvitationView extends Component {
     this.props.deselectExpert();
   };
   render() {
-    const { expert, createLecture, back, getLectures, selectedExpert } = this.props;
-
+    const { expert, createLecture, back, getLectures, selectedExpert, navExpert } = this.props;
+    console.log(navExpert);
     const {
       title,
       description,
@@ -105,16 +106,24 @@ export default class LectureInvitationView extends Component {
                 <Text note>CEO at Sportmart</Text>
                 <Text note>Espoo</Text>
               </Body>
+              {selectedExpert && !navExpert ?
+                <Right>
+                  <Button
+                    style={styles.removeExpert}
+                    onPress={() => this.handleDeselect()}
+                  >
+                    <Text style={styles.removeExpertText}>X</Text>
+                  </Button>
+                </Right>
+                : null
+              }
             </ListItem>
           :
-            <Button large block onPress={() => this.open()}>
-              <Text>Select expert (TODO)</Text>
+            <Button style={styles.selectExpertButton} large block onPress={() => this.open()}>
+              <Text style={styles.selectExpertText}>Select expert</Text>
             </Button>
           }
-          {selectedExpert ?
-            <Button onPress={() => this.handleDeselect()}><Text>DELETE EXPERT</Text></Button>
-            : null
-          }
+
           <Text note>Add some details about the lecture</Text>
           <Form>
             <Item floatingLabel last>
