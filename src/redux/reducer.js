@@ -3,6 +3,7 @@ import NavigatorStateReducer from '../modules/navigator/NavigatorState';
 import SessionStateReducer, { RESET_STATE } from '../modules/session/SessionState';
 import { reducers as RestReducers } from '../utils/rest';
 import { reducer as LoginReducer } from '../modules/login/Login';
+import { reducer as SelectExpertReducer } from '../modules/lectureInvitation/LectureInvitationView';
 
 const reducers = {
   // Navigator states
@@ -11,6 +12,8 @@ const reducers = {
   session: SessionStateReducer,
 
   login: LoginReducer,
+
+  selectedExpert: SelectExpertReducer,
 
   ...RestReducers,
 };

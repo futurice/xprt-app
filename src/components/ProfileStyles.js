@@ -24,7 +24,10 @@ const styles = {
     paddingBottom: 20,
   },
   logoutButton: {
-    color: '#f0ad4e',
+    backgroundColor: '#333333',
+  },
+  logoutButtonText: {
+    color: '#eab94e',
   },
   feedbackButton: {
     padding: 5,
@@ -56,6 +59,25 @@ const styles = {
   },
   editPenAlignRight: {
     alignItems: 'flex-end',
+  },
+  loginButton: {
+    backgroundColor: '#c30f96',
+  },
+  loginButtonText: {
+    color: '#fff',
+  },
+  loginButtonTextBold: {
+    color: '#fff',
+    fontWeight: 'bold',
+  },
+  devLogin: {
+    backgroundColor: '#333333',
+  },
+  devLoginText: {
+    color: '#eab94e',
+  },
+  loginText: {
+    alignSelf: 'center',
   },
 };
 

@@ -13,5 +13,18 @@ const styles = {
     fontSize: 18,
     color: '#f0ad4e',
   },
+  selectExpertButton: {
+    backgroundColor: '#333',
+  },
+  selectExpertText: {
+    color: '#f0ad4e',
+  },
+  removeExpert: {
+    backgroundColor: '#333',
+    borderRadius: 50,
+  },
+  removeExpertText: {
+    color: '#f0ad4e',
+  },
 };
 module.exports = styles;

@@ -24,7 +24,10 @@ const styles = {
     paddingBottom: 20,
   },
   logoutButton: {
-    color: '#f0ad4e',
+    backgroundColor: '#333333',
+  },
+  logoutButtonText: {
+    color: '#eab94e',
   },
   feedbackButton: {
     padding: 5,

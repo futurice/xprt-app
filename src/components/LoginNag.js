@@ -19,10 +19,10 @@ export default class LoginNag extends Component {
         <Button style={styles.loginButton} full onPress={() => openLogin('Login')}>
           <Text style={styles.loginButtonText}>
             LOG IN WITH HUNDR
-         </Text>
+          </Text>
           <Text style={styles.loginButtonTextBold}>
             ED
-         </Text>
+          </Text>
         </Button>
       </Container>
     );
