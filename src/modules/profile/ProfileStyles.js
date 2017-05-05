@@ -1,6 +1,6 @@
 const styles = {
-  profileGrid: {
-    paddingBottom: 10,
+  profileContainer: {
+    marginHorizontal: 10,
   },
   profileGridCol: {
     alignItems: 'center',

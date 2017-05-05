@@ -3,6 +3,7 @@ import {
   Text,
   Image,
   TouchableHighlight,
+  RefreshControl,
 } from 'react-native';
 import { Button, Container, Content } from 'native-base';
 import { Col, Grid, Row } from 'react-native-easy-grid';
@@ -21,6 +22,7 @@ import icPhoneBlack from '../../../images/icons/ic_phone_black.png';
 
 const mapStateToProps = state => ({
   teacher: state.teacherDetails.data,
+  loading: state.teacherDetails.loading,
   teacherId: state.login.decoded.id,
 });
 const mapDispatchToProps = dispatch => ({
@@ -41,14 +43,21 @@ export default class MyProfile extends Component {
     navigate({ routeName });
   };
 
-
   render() {
-    const { teacher, logout } = this.props;
+    const { teacher, loading, refresh, logout } = this.props;
 
     return (
       <Container>
-        <Content padder>
-          <Grid style={styles.profileGrid}>
+        <Content
+          refreshControl={
+            <RefreshControl
+              refreshing={loading}
+              onRefresh={refresh}
+            />
+          }
+          style={styles.profileContainer}
+        >
+          <Grid>
             <Row>
               <Col>
                 <Text style={styles.headlineStyle}> Personal: </Text>
