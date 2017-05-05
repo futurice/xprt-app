@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {
   Text,
   Image,
-  TouchableHighlight,
   RefreshControl,
 } from 'react-native';
 import { Button, Container, Content } from 'native-base';
@@ -14,6 +13,8 @@ import { NavigationActions } from 'react-navigation';
 import rest from '../../utils/rest';
 import { clearToken } from '../login/Login';
 import openUrl from '../../services/openUrl';
+
+import BlockButton from '../../components/BlockButton';
 
 import styles from './ProfileStyles';
 import icEditGreen from '../../../images/icons/ic_edit_green.png';
@@ -134,11 +135,13 @@ export default class MyProfile extends Component {
                 <Text style={styles.labelStyle}>   SEND FEEDBACK </Text>
               </Button>
             </Row>
+            <Row>
+              <Col style={{ marginVertical: 10 }}>
+                <BlockButton text="Log out" onPress={logout} />
+              </Col>
+            </Row>
           </Grid>
         </Content>
-        <Button full onPress={logout} style={styles.logoutButton}>
-          <Text style={styles.logoutButtonText}>LOG OUT</Text>
-        </Button>
       </Container>
     );
   }

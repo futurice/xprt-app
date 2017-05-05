@@ -13,6 +13,7 @@ export default {
 
   darkBg: '#333333',
   brandGreen: '#15a369',
+  brandYellow: '#f0ad4e',
 
     // AndroidRipple
   androidRipple: true,

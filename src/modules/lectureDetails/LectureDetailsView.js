@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
 import { bindActionCreators } from 'redux';
 
+import BlockButton from '../../components/BlockButton';
 import rest from '../../utils/rest';
 import styles from './LectureDetailStyles';
 import icEditGreen from '../../../images/icons/ic_edit_green.png';
@@ -117,13 +118,9 @@ export default class LectureDetailsView extends Component {
             </Row>
           </Grid>
         </Content>
-        <Footer>
-          <FooterTab>
-            <Button full>
-              <Text>CANCEL THE INVITATION</Text>
-            </Button>
-          </FooterTab>
-        </Footer>
+        <BlockButton
+          text="Cancel the invitation"
+        />
       </Container>
     ));
   }

@@ -5,8 +5,8 @@ import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
 import { bindActionCreators } from 'redux';
 
+import BlockButton from '../../components/BlockButton';
 import rest from '../../utils/rest';
-import placeHolder from '../../../images/ic_unknownxxhdpi.png';
 import styles from './lectureInvitationStyles';
 
 export const SELECT_EXPERT = 'SELECT_EXPERT';
@@ -171,7 +171,7 @@ export default class LectureInvitationView extends Component {
               <Text>By e-mail</Text>
             </Body>
           </ListItem>
-          <ListItem>
+          <ListItem style={{ marginBottom: 20 }}>
             <CheckBox
               checked={contactByPhone}
               onPress={() => this.setState({ contactByPhone: !contactByPhone })}
@@ -181,8 +181,8 @@ export default class LectureInvitationView extends Component {
             </Body>
           </ListItem>
         </Content>
-        <Button
-          large block style={styles.blockButton}
+        <BlockButton
+          text="Send a lecture invitation"
           onPress={() => createLecture({
             ...this.state,
             expertId: expert.id,
@@ -205,9 +205,7 @@ export default class LectureInvitationView extends Component {
               back();
             }
           })}
-        >
-          <Text style={styles.blockButtonText}>SEND A LECTURE INVITATION</Text>
-        </Button>
+        />
       </Container>
     );
   }

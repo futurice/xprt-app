@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { NavigationActions } from 'react-navigation';
 
+import BlockButton from '../../components/BlockButton';
 import openUrl from '../../services/openUrl';
 import rest from '../../utils/rest';
 import { selectExpert } from '../lectureInvitation/LectureInvitationView';
@@ -82,20 +83,20 @@ export default class ExpertDetailsView extends Component {
     if (inviteLectureDisabled) {
       button = null;
     } else if (invitationSelect) {
-      button =
-      (<Button
-        large block style={styles.blockButton} onPress={() => this.handleSelect(expert)}
-      >
-        <Text style={styles.blockButtonText}>SELECT EXPERT</Text>
-      </Button>);
+      button = (
+        <BlockButton
+          text="Select expert"
+          onPress={() => this.handleSelect(expert)}
+        />
+      );
     } else {
-      button =
-    (<Button
-      large block style={styles.blockButton}
-      key={expert.id} onPress={() => { this.open(expert); }}
-    >
-      <Text style={styles.blockButtonText}>SEND A LECTURE INVITATION</Text>
-    </Button>);
+      button = (
+        <BlockButton
+          text="Send a lecture invitation"
+          key={expert.id}
+          onPress={() => { this.open(expert); }}
+        />
+      );
     }
 
     return (loading ? (
