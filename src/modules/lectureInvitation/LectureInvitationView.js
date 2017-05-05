@@ -99,7 +99,7 @@ export default class LectureInvitationView extends Component {
           {expert ?
             <ListItem avatar>
               <Left>
-                <Thumbnail source={placeHolder} />
+                <Thumbnail source={{ uri: expert.imageUrl }} />
               </Left>
               <Body>
                 <Text>{expert.name}</Text>
