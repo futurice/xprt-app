@@ -33,12 +33,12 @@ const styles = {
     padding: 5,
   },
   iconMail: {
-    width: 20,
-    height: 15,
+    width: 40,
+    height: 53,
   },
   iconPhone: {
-    width: 20,
-    height: 20,
+    width: 53,
+    height: 53,
   },
   iconFeedback: {
     width: 20,

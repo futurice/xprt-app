@@ -43,6 +43,10 @@ const styles = {
   iconButton: {
     alignSelf: 'center',
   },
+  labelRowflow: {
+    flexDirection: 'row',
+    paddingTop: 5,
+  },
   lightText: {
     color: 'white',
     alignSelf: 'center',
@@ -82,6 +86,10 @@ const styles = {
     fontSize: 14,
     color: 'white',
     textAlign: 'justify',
+  },
+  visitRow: {
+    flex: 1,
+    alignItems: 'center',
   },
 };
 

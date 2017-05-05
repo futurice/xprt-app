@@ -30,7 +30,7 @@ const styles = {
     margin: 2,
   },
   subjectText: {
-    marginTop: -4,
+    marginTop: -7,
     fontSize: 10,
     color: 'black',
     backgroundColor: 'rgba(255,255,255,0)',
