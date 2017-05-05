@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Alert } from 'react-native';
-import { Container, Text, Content, ListItem, Left, Right, Thumbnail, Body, Form, Item, Label, Input, Button, CheckBox } from 'native-base';
+import { Container, Icon, Text, Content, ListItem, Left, Right, Thumbnail, Body, Form, Item, Label, Input, Button, CheckBox } from 'native-base';
 import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
 import { bindActionCreators } from 'redux';
@@ -109,10 +109,11 @@ export default class LectureInvitationView extends Component {
               {selectedExpert && !navExpert ?
                 <Right>
                   <Button
-                    style={styles.removeExpert}
+                    dark
+                    transparent
                     onPress={() => this.handleDeselect()}
                   >
-                    <Text style={styles.removeExpertText}>X</Text>
+                    <Icon name="close" />
                   </Button>
                 </Right>
                 : null

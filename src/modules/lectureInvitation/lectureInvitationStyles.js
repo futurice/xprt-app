@@ -22,6 +22,8 @@ const styles = {
   removeExpert: {
     backgroundColor: '#333',
     borderRadius: 50,
+    height: 50,
+    width: 50,
   },
   removeExpertText: {
     color: '#f0ad4e',
