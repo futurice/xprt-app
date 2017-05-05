@@ -6,6 +6,7 @@ export default class LoginNag extends Component {
   static propTypes = {
     openLogin: PropTypes.func.isRequired,
     devLogin: PropTypes.func.isRequired,
+    text: PropTypes.string.isRequired,
   };
 
   render() {
