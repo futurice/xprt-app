@@ -67,8 +67,10 @@ class FeedbackView extends Component {
           <Form>
             <Item>
               <Input
+                multiline
                 type="text" placeholder="Your message..." value={this.state.feedback}
                 onChangeText={this.onChangeText}
+                style={{ height: 150 }}
               />
             </Item>
           </Form>
