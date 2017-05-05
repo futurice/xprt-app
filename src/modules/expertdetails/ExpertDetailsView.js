@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
-import {
-  Text,
-  View,
-  Linking,
-} from 'react-native';
+import { Text, View } from 'react-native';
 import { Body, Badge, Button, Container, Content, Icon, Spinner, Thumbnail } from 'native-base';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 
@@ -11,6 +7,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { NavigationActions } from 'react-navigation';
 
+import openUrl from '../../services/openUrl';
 import rest from '../../utils/rest';
 import { selectExpert } from '../lectureInvitation/LectureInvitationView';
 
@@ -71,15 +68,6 @@ export default class ExpertDetailsView extends Component {
   //     },
   //   });
   // };
-  openUrl = (url) => {
-    Linking.canOpenURL(url).then((supported) => {
-      if (supported) {
-        Linking.openURL(url);
-      } else {
-        console.log('Is not abels to open url:', url);
-      }
-    });
-  };
 
   render() {
     const { expert, loading, inviteLectureDisabled, invitationSelect } = this.props;
@@ -124,7 +112,7 @@ export default class ExpertDetailsView extends Component {
               <Col style={styles.profileGridCol}>
                 <Button
                   transparent style={styles.iconButton}
-                  warning onPress={() => { this.openUrl(`mailto: ${expert.email}?subject=DISSUBJECT&body=DISBODY`); }}
+                  warning onPress={() => { openUrl(`mailto: ${expert.email}?subject=DISSUBJECT&body=DISBODY`); }}
                 >
                   <Icon name="mail" />
                 </Button>
@@ -135,7 +123,7 @@ export default class ExpertDetailsView extends Component {
               <Col style={styles.profileGridCol}>
                 <Button
                   transparent style={styles.iconButton}
-                  warning onPress={() => { this.openUrl(`tel: ${expert.phone}`); }}
+                  warning onPress={() => { openUrl(`tel: ${expert.phone}`); }}
                 >
                   <Icon name="call" />
                 </Button>

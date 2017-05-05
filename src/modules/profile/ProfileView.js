@@ -13,6 +13,7 @@ import { bindActionCreators } from 'redux';
 import { NavigationActions } from 'react-navigation';
 import rest from '../../utils/rest';
 import { clearToken } from '../login/Login';
+import openUrl from '../../services/openUrl';
 
 import styles from './ProfileStyles';
 import icEditGreen from '../../../images/icons/ic_edit_green.png';
@@ -63,7 +64,14 @@ export default class MyProfile extends Component {
                 <Text style={styles.headlineStyle}> Personal: </Text>
               </Col>
               <Col style={styles.editPenAlignRight}>
-                <Image source={icEditGreen} style={styles.iconEdit} />
+                <Button
+                  style={{ alignSelf: 'flex-end' }}
+                  transparent
+                  onPress={() => openUrl('https://auth.hundred.org/settings')}
+                >
+                  <Text>HundrED profile</Text>
+                  <Image source={icEditGreen} style={styles.iconEdit} />
+                </Button>
               </Col>
             </Row>
             <Row>
@@ -89,9 +97,13 @@ export default class MyProfile extends Component {
                 <Text style={styles.headlineStyle}> School: </Text>
               </Col>
               <Col style={styles.editPenAlignRight}>
-                <TouchableHighlight onPress={() => { this.open('EditProfile'); }}>
+                <Button
+                  style={{ alignSelf: 'flex-end' }}
+                  transparent
+                  onPress={() => this.open('EditProfile')}
+                >
                   <Image source={icEditGreen} style={styles.iconEdit} />
-                </TouchableHighlight>
+                </Button>
               </Col>
             </Row>
             <Row>

@@ -70,7 +70,7 @@ export default class LectureInvitationView extends Component {
     contactByPhone: true,
   };
 
-  open = () => {
+  openSelectExpert = () => {
     this.props.navigate({
       routeName: 'ExpertsView',
       params: {
@@ -120,7 +120,12 @@ export default class LectureInvitationView extends Component {
               }
             </ListItem>
           :
-            <Button style={styles.selectExpertButton} large block onPress={() => this.open()}>
+            <Button
+              style={styles.selectExpertButton}
+              large
+              block
+              onPress={() => this.openSelectExpert()}
+            >
               <Text style={styles.selectExpertText}>Select expert</Text>
             </Button>
           }

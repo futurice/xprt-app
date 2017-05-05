@@ -39,6 +39,7 @@ export default class ExpertsView extends Component {
       ),
       visible: true,
     }),
+    title: 'Select expert',
   };
 
   componentDidMount() {

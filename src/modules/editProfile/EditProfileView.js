@@ -28,6 +28,7 @@ class EditProfileView extends Component {
       ),
       visible: true,
     }),
+    title: 'Edit school'
   };
   state={ title: '' };
   saveChanges = () => {
@@ -44,9 +45,6 @@ class EditProfileView extends Component {
             <Row>
               <Col>
                 <Text style={styles.headlineStyle}> School: </Text>
-              </Col>
-              <Col style={styles.editPenAlignRight}>
-                <Image source={icEditGreen} style={styles.iconEdit} />
               </Col>
             </Row>
             <Row>

@@ -106,7 +106,13 @@ export default class LectureDetailsView extends Component {
                 <Text>{lecture.description}</Text>
               </Col>
               <Col size={1} style={styles.editPenAlignRight}>
-                <Image source={icEditGreen} style={styles.iconEdit} />
+                <Button
+                  style={{ alignSelf: 'flex-end' }}
+                  transparent
+                  onPress={() => this.open('EditLecture')}
+                >
+                  <Image source={icEditGreen} style={styles.iconEdit} />
+                </Button>
               </Col>
             </Row>
           </Grid>

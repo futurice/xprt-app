@@ -58,6 +58,7 @@ const styles = {
     justifyContent: 'space-between',
   },
   editPenAlignRight: {
+    justifyContent: 'flex-end',
     alignItems: 'flex-end',
   },
 };
