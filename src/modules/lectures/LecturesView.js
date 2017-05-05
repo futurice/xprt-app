@@ -44,7 +44,7 @@ export default class LecturesView extends Component {
   renderRow = lecture => (
     <ListItem button onPress={() => this.open('LectureDetails', lecture.id)} avatar key={lecture.id}>
       <Left>
-        <Thumbnail source={placeHolder} />
+        <Thumbnail source={{ uri: lecture.expertImageUrl }} />
       </Left>
       <Body>
         <Text>{lecture.title}</Text>
