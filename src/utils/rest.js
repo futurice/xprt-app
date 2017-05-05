@@ -43,7 +43,7 @@ const rest = reduxApi({
     crud: true,
   },
   lectures: {
-    url: `${config.apiRoot}/lectures`,
+    url: `${config.apiRoot}/teacher/lectures`,
     transformer: transformers.array,
     crud: true,
   },
