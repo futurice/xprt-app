@@ -19,6 +19,9 @@ const mapStateToProps = (state, ownProps) => ({
 const mapDispatchToProps = dispatch => ({
   getLectureDetails: lectureId => dispatch(rest.actions.lectureDetails({ lectureId })),
   navigate: bindActionCreators(NavigationActions.navigate, dispatch),
+  cancelInvitation: (lectureId, callback) => dispatch(rest.actions.lectureDetails.post({ lectureId }, {
+    body: JSON.stringify({ status: 'canceled' }),
+  }, callback)),
 });
 
 @connect(mapStateToProps, mapDispatchToProps)
@@ -35,6 +38,9 @@ export default class LectureDetailsView extends Component {
       tintColor: '#15a369',
     }),
   };
+  state = {
+    status: 'canceled',
+  }
 
   componentDidMount() {
     this.props.getLectureDetails(this.props.lectureId);
@@ -54,7 +60,6 @@ export default class LectureDetailsView extends Component {
     const { lecture, loading } = this.props;
     const numb = Math.floor(Math.random() * 50);
     const uri = `https://randomuser.me/api/portraits/women/${numb}.jpg`;
-    console.log(lecture);
 
     return (loading || !lecture.title ? (
       <Container>
@@ -118,9 +123,11 @@ export default class LectureDetailsView extends Component {
             </Row>
           </Grid>
         </Content>
-        <BlockButton
-          text="Cancel the invitation"
-        />
+        {lecture.status !== 'canceled' ?
+          <BlockButton
+            text="CANCEL THE INVITATION" onPress={() => this.props.cancelInvitation(lecture.id)}
+          />
+        : null}
       </Container>
     ));
   }
