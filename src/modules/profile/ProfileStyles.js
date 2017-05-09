@@ -33,12 +33,12 @@ const styles = {
     padding: 5,
   },
   iconMail: {
-    width: 40,
-    height: 53,
+    width: 22,
+    height: 17,
   },
   iconPhone: {
-    width: 53,
-    height: 53,
+    width: 22,
+    height: 22,
   },
   iconFeedback: {
     width: 20,
@@ -51,7 +51,6 @@ const styles = {
   },
   contactText: {
     marginTop: 5,
-    height: 20,
   },
   flexContainer: {
     flex: 1,

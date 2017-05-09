@@ -6,20 +6,23 @@ import {
 import { connect } from 'react-redux';
 import { Button, Container, Content, Icon, Input, Item, Label } from 'native-base';
 import { Col, Grid, Row } from 'react-native-easy-grid';
+import BlockButton from '../../components/BlockButton';
 import styles from './EditProfileStyles';
 import icEditGreen from '../../../images/icons/ic_edit_green.png';
+import rest from '../../utils/rest';
 
 const mapStateToProps = state => ({
   teacher: state.teacherDetails.data,
   teacherId: state.login.decoded.id,
 });
-// const mapDispatchToProps = dispatch => ({
-//
-// });
+const mapDispatchToProps = dispatch => ({
+  refresh: teacherId => dispatch(rest.actions.teacherDetails({ teacherId })),
+  saveChanges: (teacher, callback) => console.log(teacher) || dispatch(rest.actions.profile.post({}, {
+    body: JSON.stringify(teacher),
+  }, callback)),
+});
 
-@connect(mapStateToProps)
-
-
+@connect(mapStateToProps, mapDispatchToProps)
 class EditProfileView extends Component {
   static navigationOptions = {
     tabBar: () => ({
@@ -28,15 +31,26 @@ class EditProfileView extends Component {
       ),
       visible: true,
     }),
-    title: 'Edit school'
+    header: () => ({
+      style: {
+        backgroundColor: '#333333',
+      },
+      titleStyle: {
+        color: '#15a369',
+      },
+      tintColor: '#15a369',
+    }),
+    title: 'Edit school',
   };
-  state={ title: '' };
-  saveChanges = () => {
-    console.log(this.state);
-  }
+
+  // saveChanges = () => {
+  //   console.log(this.state);
+  //   this.props.navigation.goBack();
+  // }
 
   render() {
-    const { teacher } = this.props;
+    const { teacher, teacherId } = this.props;
+    const subjectMap = teacher.subjects || [];
 
     return (
       <Container>
@@ -51,7 +65,7 @@ class EditProfileView extends Component {
               <Col>
                 <Item stackedLabel last>
                   <Label style={styles.labelStyle}>Name of school</Label>
-                  <Input onChangeText={title => this.setState({ title })} defaultValue={`${teacher.title}`} />
+                  <Input onChangeText={company => this.setState({ company })} defaultValue={`${teacher.school}`} />
                 </Item>
               </Col>
             </Row>
@@ -59,23 +73,42 @@ class EditProfileView extends Component {
               <Col>
                 <Item stackedLabel last>
                   <Label style={styles.labelStyle}>Subjects</Label>
-                  <Input />
+                  {subjectMap && subjectMap.length ?
+                  (
+                    subjectMap.map((subject, index) => (
+                      <Input
+                        key={subject}
+                        onChangeText={(text) => {
+                          const subjects = JSON.parse(JSON.stringify(this.state.subjects));
+                          subjects[index] = text;
+                          this.setState({ subjects });
+                        }} defaultValue={`${subject}`}
+                      />
+                    ))
+                  )
+                  :
+                    <Input onChangeText={subject => this.setState({ subjects: [subject] })} />
+                }
                 </Item>
               </Col>
             </Row>
+
             <Row>
               <Col>
                 <Item stackedLabel last>
                   <Label style={styles.labelStyle}>Educational stage</Label>
-                  <Input />
+                  <Input onChangeText={edStage => this.setState({ edStage })} defaultValue={`${teacher.edStage}`} />
                 </Item>
               </Col>
             </Row>
           </Grid>
         </Content>
-        <Button dark full onPress={() => this.saveChanges()}>
-          <Text style={styles.logoutButton}>SAVE CHANGES</Text>
-        </Button>
+        <BlockButton
+          text="SAVE CHANGES" onPress={() => this.props.saveChanges(this.state, () => {
+            this.props.navigation.goBack();
+            this.props.refresh(teacherId);
+          })}
+        />
       </Container>
     );
   }
