@@ -79,7 +79,12 @@ class EditProfileView extends Component {
                       <Input
                         key={subject}
                         onChangeText={(text) => {
-                          const subjects = JSON.parse(JSON.stringify(this.state.subjects));
+                          let subjects = [];
+
+                          if (this.state) {
+                            subjects = JSON.parse(JSON.stringify(this.state.subjects));
+                          }
+
                           subjects[index] = text;
                           this.setState({ subjects });
                         }} defaultValue={`${subject}`}
