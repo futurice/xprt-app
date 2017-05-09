@@ -49,7 +49,7 @@ export default class LecturesView extends Component {
       <Body>
         <Text>{lecture.title}</Text>
         <Text note>{lecture.expertName}</Text>
-        <Text note>{new Date(lecture.dates).toLocaleDateString('fi-FI')}</Text>
+        <Text note>{new Date(lecture.dateOption1).toLocaleDateString('fi-FI')}</Text>
         <Badge style={styles[lecture.status]}>
           <Text style={{ fontSize: 10 }}>{lecture.status.toUpperCase()}</Text>
         </Badge>
