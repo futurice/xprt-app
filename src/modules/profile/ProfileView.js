@@ -46,15 +46,15 @@ export default class MyProfile extends Component {
   };
 
   render() {
-    const { teacher, loading, refresh, logout } = this.props;
-
+    const { teacher, teacherId, loading, refresh, logout } = this.props;
+    const subjects = teacher.subjects || [];
     return (
       <Container>
         <Content
           refreshControl={
             <RefreshControl
               refreshing={loading}
-              onRefresh={refresh}
+              onRefresh={() => refresh(teacherId)}
             />
           }
           style={styles.profileContainer}
@@ -110,19 +110,26 @@ export default class MyProfile extends Component {
             <Row>
               <Col>
                 <Text style={styles.labelStyle}> Name of school: </Text>
-                <Text> { teacher.name } </Text>
+                <Text> { teacher.school } </Text>
               </Col>
             </Row>
             <Row>
               <Col>
                 <Text style={styles.labelStyle}> Subjects: </Text>
-                <Text> { teacher.name } </Text>
+                {subjects && subjects.length ?
+                (
+                  subjects.map(subject => (
+                    <Text key={subject}> {subject} </Text>
+                  ))
+                )
+                : null
+              }
               </Col>
             </Row>
             <Row style={styles.rowBorder}>
               <Col>
                 <Text style={styles.labelStyle}> Educational stage: </Text>
-                <Text> { teacher.name } </Text>
+                <Text> { teacher.edStage } </Text>
               </Col>
             </Row>
             <Row>
