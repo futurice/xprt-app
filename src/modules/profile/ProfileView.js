@@ -110,7 +110,7 @@ export default class MyProfile extends Component {
             <Row>
               <Col>
                 <Text style={styles.labelStyle}> Name of school: </Text>
-                <Text> { teacher.school } </Text>
+                <Text> { teacher.company } </Text>
               </Col>
             </Row>
             <Row>

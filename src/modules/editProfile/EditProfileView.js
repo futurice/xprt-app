@@ -43,14 +43,28 @@ class EditProfileView extends Component {
     title: 'Edit school',
   };
 
-  // saveChanges = () => {
-  //   console.log(this.state);
-  //   this.props.navigation.goBack();
-  // }
+  state = {
+    company: '',
+    subjects: [],
+    edStage: '',
+  };
+
+  constructor(props) {
+    super(props);
+
+    const { teacher } = props;
+
+    this.state = {
+      company: teacher.company,
+      subjects: teacher.subjects,
+      edStage: teacher.edStage,
+    };
+  }
 
   render() {
     const { teacher, teacherId } = this.props;
     const subjectMap = teacher.subjects || [];
+    console.log('render');
 
     return (
       <Container>
@@ -58,14 +72,14 @@ class EditProfileView extends Component {
           <Grid style={styles.profileGrid}>
             <Row>
               <Col>
-                <Text style={styles.headlineStyle}> School: </Text>
+                <Text style={styles.headlineStyle}>School: </Text>
               </Col>
             </Row>
             <Row>
               <Col>
                 <Item stackedLabel last>
                   <Label style={styles.labelStyle}>Name of school</Label>
-                  <Input onChangeText={company => this.setState({ company })} defaultValue={`${teacher.school}`} />
+                  <Input onChangeText={company => this.setState({ company })} value={this.state.company} />
                 </Item>
               </Col>
             </Row>
@@ -73,9 +87,8 @@ class EditProfileView extends Component {
               <Col>
                 <Item stackedLabel last>
                   <Label style={styles.labelStyle}>Subjects</Label>
-                  {subjectMap && subjectMap.length ?
-                  (
-                    subjectMap.map((subject, index) => (
+                  {
+                    this.state.subjects.map((subject, index) => (
                       <Input
                         key={subject}
                         onChangeText={(text) => {
@@ -90,10 +103,8 @@ class EditProfileView extends Component {
                         }} defaultValue={`${subject}`}
                       />
                     ))
-                  )
-                  :
-                    <Input onChangeText={subject => this.setState({ subjects: [subject] })} />
-                }
+                  }
+                  <Input onChangeText={subject => this.setState({ subjects: [subject] })} />
                 </Item>
               </Col>
             </Row>
@@ -102,7 +113,7 @@ class EditProfileView extends Component {
               <Col>
                 <Item stackedLabel last>
                   <Label style={styles.labelStyle}>Educational stage</Label>
-                  <Input onChangeText={edStage => this.setState({ edStage })} defaultValue={`${teacher.edStage}`} />
+                  <Input onChangeText={edStage => this.setState({ edStage })} value={this.state.edStage} />
                 </Item>
               </Col>
             </Row>
