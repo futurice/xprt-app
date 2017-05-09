@@ -100,9 +100,9 @@ export default class LectureDetailsView extends Component {
                 <Text style={styles.labelStyle}>Theme of the lecture:</Text>
                 <Text>{lecture.title}</Text>
                 <Text style={styles.labelStyle}>Date of the lecture:</Text>
-                <Text>{new Date(lecture.dates).toLocaleDateString('fi-FI')}</Text>
+                <Text>{new Date(lecture.dateOption1).toLocaleDateString('fi-FI')}</Text>
                 <Text style={styles.labelStyle}>Location:</Text>
-                <Text>{lecture.area}</Text>
+                <Text>{lecture.location}</Text>
                 <Text style={styles.labelStyle}>Short description of the lecture:</Text>
                 <Text>{lecture.description}</Text>
               </Col>
