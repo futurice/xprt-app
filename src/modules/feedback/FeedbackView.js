@@ -13,7 +13,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   back: bindActionCreators(NavigationActions.back, dispatch),
   sendFeedback: (feedback, callback) => dispatch(rest.actions.feedback.post({}, {
-    body: JSON.stringify({ text: feedback }),
+    body: JSON.stringify({ text: feedback, creatorType: 'teacher' }),
   }, callback)),
 });
 
