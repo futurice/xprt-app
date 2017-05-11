@@ -4,6 +4,7 @@ import { Container, Icon, Text, Content, ListItem, Left, Right, Thumbnail, Body,
 import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
 import { bindActionCreators } from 'redux';
+import DatePicker from 'react-native-datepicker';
 
 import BlockButton from '../../components/BlockButton';
 import rest from '../../utils/rest';
@@ -64,7 +65,7 @@ export default class LectureInvitationView extends Component {
     title: '',
     description: '',
     dateOption1: new Date().toISOString(),
-    dateOption2: new Date().toISOString(),
+    dateOption2: null,
     edStage: '',
     location: '',
     contactByEmail: true,
@@ -89,6 +90,7 @@ export default class LectureInvitationView extends Component {
       title,
       description,
       dateOption1,
+      dateOption2,
       location,
       contactByEmail,
       contactByPhone,
@@ -133,18 +135,57 @@ export default class LectureInvitationView extends Component {
 
           <Text note>Add some details about the lecture</Text>
           <Form>
+            <Label>Date option 1 of lecture:</Label>
+            <DatePicker
+              style={{width: '100%'}}
+              date={dateOption1}
+              mode="datetime"
+              placeholder="select date"
+              format="YYYY-MM-DD mm:ss"
+              minDate={new Date()}
+              confirmBtnText="Confirm"
+              cancelBtnText="Cancel"
+              customStyles={{
+                dateIcon: {
+                  position: 'absolute',
+                  left: 0,
+                  top: 4,
+                  marginLeft: 0
+                },
+                dateInput: {
+                  marginLeft: 36
+                }
+              }}
+              onDateChange={(dateOption1) => {this.setState({ dateOption1 })}}
+            />
+            <Label>Date option 2 of lecture:</Label>
+            <DatePicker
+              style={{width: '100%'}}
+              date={dateOption2}
+              mode="datetime"
+              placeholder="select date"
+              format="YYYY-MM-DD mm:ss"
+              minDate={new Date()}
+              confirmBtnText="Confirm"
+              cancelBtnText="Cancel"
+              customStyles={{
+                dateIcon: {
+                  position: 'absolute',
+                  left: 0,
+                  top: 4,
+                  marginLeft: 0
+                },
+                dateInput: {
+                  marginLeft: 36
+                }
+              }}
+              onDateChange={(dateOption2) => {this.setState({ dateOption2 })}}
+            />
             <Item floatingLabel last>
               <Label>Title of the lecture:</Label>
               <Input
                 value={title}
                 onChangeText={text => this.setState({ title: text })}
-              />
-            </Item>
-            <Item floatingLabel last>
-              <Label>Date of lecture:</Label>
-              <Input
-                value={dateOption1}
-                onChangeText={text => this.setState({ dateOption1: text })}
               />
             </Item>
             <Item floatingLabel last>
@@ -184,6 +225,7 @@ export default class LectureInvitationView extends Component {
         </Content>
         <BlockButton
           text="Send a lecture invitation"
+          disabled={!expert}
           onPress={() => createLecture({
             ...this.state,
             expertId: expert.id,
