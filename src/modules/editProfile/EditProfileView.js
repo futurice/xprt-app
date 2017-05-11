@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 import {
   Text,
-  Image,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { Button, Container, Content, Icon, Input, Item, Label } from 'native-base';
 import { Col, Grid, Row } from 'react-native-easy-grid';
 import BlockButton from '../../components/BlockButton';
 import styles from './EditProfileStyles';
-import icEditGreen from '../../../images/icons/ic_edit_green.png';
 import rest from '../../utils/rest';
 
 const mapStateToProps = state => ({
@@ -17,7 +15,8 @@ const mapStateToProps = state => ({
 });
 const mapDispatchToProps = dispatch => ({
   refresh: teacherId => dispatch(rest.actions.teacherDetails({ teacherId })),
-  saveChanges: (teacher, callback) => console.log(teacher) || dispatch(rest.actions.profile.post({}, {
+  saveChanges: (teacher, callback) => console.log(teacher) ||
+  dispatch(rest.actions.profile.post({}, {
     body: JSON.stringify(teacher),
   }, callback)),
 });
@@ -42,13 +41,6 @@ class EditProfileView extends Component {
     }),
     title: 'Edit school',
   };
-
-  state = {
-    company: '',
-    subjects: [],
-    edStage: '',
-  };
-
   constructor(props) {
     super(props);
 
@@ -60,10 +52,23 @@ class EditProfileView extends Component {
       edStage: teacher.edStage,
     };
   }
+  state = {
+    company: '',
+    subjects: [],
+    edStage: '',
+  };
+  deleteRow(index) {
+    const subjects = [...this.state.subjects];
+    subjects.splice(index, 1);
+    this.setState({ subjects });
+  }
+  addRow() {
+    const subjects = [...this.state.subjects, ''];
+    this.setState({ subjects });
+  }
 
   render() {
-    const { teacher, teacherId } = this.props;
-    const subjectMap = teacher.subjects || [];
+    const { teacherId } = this.props;
     console.log('render');
 
     return (
@@ -79,33 +84,47 @@ class EditProfileView extends Component {
               <Col>
                 <Item stackedLabel last>
                   <Label style={styles.labelStyle}>Name of school</Label>
-                  <Input onChangeText={company => this.setState({ company })} value={this.state.company} />
+                  <Input
+                    onChangeText={company => this.setState({ company })}
+                    value={this.state.company}
+                  />
                 </Item>
               </Col>
             </Row>
             <Row>
               <Col>
-                <Item stackedLabel last>
-                  <Label style={styles.labelStyle}>Subjects</Label>
-                  {
+                <Label style={styles.labelStyle}>Subjects</Label>
+                {
                     this.state.subjects.map((subject, index) => (
-                      <Input
-                        key={subject}
-                        onChangeText={(text) => {
-                          let subjects = [];
-
-                          if (this.state) {
-                            subjects = JSON.parse(JSON.stringify(this.state.subjects));
-                          }
-
-                          subjects[index] = text;
-                          this.setState({ subjects });
-                        }} defaultValue={`${subject}`}
-                      />
+                      <Item key={index}>
+                        <Input
+                          onChangeText={(text) => {
+                            let subjects = [];
+                            if (this.state) {
+                              subjects = JSON.parse(JSON.stringify(this.state.subjects));
+                            }
+                            subjects[index] = text;
+                            this.setState({ subjects });
+                          }} defaultValue={`${subject}`}
+                        />
+                        <Button
+                          dark
+                          transparent
+                          onPress={() => this.deleteRow(index)}
+                        >
+                          <Icon name="close" />
+                        </Button>
+                      </Item>
                     ))
                   }
-                  <Input onChangeText={subject => this.setState({ subjects: [subject] })} />
-                </Item>
+                <Button
+                  dark
+                  transparent
+                  onPress={() => this.addRow()}
+                  style={styles.addRowButton}
+                >
+                  <Icon name="add" />
+                </Button>
               </Col>
             </Row>
 
@@ -113,7 +132,10 @@ class EditProfileView extends Component {
               <Col>
                 <Item stackedLabel last>
                   <Label style={styles.labelStyle}>Educational stage</Label>
-                  <Input onChangeText={edStage => this.setState({ edStage })} value={this.state.edStage} />
+                  <Input
+                    onChangeText={edStage => this.setState({ edStage })}
+                    value={this.state.edStage}
+                  />
                 </Item>
               </Col>
             </Row>
