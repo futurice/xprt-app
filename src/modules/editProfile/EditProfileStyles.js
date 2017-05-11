@@ -57,6 +57,9 @@ const styles = {
   editPenAlignRight: {
     alignItems: 'flex-end',
   },
+  addRowButton: {
+    alignSelf: 'flex-end',
+  },
 };
 
 module.exports = styles;
