@@ -63,9 +63,10 @@ export default class LectureInvitationView extends Component {
   state = {
     title: '',
     description: '',
-    dates: '',
-    targetStudents: '',
-    area: '',
+    dateOption1: new Date().toISOString(),
+    dateOption2: new Date().toISOString(),
+    edStage: '',
+    location: '',
     contactByEmail: true,
     contactByPhone: true,
   };
@@ -87,8 +88,8 @@ export default class LectureInvitationView extends Component {
     const {
       title,
       description,
-      dates,
-      area,
+      dateOption1,
+      location,
       contactByEmail,
       contactByPhone,
     } = this.state;
@@ -142,15 +143,15 @@ export default class LectureInvitationView extends Component {
             <Item floatingLabel last>
               <Label>Date of lecture:</Label>
               <Input
-                value={dates}
-                onChangeText={text => this.setState({ dates: text })}
+                value={dateOption1}
+                onChangeText={text => this.setState({ dateOption1: text })}
               />
             </Item>
             <Item floatingLabel last>
               <Label>Location:</Label>
               <Input
-                value={area}
-                onChangeText={text => this.setState({ area: text })}
+                value={location}
+                onChangeText={text => this.setState({ location: text })}
               />
             </Item>
             <Item floatingLabel last>
