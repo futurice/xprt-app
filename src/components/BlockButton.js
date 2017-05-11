@@ -16,6 +16,11 @@ const styles = {
 export default class BlockButton extends Component {
   static propTypes = {
     text: PropTypes.string.isRequired,
+    disabled: PropTypes.bool,
+  }
+
+  static defaultProps = {
+    disabled: false,
   }
 
   render() {
@@ -23,7 +28,12 @@ export default class BlockButton extends Component {
 
     return (
       <Button large full style={styles.button} {...this.props}>
-        <Text style={styles.text}>
+        <Text
+          style={{
+            ...styles.text,
+            opacity: this.props.disabled ? 0.25 : 1.0,
+          }}
+        >
           { text.toUpperCase() }
         </Text>
       </Button>
