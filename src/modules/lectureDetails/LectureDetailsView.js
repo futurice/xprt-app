@@ -17,6 +17,7 @@ const mapStateToProps = (state, ownProps) => ({
   lectureId: ownProps.navigation.state.params.lectureId,
 });
 const mapDispatchToProps = dispatch => ({
+  getLectures: () => dispatch(rest.actions.lectures()),
   getLectureDetails: lectureId => dispatch(rest.actions.lectureDetails({ lectureId })),
   navigate: bindActionCreators(NavigationActions.navigate, dispatch),
   cancelInvitation: (lectureId, callback) => dispatch(rest.actions.lectureDetails.post({ lectureId }, {
@@ -125,7 +126,11 @@ export default class LectureDetailsView extends Component {
         </Content>
         {lecture.status !== 'canceled' ?
           <BlockButton
-            text="CANCEL THE INVITATION" onPress={() => this.props.cancelInvitation(lecture.id)}
+            text="CANCEL THE INVITATION" onPress={() => {
+              this.props.cancelInvitation(lecture.id, () => {
+                this.props.getLectures();
+              });
+            }}
           />
         : null}
       </Container>
