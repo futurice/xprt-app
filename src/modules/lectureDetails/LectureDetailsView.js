@@ -20,7 +20,7 @@ const mapDispatchToProps = dispatch => ({
   getLectures: () => dispatch(rest.actions.lectures()),
   getLectureDetails: lectureId => dispatch(rest.actions.lectureDetails({ lectureId })),
   navigate: bindActionCreators(NavigationActions.navigate, dispatch),
-  cancelInvitation: (lectureId, callback) => dispatch(rest.actions.lectureDetails.post({ lectureId }, {
+  cancelInvitation: (lectureId, callback) => dispatch(rest.actions.lectureDetails.patch({ lectureId }, {
     body: JSON.stringify({ status: 'canceled' }),
   }, callback)),
 });

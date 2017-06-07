@@ -16,7 +16,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   refresh: teacherId => dispatch(rest.actions.teacherDetails({ teacherId })),
   saveChanges: (teacher, callback) => console.log(teacher) ||
-  dispatch(rest.actions.profile.post({}, {
+  dispatch(rest.actions.profile.patch({}, {
     body: JSON.stringify(teacher),
   }, callback)),
 });
