@@ -94,12 +94,11 @@ export default class LectureInvitationView extends Component {
   };
   render() {
     const { expert, createLecture, back, getLectures, selectedExpert, navExpert } = this.props;
-    console.log(navExpert);
     const {
       title,
       description,
       dateOption1,
-      dateOption2,
+      // dateOption2,
       location,
       contactByEmail,
       contactByPhone,

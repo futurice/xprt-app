@@ -15,8 +15,7 @@ const mapStateToProps = state => ({
 });
 const mapDispatchToProps = dispatch => ({
   refresh: () => dispatch(rest.actions.profile()),
-  saveChanges: (teacher, callback) => console.log(teacher) ||
-  dispatch(rest.actions.profile.patch({}, {
+  saveChanges: (teacher, callback) => dispatch(rest.actions.profile.patch({}, {
     body: JSON.stringify(teacher),
   }, callback)),
 });
@@ -59,8 +58,6 @@ class EditProfileView extends Component {
   };
 
   render() {
-    console.log('render');
-
     return (
       <Container>
         <Content padder>
