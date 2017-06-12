@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Icon } from 'native-base';
+import { Icon, DeviceInfo } from 'native-base';
 import { WebView } from 'react-native';
 import jwtDecode from 'jwt-decode';
 
@@ -67,6 +67,7 @@ export default class FormExample extends Component {
   render() {
     return (
       <WebView
+        userAgent={'XPRT - Android'}
         onMessage={e => this.doLogin(e.nativeEvent.data)}
         javaScriptEnabled
         source={{ uri: this.state.url }}

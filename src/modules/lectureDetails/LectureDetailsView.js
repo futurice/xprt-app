@@ -21,7 +21,7 @@ const mapDispatchToProps = dispatch => ({
   getLectureDetails: lectureId => dispatch(rest.actions.lectureDetails({ lectureId })),
   navigate: bindActionCreators(NavigationActions.navigate, dispatch),
   cancelInvitation: (lectureId, callback) => dispatch(rest.actions.lectureDetails.patch({ lectureId }, {
-    body: JSON.stringify({ status: 'canceled' }),
+    body: JSON.stringify({ status: 'declined' }),
   }, callback)),
 });
 
@@ -40,7 +40,7 @@ export default class LectureDetailsView extends Component {
     }),
   };
   state = {
-    status: 'canceled',
+    status: 'declined',
   }
 
   componentDidMount() {
@@ -59,8 +59,7 @@ export default class LectureDetailsView extends Component {
 
   render() {
     const { lecture, loading } = this.props;
-    const numb = Math.floor(Math.random() * 50);
-    const uri = `https://randomuser.me/api/portraits/women/${numb}.jpg`;
+    const uri = lecture.expertImageUrl;
 
     return (loading || !lecture.title ? (
       <Container>
@@ -128,25 +127,27 @@ export default class LectureDetailsView extends Component {
                   </Text>,
                 )}
               </Col>
-              <Col size={1} style={styles.editPenAlignRight}>
-                <Button
-                  style={{ alignSelf: 'flex-end' }}
-                  transparent
-                  onPress={() => {
-                    this.props.navigate({
-                      routeName: 'EditLecture',
-                      params: {
-                        lecture,
-                      },
-                    });
-                  }}
-                >
-                  <Image source={icEditGreen} style={styles.iconEdit} />
-                </Button>
-              </Col>
+              {lecture.status !== 'declined' &&
+                <Col size={1} style={styles.editPenAlignRight}>
+                  <Button
+                    style={{ alignSelf: 'flex-end' }}
+                    transparent
+                    onPress={() => {
+                      this.props.navigate({
+                        routeName: 'EditLecture',
+                        params: {
+                          lecture,
+                        },
+                      });
+                    }}
+                  >
+                    <Image source={icEditGreen} style={styles.iconEdit} />
+                  </Button>
+                </Col>
+              }
             </Row>
           </Grid>
-          {lecture.status !== 'canceled' ?
+          {lecture.status !== 'declined' ?
             <BlockButton
               style={{ marginVertical: 20 }}
               text="CANCEL THE INVITATION" onPress={() => {

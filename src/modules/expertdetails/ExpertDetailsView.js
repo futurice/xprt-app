@@ -12,7 +12,6 @@ import openUrl from '../../services/openUrl';
 import rest from '../../utils/rest';
 import { selectExpert } from '../lectureInvitation/LectureInvitationView';
 
-// import defaultProfile from '../../../images/icons/ic_person.png';
 import styles from './expertDetailStyles';
 
 const mapStateToProps = (state, ownProps) => ({
@@ -72,12 +71,8 @@ export default class ExpertDetailsView extends Component {
 
   render() {
     const { expert, loading, inviteLectureDisabled, invitationSelect } = this.props;
-    // const thumbnailSource = expert.imageUrl ? { uri: expert.imageUrl } : defaultProfile;
     const subjects = expert.subjects || [];
     const areas = expert.area || [];
-
-    const numb = Math.floor(Math.random() * 50);
-    const uri = `https://randomuser.me/api/portraits/women/${numb}.jpg`;
 
     let button = null;
     if (inviteLectureDisabled) {
@@ -119,7 +114,7 @@ export default class ExpertDetailsView extends Component {
                 </Button>
               </Col>
               <Col style={styles.profileGridCol}>
-                <Thumbnail style={styles.avatarLarge} source={{ uri }} />
+                <Thumbnail style={styles.avatarLarge} source={{ uri: expert.imageUrl }} />
               </Col>
               <Col style={styles.profileGridCol}>
                 <Button

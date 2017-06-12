@@ -23,20 +23,14 @@ const styles = {
     fontSize: 10,
     textAlign: 'justify',
   },
-  // pending, accepted, rejected, completed, canceled
+  // pending, accepted, declined
   accepted: {
     backgroundColor: '#15a369',
-  },
-  completed: {
-    backgroundColor: '#cccccc',
   },
   pending: {
     backgroundColor: '#eab94e',
   },
-  canceled: {
-    backgroundColor: '#cccccc',
-  },
-  rejected: {
+  declined: {
     backgroundColor: 'tomato',
   },
   xprtGreen: {

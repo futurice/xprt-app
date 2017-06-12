@@ -87,16 +87,10 @@ const styles = {
   accepted: {
     backgroundColor: '#15a369',
   },
-  completed: {
-    backgroundColor: '#cccccc',
-  },
   pending: {
     backgroundColor: '#eab94e',
   },
-  canceled: {
-    backgroundColor: '#cccccc',
-  },
-  rejected: {
+  declined: {
     backgroundColor: 'tomato',
   },
 };

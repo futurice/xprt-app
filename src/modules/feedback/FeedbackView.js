@@ -5,6 +5,7 @@ import { NavigationActions } from 'react-navigation';
 import { bindActionCreators } from 'redux';
 
 import { connect } from 'react-redux';
+import BlockButton from '../../components/BlockButton';
 import rest from '../../utils/rest';
 
 const mapStateToProps = state => ({
@@ -43,7 +44,14 @@ class FeedbackView extends Component {
   onButtonPress = () => {
     const { feedbackResponse, back } = this.props;
 
-    this.props.sendFeedback(this.state.feedback, (err) => {
+    if (!this.state.feedback.length) {
+      return Alert.alert(
+        'Message cannot be empty!',
+        'Please fill in some feedback text.',
+      );
+    }
+
+    return this.props.sendFeedback(this.state.feedback, (err) => {
       if (err) {
         Alert.alert(
           'Error while sending feedback',
@@ -63,7 +71,7 @@ class FeedbackView extends Component {
     return (
       <Container>
         <Content padder>
-          <Text>Drop in suggestions about the app. We appreciate your feedback.</Text>
+          <Text>Drop in suggestions about the app. We appreciate your feedback!</Text>
           <Form>
             <Item>
               <Input
@@ -74,14 +82,12 @@ class FeedbackView extends Component {
               />
             </Item>
           </Form>
+          <BlockButton
+            onPress={this.onButtonPress}
+            style={{ marginTop: 20 }}
+            text="SUBMIT"
+          />
         </Content>
-        <Button
-          onPress={this.onButtonPress}
-          dark
-          full
-        >
-          <Text style={{ color: '#f0ad4e' }}>SUBMIT</Text>
-        </Button>
       </Container>
     );
   }
