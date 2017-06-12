@@ -23,12 +23,11 @@ import icMailBlack from '../../../images/icons/ic_mail_black.png';
 import icPhoneBlack from '../../../images/icons/ic_phone_black.png';
 
 const mapStateToProps = state => ({
-  teacher: state.teacherDetails.data,
-  loading: state.teacherDetails.loading,
-  teacherId: state.login.decoded.id,
+  teacher: state.profile.data,
+  loading: state.profile.loading,
 });
 const mapDispatchToProps = dispatch => ({
-  refresh: teacherId => dispatch(rest.actions.teacherDetails({ teacherId })),
+  refresh: () => dispatch(rest.actions.profile()),
   navigate: bindActionCreators(NavigationActions.navigate, dispatch),
   logout: () => dispatch(clearToken()),
 });
@@ -36,8 +35,8 @@ const mapDispatchToProps = dispatch => ({
 @connect(mapStateToProps, mapDispatchToProps)
 export default class MyProfile extends Component {
   componentDidMount() {
-    const { refresh, teacherId } = this.props;
-    refresh(teacherId);
+    const { refresh } = this.props;
+    refresh();
   }
 
   open = (routeName) => {
@@ -46,7 +45,7 @@ export default class MyProfile extends Component {
   };
 
   render() {
-    const { teacher, teacherId, loading, refresh, logout } = this.props;
+    const { teacher, loading, refresh, logout } = this.props;
     const subjects = teacher.subjects || [];
     return (
       <Container>
@@ -54,7 +53,7 @@ export default class MyProfile extends Component {
           refreshControl={
             <RefreshControl
               refreshing={loading}
-              onRefresh={() => refresh(teacherId)}
+              onRefresh={() => refresh()}
             />
           }
           style={styles.profileContainer}

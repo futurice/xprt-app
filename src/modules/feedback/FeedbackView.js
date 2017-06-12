@@ -42,7 +42,7 @@ class FeedbackView extends Component {
   }
 
   onButtonPress = () => {
-    const { feedbackResponse, back } = this.props;
+    const { back } = this.props;
 
     if (!this.state.feedback.length) {
       return Alert.alert(
@@ -60,7 +60,7 @@ class FeedbackView extends Component {
       } else {
         Alert.alert(
           'Feedback',
-          feedbackResponse.message,
+          'Thank you for submitting feedback to XPRT.',
         );
         back();
       }

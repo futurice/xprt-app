@@ -11,11 +11,10 @@ import styles from './EditProfileStyles';
 import rest from '../../utils/rest';
 
 const mapStateToProps = state => ({
-  teacher: state.teacherDetails.data,
-  teacherId: state.login.decoded.id,
+  teacher: state.profile.data,
 });
 const mapDispatchToProps = dispatch => ({
-  refresh: teacherId => dispatch(rest.actions.teacherDetails({ teacherId })),
+  refresh: () => dispatch(rest.actions.profile()),
   saveChanges: (teacher, callback) => console.log(teacher) ||
   dispatch(rest.actions.profile.patch({}, {
     body: JSON.stringify(teacher),
@@ -60,7 +59,6 @@ class EditProfileView extends Component {
   };
 
   render() {
-    const { teacherId } = this.props;
     console.log('render');
 
     return (
@@ -109,7 +107,7 @@ class EditProfileView extends Component {
             style={{ marginVertical: 20 }}
             text="SAVE CHANGES" onPress={() => this.props.saveChanges(this.state, () => {
               this.props.navigation.goBack();
-              this.props.refresh(teacherId);
+              this.props.refresh();
             })}
           />
         </Content>

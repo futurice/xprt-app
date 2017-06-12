@@ -203,6 +203,7 @@ export default class LectureInvitationView extends Component {
           </ListItem>
           <BlockButton
             text="Save changes"
+            style={{ marginVertical: 20 }}
             onPress={() => updateLecture(lecture.id, this.state, (err) => {
               if (err) {
                 Alert.alert(

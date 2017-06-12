@@ -31,7 +31,7 @@ export const reducer = (state = initialState, action) => {
 };
 
 const mapStateToProps = (state, ownProps) => ({
-  teacher: state.teacherDetails.data,
+  teacher: state.profile.data,
   expert: ownProps.navigation.state.params.expert || state.selectedExpert.data,
   loading: state.expertDetails.loading,
   selectedExpert: state.selectedExpert.data,
