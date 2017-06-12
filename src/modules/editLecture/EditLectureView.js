@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import forIn from 'lodash/forIn';
+import find from 'lodash/find';
+import isUndefined from 'lodash/isUndefined';
 import { Alert } from 'react-native';
 import { Col, Grid, Row } from 'react-native-easy-grid';
 import { Container, Icon, Text, Content, ListItem, Left, Right, Thumbnail, Body, Form, Item, Label, Input, Button, CheckBox } from 'native-base';
@@ -20,11 +22,20 @@ const mapStateToProps = (state, ownProps) => ({
 const mapDispatchToProps = dispatch => ({
   back: bindActionCreators(NavigationActions.back, dispatch),
   refreshLecture: lectureId => dispatch(rest.actions.lectureDetails(lectureId)),
-  updateLecture: (lectureId, updatedFields, callback) => dispatch(rest.actions.lectureDetails.patch({
-    lectureId,
-  }, {
-    body: JSON.stringify(updatedFields),
-  }, callback)),
+  updateLecture: (lectureId, updatedFields, callback) => {
+    if (!isUndefined(find(updatedFields, value => value === ''))) {
+      return Alert.alert(
+        'There was a problem updating lecture invitation:',
+        'Please fill in all fields.',
+      );
+    }
+
+    return dispatch(rest.actions.lectureDetails.patch({
+      lectureId,
+    }, {
+      body: JSON.stringify(updatedFields),
+    }, callback));
+  },
   navigate: bindActionCreators(NavigationActions.navigate, dispatch),
 });
 
@@ -32,6 +43,7 @@ const lectureProps = [
   'dateOption1',
   'dateOption2',
   'title',
+  'edStage',
   'location',
   'subjects',
   'description',
@@ -74,6 +86,7 @@ export default class LectureInvitationView extends Component {
       description,
       dateOption1,
       dateOption2,
+      edStage,
       location,
       contactByEmail,
       contactByPhone,
@@ -89,6 +102,13 @@ export default class LectureInvitationView extends Component {
               <Input
                 value={title}
                 onChangeText={text => this.setState({ title: text })}
+              />
+            </Item>
+            <Item stackedLabel last>
+              <Label>Short lecture description</Label>
+              <Input
+                value={description}
+                onChangeText={text => this.setState({ description: text })}
               />
             </Item>
             <Row>
@@ -157,10 +177,10 @@ export default class LectureInvitationView extends Component {
               />
             </Item>
             <Item stackedLabel last>
-              <Label>Short lecture description</Label>
+              <Label>Educational stage</Label>
               <Input
-                value={description}
-                onChangeText={text => this.setState({ description: text })}
+                value={edStage}
+                onChangeText={text => this.setState({ location: edStage })}
               />
             </Item>
             <Row>

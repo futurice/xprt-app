@@ -114,12 +114,14 @@ export default class LectureDetailsView extends Component {
               <Col size={5}>
                 <Text style={styles.labelStyle}>Lecture title</Text>
                 <Text>{lecture.title}</Text>
+                <Text style={styles.labelStyle}>Short lecture description</Text>
+                <Text>{lecture.description}</Text>
                 <Text style={styles.labelStyle}>Date</Text>
                 <Text>{new Date(lecture.dateOption1).toLocaleDateString('fi-FI')}</Text>
                 <Text style={styles.labelStyle}>Location</Text>
                 <Text>{lecture.location}</Text>
-                <Text style={styles.labelStyle}>Short lecture description</Text>
-                <Text>{lecture.description}</Text>
+                <Text style={styles.labelStyle}>Educational stage</Text>
+                <Text>{lecture.edStage}</Text>
                 <Text style={styles.labelStyle}>Subjects</Text>
                 {lecture.subjects.map((subject, index) =>
                   <Text key={index}>

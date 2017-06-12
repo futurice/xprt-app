@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import find from 'lodash/find';
+import isUndefined from 'lodash/isUndefined';
 import { Alert } from 'react-native';
 import { Container, Icon, Text, Content, ListItem, Left, Right, Thumbnail, Body, Form, Item, Label, Input, Button, CheckBox } from 'native-base';
 import { connect } from 'react-redux';
@@ -41,9 +43,14 @@ const mapDispatchToProps = dispatch => ({
   back: bindActionCreators(NavigationActions.back, dispatch),
   getLectures: () => dispatch(rest.actions.lectures()),
   getExperts: expertId => dispatch(rest.actions.expertDetails({ expertId })),
-  createLecture: (lecture, callback) => dispatch(rest.actions.lectures.post({}, {
-    body: JSON.stringify(lecture),
-  }, callback)),
+  createLecture: (lecture, callback) => {
+    if (!isUndefined(find(lecture, value => value === ''))) {
+      return callback('Please fill in all fields.');
+    }
+    return dispatch(rest.actions.lectures.post({}, {
+      body: JSON.stringify(lecture),
+    }, callback));
+  },
   deselectExpert() {
     dispatch(deselectExpert());
   },
@@ -68,14 +75,21 @@ export default class LectureInvitationView extends Component {
   constructor(props) {
     super(props);
 
+    const defaultDate = new Date();
+    defaultDate.setMonth(defaultDate.getMonth() + 1);
+    defaultDate.setUTCHours(12);
+    defaultDate.setUTCMinutes(0);
+    defaultDate.setUTCSeconds(0);
+    defaultDate.setUTCMilliseconds(0);
+
     this.state = {
       title: '',
       subjects: props.teacher.subjects || [],
       description: '',
-      dateOption1: new Date().toISOString(),
-      dateOption2: null,
-      edStage: '',
-      location: '',
+      dateOption1: defaultDate.toISOString(),
+      // dateOption2: null,
+      edStage: props.teacher.edStage,
+      location: props.teacher.company, // School name
       contactByEmail: true,
       contactByPhone: true,
     };
@@ -99,6 +113,7 @@ export default class LectureInvitationView extends Component {
       description,
       dateOption1,
       // dateOption2,
+      edStage,
       location,
       contactByEmail,
       contactByPhone,
@@ -149,6 +164,13 @@ export default class LectureInvitationView extends Component {
               <Input
                 value={title}
                 onChangeText={text => this.setState({ title: text })}
+              />
+            </Item>
+            <Item stackedLabel>
+              <Label>Short lecture description</Label>
+              <Input
+                value={description}
+                onChangeText={text => this.setState({ description: text })}
               />
             </Item>
             <Row>
@@ -222,10 +244,10 @@ export default class LectureInvitationView extends Component {
               />
             </Item>
             <Item stackedLabel>
-              <Label>Short lecture description</Label>
+              <Label>Educational stage:</Label>
               <Input
-                value={description}
-                onChangeText={text => this.setState({ description: text })}
+                value={edStage}
+                onChangeText={text => this.setState({ edStage: text })}
               />
             </Item>
             <Row>
@@ -276,7 +298,7 @@ export default class LectureInvitationView extends Component {
             }, (err) => {
               if (err) {
                 Alert.alert(
-                  'Error while sending lecture invitation',
+                  'There was a problem creating lecture invitation:',
                   JSON.stringify(err),
                 );
               } else {
