@@ -10,6 +10,7 @@ import SelectLectureView from '../selectLecture/SelectLectureView';
 import LectureInvitationView from '../lectureInvitation/LectureInvitationView';
 import FeedbackView from '../feedback/FeedbackView';
 import EditProfileView from '../editProfile/EditProfileView';
+import EditLectureView from '../editLecture/EditLectureView';
 import LoginView from '../login/Login';
 
 const headerColor = '#333333';
@@ -53,6 +54,7 @@ const AppNavigator = StackNavigator({
   LectureInvitation: { screen: LectureInvitationView },
   Feedback: { screen: FeedbackView },
   EditProfile: { screen: EditProfileView },
+  EditLecture: { screen: EditLectureView },
   Login: { screen: LoginView },
 });
 

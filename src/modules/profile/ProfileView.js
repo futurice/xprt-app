@@ -143,8 +143,8 @@ export default class MyProfile extends Component {
               </Button>
             </Row>
             <Row>
-              <Col style={{ marginVertical: 10 }}>
-                <BlockButton text="Log out" onPress={logout} />
+              <Col>
+                <BlockButton style={{ marginVertical: 10 }} text="Log out" onPress={logout} />
               </Col>
             </Row>
           </Grid>

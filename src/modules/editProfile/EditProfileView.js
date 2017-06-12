@@ -5,6 +5,7 @@ import {
 import { connect } from 'react-redux';
 import { Button, Container, Content, Icon, Input, Item, Label } from 'native-base';
 import { Col, Grid, Row } from 'react-native-easy-grid';
+import SubjectsInput from '../../components/SubjectsInput';
 import BlockButton from '../../components/BlockButton';
 import styles from './EditProfileStyles';
 import rest from '../../utils/rest';
@@ -57,15 +58,6 @@ class EditProfileView extends Component {
     subjects: [],
     edStage: '',
   };
-  deleteRow(index) {
-    const subjects = [...this.state.subjects];
-    subjects.splice(index, 1);
-    this.setState({ subjects });
-  }
-  addRow() {
-    const subjects = [...this.state.subjects, ''];
-    this.setState({ subjects });
-  }
 
   render() {
     const { teacherId } = this.props;
@@ -94,37 +86,10 @@ class EditProfileView extends Component {
             <Row>
               <Col>
                 <Label style={styles.labelStyle}>Subjects</Label>
-                {
-                    this.state.subjects.map((subject, index) => (
-                      <Item key={index}>
-                        <Input
-                          onChangeText={(text) => {
-                            let subjects = [];
-                            if (this.state) {
-                              subjects = JSON.parse(JSON.stringify(this.state.subjects));
-                            }
-                            subjects[index] = text;
-                            this.setState({ subjects });
-                          }} defaultValue={`${subject}`}
-                        />
-                        <Button
-                          dark
-                          transparent
-                          onPress={() => this.deleteRow(index)}
-                        >
-                          <Icon name="close" />
-                        </Button>
-                      </Item>
-                    ))
-                  }
-                <Button
-                  dark
-                  transparent
-                  onPress={() => this.addRow()}
-                  style={styles.addRowButton}
-                >
-                  <Icon name="add" />
-                </Button>
+                <SubjectsInput
+                  values={this.state.subjects}
+                  onChange={subjects => this.setState({ subjects })}
+                />
               </Col>
             </Row>
 
@@ -140,13 +105,14 @@ class EditProfileView extends Component {
               </Col>
             </Row>
           </Grid>
+          <BlockButton
+            style={{ marginVertical: 20 }}
+            text="SAVE CHANGES" onPress={() => this.props.saveChanges(this.state, () => {
+              this.props.navigation.goBack();
+              this.props.refresh(teacherId);
+            })}
+          />
         </Content>
-        <BlockButton
-          text="SAVE CHANGES" onPress={() => this.props.saveChanges(this.state, () => {
-            this.props.navigation.goBack();
-            this.props.refresh(teacherId);
-          })}
-        />
       </Container>
     );
   }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Image, TouchableOpacity } from 'react-native';
+import { Image, TouchableOpacity, Alert } from 'react-native';
 import { Container, Footer, FooterTab, Content, Button, Text, Spinner, Thumbnail, Icon, Badge, View } from 'native-base';
 import { Col, Grid, Row } from 'react-native-easy-grid';
 import { connect } from 'react-redux';
@@ -72,7 +72,17 @@ export default class LectureDetailsView extends Component {
       <Container>
         <Content padder>
           <Grid style={styles.profileGrid}>
-            <TouchableOpacity onPress={() => { this.open(lecture.expertId); }}>
+            <TouchableOpacity
+              onPress={() => {
+                this.props.navigate({
+                  routeName: 'ExpertDetails',
+                  params: {
+                    expertId: lecture.expertId,
+                    inviteLectureDisabled: true,
+                  },
+                });
+              }}
+            >
               <Row style={styles.rowBorder}>
                 <Col size={25}>
                   <Thumbnail style={styles.avatarMedium} source={{ uri }} />
@@ -103,36 +113,62 @@ export default class LectureDetailsView extends Component {
             </Row>
             <Row>
               <Col size={5}>
-                <Text style={styles.labelStyle}>Theme of the lecture:</Text>
+                <Text style={styles.labelStyle}>Lecture title</Text>
                 <Text>{lecture.title}</Text>
-                <Text style={styles.labelStyle}>Date of the lecture:</Text>
+                <Text style={styles.labelStyle}>Date</Text>
                 <Text>{new Date(lecture.dateOption1).toLocaleDateString('fi-FI')}</Text>
-                <Text style={styles.labelStyle}>Location:</Text>
+                <Text style={styles.labelStyle}>Location</Text>
                 <Text>{lecture.location}</Text>
-                <Text style={styles.labelStyle}>Short description of the lecture:</Text>
+                <Text style={styles.labelStyle}>Short lecture description</Text>
                 <Text>{lecture.description}</Text>
+                <Text style={styles.labelStyle}>Subjects</Text>
+                {lecture.subjects.map((subject, index) =>
+                  <Text key={index}>
+                    {subject}
+                  </Text>,
+                )}
               </Col>
               <Col size={1} style={styles.editPenAlignRight}>
                 <Button
                   style={{ alignSelf: 'flex-end' }}
                   transparent
-                  onPress={() => this.open('EditLecture')}
+                  onPress={() => {
+                    this.props.navigate({
+                      routeName: 'EditLecture',
+                      params: {
+                        lecture,
+                      },
+                    });
+                  }}
                 >
                   <Image source={icEditGreen} style={styles.iconEdit} />
                 </Button>
               </Col>
             </Row>
           </Grid>
+          {lecture.status !== 'canceled' ?
+            <BlockButton
+              style={{ marginVertical: 20 }}
+              text="CANCEL THE INVITATION" onPress={() => {
+                Alert.alert(
+                  'Lecture cancellation confirmation',
+                  'Are you sure you want to cancel the lecture? Note that you cannot undo this action.',
+                  [
+                    { text: 'No', style: 'cancel' },
+                    {
+                      text: 'Yes',
+                      onPress: () => {
+                        this.props.cancelInvitation(lecture.id, () => {
+                          this.props.getLectures();
+                        });
+                      },
+                    },
+                  ],
+                );
+              }}
+            />
+          : null}
         </Content>
-        {lecture.status !== 'canceled' ?
-          <BlockButton
-            text="CANCEL THE INVITATION" onPress={() => {
-              this.props.cancelInvitation(lecture.id, () => {
-                this.props.getLectures();
-              });
-            }}
-          />
-        : null}
       </Container>
     ));
   }

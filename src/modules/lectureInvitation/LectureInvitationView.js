@@ -5,10 +5,13 @@ import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
 import { bindActionCreators } from 'redux';
 import DatePicker from 'react-native-datepicker';
+import { Col, Row } from 'react-native-easy-grid';
 
+import SubjectsInput from '../../components/SubjectsInput';
 import BlockButton from '../../components/BlockButton';
 import rest from '../../utils/rest';
 import styles from './lectureInvitationStyles';
+import variables from '../../../native-base-theme/variables/platform';
 
 export const SELECT_EXPERT = 'SELECT_EXPERT';
 export const selectExpert = expert => ({ type: SELECT_EXPERT, payload: expert });
@@ -28,6 +31,7 @@ export const reducer = (state = initialState, action) => {
 };
 
 const mapStateToProps = (state, ownProps) => ({
+  teacher: state.teacherDetails.data,
   expert: ownProps.navigation.state.params.expert || state.selectedExpert.data,
   loading: state.expertDetails.loading,
   selectedExpert: state.selectedExpert.data,
@@ -49,7 +53,7 @@ const mapDispatchToProps = dispatch => ({
 @connect(mapStateToProps, mapDispatchToProps)
 export default class LectureInvitationView extends Component {
   static navigationOptions = {
-    title: 'Send a lecture invitation',
+    title: 'New lecture',
     header: () => ({
       style: {
         backgroundColor: '#333333',
@@ -61,17 +65,21 @@ export default class LectureInvitationView extends Component {
     }),
   };
 
-  state = {
-    title: '',
-    subjects: '',
-    description: '',
-    dateOption1: new Date().toISOString(),
-    dateOption2: null,
-    edStage: '',
-    location: '',
-    contactByEmail: true,
-    contactByPhone: true,
-  };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      title: '',
+      subjects: props.teacher.subjects || [],
+      description: '',
+      dateOption1: new Date().toISOString(),
+      dateOption2: null,
+      edStage: '',
+      location: '',
+      contactByEmail: true,
+      contactByPhone: true,
+    };
+  }
 
   openSelectExpert = () => {
     this.props.navigate({
@@ -135,84 +143,112 @@ export default class LectureInvitationView extends Component {
             </Button>
           }
 
-          <Text note>Add some details about the lecture</Text>
+          <Text style={{ paddingTop: 20 }} note>Add some details about the lecture</Text>
           <Form>
-            <Label>Date option 1 of lecture:</Label>
-            <DatePicker
-              style={{width: '100%'}}
-              date={dateOption1}
-              mode="datetime"
-              placeholder="select date"
-              format="YYYY-MM-DD mm:ss"
-              minDate={new Date()}
-              confirmBtnText="Confirm"
-              cancelBtnText="Cancel"
-              customStyles={{
-                dateIcon: {
-                  position: 'absolute',
-                  left: 0,
-                  top: 4,
-                  marginLeft: 0
-                },
-                dateInput: {
-                  marginLeft: 36
-                }
-              }}
-              onDateChange={(dateOption1) => {this.setState({ dateOption1 })}}
-            />
-            <Label>Date option 2 of lecture:</Label>
-            <DatePicker
-              style={{width: '100%'}}
-              date={dateOption2}
-              mode="datetime"
-              placeholder="select date"
-              format="YYYY-MM-DD mm:ss"
-              minDate={new Date()}
-              confirmBtnText="Confirm"
-              cancelBtnText="Cancel"
-              customStyles={{
-                dateIcon: {
-                  position: 'absolute',
-                  left: 0,
-                  top: 4,
-                  marginLeft: 0
-                },
-                dateInput: {
-                  marginLeft: 36
-                }
-              }}
-              onDateChange={(dateOption2) => {this.setState({ dateOption2 })}}
-            />
-            <Item floatingLabel last>
-              <Label>Title of the lecture:</Label>
+            <Item stackedLabel>
+              <Label>Lecture title</Label>
               <Input
                 value={title}
                 onChangeText={text => this.setState({ title: text })}
               />
             </Item>
-            <Item floatingLabel last>
-              <Label>Subject of the lecture:</Label>
-              <Input
-                value={subjects}
-                onChangeText={text => this.setState({ subjects: text })}
-              />
-            </Item>
-            <Item floatingLabel last>
+            <Row>
+              <Col
+                style={{
+                  marginLeft: 16,
+                  marginTop: 10,
+                }}
+              >
+                <Label
+                  style={{
+                    fontSize: variables.inputFontSize - 2,
+                  }}
+                >
+                  Date
+                </Label>
+                <DatePicker
+                  style={{width: '100%'}}
+                  date={dateOption1}
+                  mode="datetime"
+                  placeholder="select date"
+                  format="YYYY-MM-DD mm:ss"
+                  minDate={new Date()}
+                  confirmBtnText="Confirm"
+                  cancelBtnText="Cancel"
+                  customStyles={{
+                    dateIcon: {
+                      position: 'absolute',
+                      left: 0,
+                      top: 4,
+                      marginLeft: 0
+                    },
+                    dateInput: {
+                      marginLeft: 36
+                    }
+                  }}
+                  onDateChange={(dateOption1) => {this.setState({ dateOption1 })}}
+                />
+                {/*
+                <Label>Date option 2 of lecture:</Label>
+                <DatePicker
+                  style={{width: '100%'}}
+                  date={dateOption2}
+                  mode="datetime"
+                  placeholder="select date"
+                  format="YYYY-MM-DD mm:ss"
+                  minDate={new Date()}
+                  confirmBtnText="Confirm"
+                  cancelBtnText="Cancel"
+                  customStyles={{
+                    dateIcon: {
+                      position: 'absolute',
+                      left: 0,
+                      top: 4,
+                      marginLeft: 0
+                    },
+                    dateInput: {
+                      marginLeft: 36
+                    }
+                  }}
+                  onDateChange={(dateOption2) => {this.setState({ dateOption2 })}}
+                />
+                */}
+              </Col>
+            </Row>
+            <Item stackedLabel>
               <Label>Location:</Label>
               <Input
                 value={location}
                 onChangeText={text => this.setState({ location: text })}
               />
             </Item>
-            <Item floatingLabel last>
-              <Label>Short description of the lecture:</Label>
+            <Item stackedLabel>
+              <Label>Short lecture description</Label>
               <Input
                 value={description}
                 onChangeText={text => this.setState({ description: text })}
               />
             </Item>
+            <Row>
+              <Col>
+                <Label
+                  style={{
+                    marginLeft: 16,
+                    marginTop: 10,
+                    fontSize: variables.inputFontSize - 2,
+                  }}
+                >
+                  Subjects
+                </Label>
+
+                <SubjectsInput
+                  values={subjects}
+                  onChange={subjects => this.setState({ subjects })}
+                />
+              </Col>
+            </Row>
           </Form>
-          <Text note>The expert can contact me by:</Text>
+          <Text style={{ paddingTop: 20 }} note>The expert can contact me by:</Text>
           <ListItem>
             <CheckBox
               checked={contactByEmail}
@@ -231,33 +267,34 @@ export default class LectureInvitationView extends Component {
               <Text>By phone</Text>
             </Body>
           </ListItem>
+          <BlockButton
+            style={{ marginVertical: 20 }}
+            text="Send lecture invitation"
+            disabled={!expert}
+            onPress={() => createLecture({
+              ...this.state,
+              expertId: expert.id,
+            }, (err) => {
+              if (err) {
+                Alert.alert(
+                  'Error while sending lecture invitation',
+                  JSON.stringify(err),
+                );
+              } else {
+                Alert.alert(
+                  'Your invitation was sent successfully!',
+                  'The expert will receive your invitation by e-mail and can contact you using the contact details provided.',
+                );
+
+                // Immediately refresh lectures list
+                getLectures();
+
+                // Leave the lecture invitation view
+                back();
+              }
+            })}
+          />
         </Content>
-        <BlockButton
-          text="Send a lecture invitation"
-          disabled={!expert}
-          onPress={() => createLecture({
-            ...this.state,
-            expertId: expert.id,
-          }, (err) => {
-            if (err) {
-              Alert.alert(
-                'Error while sending lecture invitation',
-                JSON.stringify(err),
-              );
-            } else {
-              Alert.alert(
-                'Your invitation was sent successfully!',
-                'The expert will receive your invitation by e-mail and can contact you using the contact details provided.',
-              );
-
-              // Immediately refresh lectures list
-              getLectures();
-
-              // Leave the lecture invitation view
-              back();
-            }
-          })}
-        />
       </Container>
     );
   }

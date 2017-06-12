@@ -92,7 +92,7 @@ export default class ExpertDetailsView extends Component {
     } else {
       button = (
         <BlockButton
-          text="Send a lecture invitation"
+          text="Send lecture invitation"
           key={expert.id}
           onPress={() => { this.open(expert); }}
         />

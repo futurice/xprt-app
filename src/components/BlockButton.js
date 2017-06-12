@@ -24,10 +24,10 @@ export default class BlockButton extends Component {
   }
 
   render() {
-    const { text } = this.props;
+    const { text, style, ...rest } = this.props;
 
     return (
-      <Button large full style={styles.button} {...this.props}>
+      <Button large full style={{ ...styles.button, ...style }} {...rest}>
         <Text
           style={{
             ...styles.text,
