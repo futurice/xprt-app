@@ -1,4 +1,4 @@
-#XPRT mobile app
+# XPRT mobile app
 
 This is the mobile application for the XPRT platform.
 
