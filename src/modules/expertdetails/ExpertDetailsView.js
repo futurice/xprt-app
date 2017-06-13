@@ -20,6 +20,7 @@ const mapStateToProps = (state, ownProps) => ({
   expertId: ownProps.navigation.state.params.expertId,
   inviteLectureDisabled: ownProps.navigation.state.params.inviteLectureDisabled,
   invitationSelect: ownProps.navigation.state.params.invitationSelect,
+  loggedIn: !!state.login.token,
 });
 const mapDispatchToProps = dispatch => ({
   getExpertDetails(expertId) {
@@ -70,12 +71,12 @@ export default class ExpertDetailsView extends Component {
   // };
 
   render() {
-    const { expert, loading, inviteLectureDisabled, invitationSelect } = this.props;
+    const { expert, loading, inviteLectureDisabled, loggedIn, invitationSelect } = this.props;
     const subjects = expert.subjects || [];
     const areas = expert.area || [];
 
     let button = null;
-    if (inviteLectureDisabled) {
+    if (inviteLectureDisabled || !loggedIn) {
       button = null;
     } else if (invitationSelect) {
       button = (
