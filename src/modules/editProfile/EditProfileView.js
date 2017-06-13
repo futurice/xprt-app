@@ -47,12 +47,14 @@ class EditProfileView extends Component {
 
     this.state = {
       company: teacher.company,
+      address: teacher.address,
       subjects: teacher.subjects,
       edStage: teacher.edStage,
     };
   }
   state = {
     company: '',
+    address: '',
     subjects: [],
     edStage: '',
   };
@@ -74,6 +76,17 @@ class EditProfileView extends Component {
                   <Input
                     onChangeText={company => this.setState({ company })}
                     value={this.state.company}
+                  />
+                </Item>
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <Item stackedLabel last>
+                  <Label style={styles.labelStyle}>School address</Label>
+                  <Input
+                    onChangeText={address => this.setState({ address })}
+                    value={this.state.address}
                   />
                 </Item>
               </Col>

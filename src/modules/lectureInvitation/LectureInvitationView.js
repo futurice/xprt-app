@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import find from 'lodash/find';
 import isUndefined from 'lodash/isUndefined';
-import { Alert } from 'react-native';
+import { Alert, View } from 'react-native';
 import { Container, Icon, Text, Content, ListItem, Left, Right, Thumbnail, Body, Form, Item, Label, Input, Button, CheckBox } from 'native-base';
 import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
@@ -89,7 +89,7 @@ export default class LectureInvitationView extends Component {
       dateOption1: defaultDate.toISOString(),
       // dateOption2: null,
       edStage: props.teacher.edStage,
-      location: props.teacher.company, // School name
+      location: props.teacher.address, // School address
       contactByEmail: true,
       contactByPhone: true,
     };
@@ -120,6 +120,14 @@ export default class LectureInvitationView extends Component {
       subjects,
     } = this.state;
 
+    const areas = (expert && expert.area) || [];
+
+    let areasStr = '';
+
+    areas.forEach((area, index) =>
+      (areasStr = `${areasStr} ${area}${index === areas.length - 1 ? '' : ', '}`),
+    );
+
     return (
       <Container>
         <Content padder>
@@ -130,8 +138,11 @@ export default class LectureInvitationView extends Component {
               </Left>
               <Body>
                 <Text>{expert.name}</Text>
-                <Text note>CEO at Sportmart</Text>
-                <Text note>Espoo</Text>
+                <Text note>{`${expert.title} (${expert.company})`}</Text>
+                <View style={styles.rowflow}>
+                  <Icon style={styles.areaIcon} name="pin" />
+                  <Text numberOfLines={1} note> {areasStr} </Text>
+                </View>
               </Body>
               {selectedExpert && !navExpert ?
                 <Right>
@@ -164,6 +175,8 @@ export default class LectureInvitationView extends Component {
               <Input
                 value={title}
                 onChangeText={text => this.setState({ title: text })}
+                autoCapitalize="sentences"
+                autoCorrect
               />
             </Item>
             <Item stackedLabel>
@@ -171,6 +184,8 @@ export default class LectureInvitationView extends Component {
               <Input
                 value={description}
                 onChangeText={text => this.setState({ description: text })}
+                autoCapitalize="sentences"
+                autoCorrect
               />
             </Item>
             <Row>
@@ -241,6 +256,8 @@ export default class LectureInvitationView extends Component {
               <Input
                 value={location}
                 onChangeText={text => this.setState({ location: text })}
+                autoCapitalize="sentences"
+                autoCorrect
               />
             </Item>
             <Item stackedLabel>
@@ -248,6 +265,8 @@ export default class LectureInvitationView extends Component {
               <Input
                 value={edStage}
                 onChangeText={text => this.setState({ edStage: text })}
+                autoCapitalize="sentences"
+                autoCorrect
               />
             </Item>
             <Row>

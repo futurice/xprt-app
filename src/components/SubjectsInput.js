@@ -51,6 +51,8 @@ export default class BlockButton extends React.Component {
                 autoFocus={!value && index === values.length - 1}
                 value={value}
                 onChangeText={text => this.onChangeText(text, index)}
+                autoCapitalize="sentences"
+                autoCorrect
               />
             </Item>
           ))

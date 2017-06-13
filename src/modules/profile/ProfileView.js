@@ -114,6 +114,12 @@ export default class MyProfile extends Component {
             </Row>
             <Row>
               <Col>
+                <Text style={styles.labelStyle}> School address: </Text>
+                <Text> { teacher.address } </Text>
+              </Col>
+            </Row>
+            <Row>
+              <Col>
                 <Text style={styles.labelStyle}> Subjects: </Text>
                 {subjects && subjects.length ?
                 (

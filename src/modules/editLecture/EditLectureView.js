@@ -102,6 +102,8 @@ export default class LectureInvitationView extends Component {
               <Input
                 value={title}
                 onChangeText={text => this.setState({ title: text })}
+                autoCapitalize="sentences"
+                autoCorrect
               />
             </Item>
             <Item stackedLabel last>
@@ -109,6 +111,8 @@ export default class LectureInvitationView extends Component {
               <Input
                 value={description}
                 onChangeText={text => this.setState({ description: text })}
+                autoCapitalize="sentences"
+                autoCorrect
               />
             </Item>
             <Row>
@@ -174,13 +178,17 @@ export default class LectureInvitationView extends Component {
               <Input
                 value={location}
                 onChangeText={text => this.setState({ location: text })}
+                autoCapitalize="sentences"
+                autoCorrect
               />
             </Item>
             <Item stackedLabel last>
               <Label>Educational stage</Label>
               <Input
                 value={edStage}
-                onChangeText={text => this.setState({ location: edStage })}
+                onChangeText={text => this.setState({ edStage: text })}
+                autoCapitalize="sentences"
+                autoCorrect
               />
             </Item>
             <Row>

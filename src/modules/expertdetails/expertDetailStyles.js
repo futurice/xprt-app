@@ -3,7 +3,7 @@ import variables from '../../../native-base-theme/variables/platform';
 const styles = {
   aboutGrid: {
     paddingHorizontal: 20,
-    paddingTop: 20,
+    paddingVertical: 20,
   },
   aboutText: {
     color: 'black',
@@ -34,6 +34,7 @@ const styles = {
   },
   description: {
     fontSize: 16,
+    paddingBottom: 10,
   },
   headerStyle: {
     style: {
@@ -51,6 +52,7 @@ const styles = {
   labelRowflow: {
     flexDirection: 'row',
     paddingTop: 5,
+    marginHorizontal: 10,
   },
   companyText: {
     color: 'white',

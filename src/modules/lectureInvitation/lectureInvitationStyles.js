@@ -28,5 +28,8 @@ const styles = {
   removeExpertText: {
     color: '#f0ad4e',
   },
+  rowflow: {
+    flexDirection: 'row',
+  },
 };
 module.exports = styles;

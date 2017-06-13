@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, ScrollView } from 'react-native';
 import { Body, Badge, Button, Container, Content, Icon, Spinner, Thumbnail } from 'native-base';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 
@@ -109,7 +109,7 @@ export default class ExpertDetailsView extends Component {
               <Col style={styles.profileGridCol}>
                 <Button
                   transparent style={styles.iconButton}
-                  warning onPress={() => { openUrl(`mailto: ${expert.email}?subject=DISSUBJECT&body=DISBODY`); }}
+                  warning onPress={() => { openUrl(`mailto: ${expert.email}?subject=XPRT`); }}
                 >
                   <Icon name="mail" />
                 </Button>
@@ -131,7 +131,7 @@ export default class ExpertDetailsView extends Component {
                 <Text style={styles.name}> {expert.name} </Text>
                 <Text style={styles.companyText}> {expert.company} </Text>
                 <Text style={styles.lightText}> {expert.title} </Text>
-                <View style={styles.labelRowflow}>
+                <ScrollView horizontal style={styles.labelRowflow}>
                   {
                     subjects.map(subject => (
                       <Badge style={styles.subjectBadge} key={subject}>
@@ -139,7 +139,7 @@ export default class ExpertDetailsView extends Component {
                       </Badge>
                     ))
                   }
-                </View>
+                </ScrollView>
               </Body>
             </Row>
           </Grid>
@@ -149,14 +149,20 @@ export default class ExpertDetailsView extends Component {
             </Row>
             <Row>
               <Text style={styles.subAboutText}>Description: </Text>
+            </Row>
+            <Row>
               <Text style={styles.description} note>{expert.description}</Text>
             </Row>
             <Row>
               <Text style={styles.subAboutText}>Lecture preferences: </Text>
+            </Row>
+            <Row>
               <Text style={styles.description} note>{expert.details}</Text>
             </Row>
             <Row>
               <Text style={styles.subAboutText}>Areas: </Text>
+            </Row>
+            <Row>
               {
                 areas.map((area, index) => (
                   <Text style={styles.description} key={area}>
@@ -167,14 +173,16 @@ export default class ExpertDetailsView extends Component {
             </Row>
             <Row>
               <Text style={styles.subAboutText}>Office visit possible: </Text>
+            </Row>
+            <Row>
               <Text style={styles.description}>{expert.officeVisit ? 'Yes' : 'No'}</Text>
             </Row>
-            { expert.officeVisit &&
-              <Row>
-                <Text style={styles.subAboutText}>Office address: </Text>
-                <Text style={styles.description}>{expert.address}</Text>
-              </Row>
-            }
+            <Row>
+              { expert.officeVisit && <Text style={styles.subAboutText}>Office address: </Text> }
+            </Row>
+            <Row>
+              { expert.officeVisit && <Text style={styles.description}>{expert.address}</Text> }
+            </Row>
           </Grid>
         </Content>
         {button}
