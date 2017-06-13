@@ -129,15 +129,8 @@ export default class ExpertDetailsView extends Component {
             <Row>
               <Body>
                 <Text style={styles.name}> {expert.name} </Text>
+                <Text style={styles.companyText}> {expert.company} </Text>
                 <Text style={styles.lightText}> {expert.title} </Text>
-                <View style={styles.visitRow}>
-                  <Text style={styles.subjectText}> Visit possible: </Text>
-                  {
-                    areas.map(area => (
-                      <Text style={styles.subjectText} key={area}> {area} </Text>
-                    ))
-                  }
-                </View>
                 <View style={styles.labelRowflow}>
                   {
                     subjects.map(subject => (
@@ -155,8 +148,33 @@ export default class ExpertDetailsView extends Component {
               <Text style={styles.aboutText}>About {expert.name}:</Text>
             </Row>
             <Row>
+              <Text style={styles.subAboutText}>Description: </Text>
               <Text style={styles.description} note>{expert.description}</Text>
             </Row>
+            <Row>
+              <Text style={styles.subAboutText}>Lecture preferences: </Text>
+              <Text style={styles.description} note>{expert.details}</Text>
+            </Row>
+            <Row>
+              <Text style={styles.subAboutText}>Areas: </Text>
+              {
+                areas.map((area, index) => (
+                  <Text style={styles.description} key={area}>
+                    {area}{index === areas.length - 1 ? '' : ', '}
+                  </Text>
+                ))
+              }
+            </Row>
+            <Row>
+              <Text style={styles.subAboutText}>Office visit possible: </Text>
+              <Text style={styles.description}>{expert.officeVisit ? 'Yes' : 'No'}</Text>
+            </Row>
+            { expert.officeVisit &&
+              <Row>
+                <Text style={styles.subAboutText}>Office address: </Text>
+                <Text style={styles.description}>{expert.address}</Text>
+              </Row>
+            }
           </Grid>
         </Content>
         {button}

@@ -8,6 +8,11 @@ const styles = {
   aboutText: {
     color: 'black',
     fontSize: 20,
+    paddingBottom: 10,
+  },
+  subAboutText: {
+    color: 'black',
+    fontSize: 16,
   },
   avatarLarge: {
     width: 140,
@@ -47,14 +52,22 @@ const styles = {
     flexDirection: 'row',
     paddingTop: 5,
   },
+  companyText: {
+    color: 'white',
+    textAlign: 'center',
+    alignSelf: 'center',
+    fontSize: 24,
+  },
   lightText: {
     color: 'white',
+    textAlign: 'center',
     alignSelf: 'center',
-    fontSize: 20,
+    fontSize: 18,
     paddingBottom: 8,
   },
   name: {
     color: variables.brandGreen,
+    textAlign: 'center',
     alignSelf: 'center',
     fontSize: 24,
     paddingBottom: 10,

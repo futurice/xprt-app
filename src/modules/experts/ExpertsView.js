@@ -68,7 +68,9 @@ export default class ExpertsView extends Component {
 
     let areasStr = '';
 
-    areas.forEach(area => (areasStr = `${areasStr} ${area}`));
+    areas.forEach((area, index) =>
+      (areasStr = `${areasStr} ${area}${index === areas.length - 1 ? '' : ', '}`),
+    );
     // const thumbnailSource = expert.imageUrl ? { uri: expert.imageUrl } : defaultProfile;
     // ToDo: Remove this thingy
 
@@ -79,7 +81,7 @@ export default class ExpertsView extends Component {
         </Left>
         <Body style={styles.leftStyle}>
           <Text numberOfLines={1}> {expert.name} </Text>
-          <Text numberOfLines={1} note style={styles.rowText}> {expert.title || 'Title goes here'}</Text>
+          <Text numberOfLines={1} note style={styles.rowText}> {`${expert.title} (${expert.company})`}</Text>
           <View style={styles.rowflow}>
             <Icon style={styles.areaIcon} name="pin" />
             <Text numberOfLines={1} note> {areasStr} </Text>
