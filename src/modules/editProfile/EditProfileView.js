@@ -46,18 +46,12 @@ class EditProfileView extends Component {
     const { teacher } = props;
 
     this.state = {
-      company: teacher.company,
-      address: teacher.address,
-      subjects: teacher.subjects,
-      edStage: teacher.edStage,
+      company: teacher.company || '',
+      address: teacher.address || '',
+      subjects: teacher.subjects || [],
+      edStage: teacher.edStage || '',
     };
   }
-  state = {
-    company: '',
-    address: '',
-    subjects: [],
-    edStage: '',
-  };
 
   render() {
     return (
@@ -76,6 +70,8 @@ class EditProfileView extends Component {
                   <Input
                     onChangeText={company => this.setState({ company })}
                     value={this.state.company}
+                    autoCapitalize="sentences"
+                    autoCorrect
                   />
                 </Item>
               </Col>
@@ -87,6 +83,8 @@ class EditProfileView extends Component {
                   <Input
                     onChangeText={address => this.setState({ address })}
                     value={this.state.address}
+                    autoCapitalize="sentences"
+                    autoCorrect
                   />
                 </Item>
               </Col>
@@ -108,6 +106,8 @@ class EditProfileView extends Component {
                   <Input
                     onChangeText={edStage => this.setState({ edStage })}
                     value={this.state.edStage}
+                    autoCapitalize="sentences"
+                    autoCorrect
                   />
                 </Item>
               </Col>
